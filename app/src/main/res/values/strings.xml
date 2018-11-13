@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Wholesale</string>
+    <string name="title_activity_list">List</string>
 </resources>
