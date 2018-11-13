@@ -10,10 +10,12 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class Login : AppCompatActivity() {
 
+    //Create toast message
     fun toast(string: String) {
         Toast.makeText(applicationContext, string, Toast.LENGTH_LONG).show()
     }
 
+    //SignUp new user
     fun signUp() {
         val user = ParseUser()
         user.username = et_username.text.toString()
@@ -27,6 +29,8 @@ class Login : AppCompatActivity() {
         }
     }
 
+
+    //LogIn user
     fun logIn() {
         ParseUser.logInInBackground(
             et_username.text.toString(),
@@ -36,6 +40,7 @@ class Login : AppCompatActivity() {
                 if (e == null) {
                     toast("Successful")
                     val intent = Intent(applicationContext, List::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 } else {
                     toast(e.message.toString())
@@ -43,6 +48,7 @@ class Login : AppCompatActivity() {
             }
         }
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +61,7 @@ class Login : AppCompatActivity() {
         btn_signup.setOnClickListener {
             signUp()
         }
+
 
     }
 }

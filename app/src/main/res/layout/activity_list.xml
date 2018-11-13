@@ -14,8 +14,10 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             app:srcCompat="@drawable/ic_add_black_24dp"/>
-    <ListView
+    <Button
+            android:text="LogOut"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/lv_orders"/>
+            android:layout_gravity="bottom"
+            android:layout_height="wrap_content" android:id="@+id/btn_logOut" android:textAllCaps="false"/>
 
 </android.support.design.widget.CoordinatorLayout>
