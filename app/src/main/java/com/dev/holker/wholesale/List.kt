@@ -14,7 +14,8 @@ class List : AppCompatActivity() {
         setContentView(R.layout.activity_list)
 
         fab.setOnClickListener {
-
+            val intent = Intent(applicationContext, Order::class.java)
+            startActivity(intent)
         }
     }
 

@@ -9,34 +9,53 @@
     <Button
             android:text=" Submit order"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true" android:id="@+id/btn_submit" android:layout_marginBottom="16dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/btn_submit"
+            android:layout_marginBottom="16dp"
             android:textAllCaps="false"/>
+
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:layout_centerHorizontal="true" android:layout_alignParentTop="true" android:id="@+id/product"
-            android:layout_marginTop="46dp" android:hint="Product name"/>
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:id="@+id/product"
+            android:layout_marginTop="46dp"
+            android:hint="Product name"/>
+
     <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="285dp"
+            android:layout_height="129dp"
             android:inputType="textMultiLine"
             android:ems="10"
-            android:layout_centerHorizontal="true" android:layout_alignParentTop="true" android:id="@+id/editText4"
-            android:layout_marginTop="102dp" android:hint="Description"/>
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:id="@+id/editText4"
+            android:layout_marginTop="152dp"
+            android:hint="Description"/>
+
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="numberSigned"
             android:ems="10"
-            android:layout_centerHorizontal="true" android:layout_alignParentTop="true" android:id="@+id/editText5"
-            android:layout_marginTop="172dp" android:hint="Amount"/>
+            android:layout_alignParentTop="true"
+            android:id="@+id/editText5"
+            android:layout_marginTop="90dp"
+            android:hint="Amount" android:layout_alignStart="@+id/product"/>
+
     <Button
             android:text="Attach photo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true" android:id="@+id/btn_send_photo"
-            android:layout_marginBottom="140dp" android:textAllCaps="false"/>
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/btn_send_photo"
+            android:layout_marginBottom="140dp"
+            android:textAllCaps="false"/>
+
 </RelativeLayout>
