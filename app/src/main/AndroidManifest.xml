@@ -11,8 +11,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".Login"
-                  android:theme="@style/AppTheme.NoActionBar">
+        <activity
+                android:name=".Login"
+                android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -23,6 +24,8 @@
                 android:name=".List"
                 android:label="@string/title_activity_list"
                 android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".Order">
         </activity>
     </application>
 
