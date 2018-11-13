@@ -23,7 +23,7 @@
             android:ems="10"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
-            android:id="@+id/product"
+            android:id="@+id/et_productName"
             android:layout_marginTop="46dp"
             android:hint="Product name"/>
 
@@ -34,7 +34,7 @@
             android:ems="10"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
-            android:id="@+id/editText4"
+            android:id="@+id/et_description"
             android:layout_marginTop="152dp"
             android:hint="Description"/>
 
@@ -44,9 +44,9 @@
             android:inputType="numberSigned"
             android:ems="10"
             android:layout_alignParentTop="true"
-            android:id="@+id/editText5"
+            android:id="@+id/et_amount"
             android:layout_marginTop="90dp"
-            android:hint="Amount" android:layout_alignStart="@+id/product"/>
+            android:hint="Amount" android:layout_alignStart="@+id/et_productName"/>
 
     <Button
             android:text="Attach photo"
