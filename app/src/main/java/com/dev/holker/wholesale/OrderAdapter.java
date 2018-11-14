@@ -1,6 +1,7 @@
 package com.dev.holker.wholesale;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +51,11 @@ public class OrderAdapter extends ArrayAdapter<OrderItem> {
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, orderItem.getProductName(), Toast.LENGTH_LONG).show();
+
+                Intent i = new Intent(mContext, OrderDescription.class);
+                i.putExtra("order", orderItem.getProductName());
+
+                mContext.startActivity(i);
             }
         });
 
