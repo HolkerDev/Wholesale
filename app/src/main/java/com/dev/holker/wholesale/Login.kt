@@ -61,7 +61,5 @@ class Login : AppCompatActivity() {
         btn_signup.setOnClickListener {
             signUp()
         }
-
-
     }
 }
