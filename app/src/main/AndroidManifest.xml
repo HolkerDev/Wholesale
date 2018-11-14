@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools" package="com.dev.holker.wholesale">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.dev.holker.wholesale">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -26,8 +27,11 @@
                 android:name=".Login"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".Order"
-                  android:parentActivityName=".List">
+        <activity
+                android:name=".Order"
+                android:parentActivityName=".List">
+        </activity>
+        <activity android:name=".OrderDescription">
         </activity>
     </application>
 
