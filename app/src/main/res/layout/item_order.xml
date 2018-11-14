@@ -12,12 +12,21 @@
             android:layout_alignParentTop="true">
         <TextView
                 android:text="TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/tv_product_name" android:layout_weight="1"/>
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="@drawable/stroke"
+                android:id="@+id/tv_product_name"
+                android:layout_weight="1" android:layout_margin="5dp" android:textStyle="bold"/>
         <TextView
                 android:text="TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/tv_amount_product" android:layout_weight="1"/>
+                android:layout_width="30dp"
+                android:background="@drawable/stroke"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_amount_product"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_margin="5dp" android:textStyle="bold"/>
         <Button
                 android:text="check prices"
                 android:layout_width="wrap_content"
@@ -25,7 +34,7 @@
                 android:background="@drawable/btn_rounded_white"
                 android:id="@+id/btn_check"
                 android:layout_weight="1"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" android:layout_margin="5dp"/>
     </LinearLayout>
 
 

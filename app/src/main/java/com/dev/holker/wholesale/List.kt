@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_list.*
 class List : AppCompatActivity() {
 
     var mOrders = arrayListOf<OrderItem>()
-    lateinit var mAdapter:OrderAdapter
+    lateinit var mAdapter: OrderAdapter
 
     fun toast(string: String) {
         Toast.makeText(applicationContext, string, Toast.LENGTH_LONG).show()
@@ -37,45 +37,40 @@ class List : AppCompatActivity() {
         }
     }
 
-//    //update list of order
-//    private fun updateOrders() {
-//        mOrders.clear()
-//        val query = ParseQuery<ParseObject>("Orders")
-//        query.whereEqualTo("username", ParseUser.getCurrentUser().username.toString())
-//        query.orderByDescending("createdAt")
-//        query.findInBackground { objects, e ->
-//            run {
-//                if (objects.size > 0) {
-//                    if (e == null) {
-//                        for (obj: ParseObject in objects) {
-//                            //mOrders.add(obj.get("name").toString())
-//                        }
-//                        lv_orders.adapter = mAdapter
-//                    } else {
-//                        toast(e.message.toString())
-//                    }
-//                } else {
-//                    toast("Objects null")
-//                }
-//            }
-//        }
-//
-//    }
+    //update list of order
+    private fun updateOrders() {
+        mOrders.clear()
+        val query = ParseQuery<ParseObject>("Orders")
+        query.whereEqualTo("username", ParseUser.getCurrentUser().username.toString())
+        query.orderByDescending("createdAt")
+        query.findInBackground { objects, e ->
+            run {
+                if (objects.size > 0) {
+                    if (e == null) {
+                        for (obj: ParseObject in objects) {
+                            mOrders.add(OrderItem(obj.get("name").toString(), obj.get("amount").toString()))
+                        }
+                        lv_orders.adapter = mAdapter
+                    } else {
+                        toast(e.message.toString())
+                    }
+                } else {
+                    toast("Objects null")
+                }
+            }
+        }
 
-//    override fun onStart() {
-//        super.onStart()
-//        updateOrders()
-//    }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        updateOrders()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
-
-        mOrders.add(OrderItem("Chairs","25"))
-        mOrders.add(OrderItem("Chairs","35"))
-
-        mAdapter = OrderAdapter(applicationContext,R.layout.item_order,mOrders);
-        lv_orders.adapter = mAdapter
+        mAdapter = OrderAdapter(applicationContext, R.layout.item_order, mOrders)
 
         checkUser()
 
