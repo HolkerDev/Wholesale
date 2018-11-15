@@ -63,6 +63,11 @@ class List : AppCompatActivity() {
         }
     }
 
+    private fun goToSettings() {
+        val i = Intent(applicationContext, Settings::class.java)
+        startActivity(i)
+    }
+
     override fun onStart() {
         super.onStart()
         checkUser()
@@ -85,6 +90,11 @@ class List : AppCompatActivity() {
             ParseUser.logOut()
             goToLogin()
         }
+
+        iv_settings.setOnClickListener {
+            goToSettings()
+        }
+
     }
 
 }

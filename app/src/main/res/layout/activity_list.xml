@@ -21,20 +21,37 @@
                 android:id="@+id/toolbar"
                 android:layout_weight="0">
 
-            <ImageView android:layout_width="50dp"
-                       android:layout_height="50dp"
-                       android:scaleType="center"
-                       android:contentDescription="Logo"
-                       app:srcCompat="@drawable/ic_logo"/>
-            <TextView
-                    android:text="@string/app_name"
-                    android:gravity="center"
-                    android:textSize="25sp"
-                    android:fontFamily="@font/q"
-                    android:textColor="#969bd2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView"/>
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                <ImageView android:layout_width="50dp"
+                           android:id="@+id/iv_logo"
+                           android:layout_height="50dp"
+                           android:scaleType="center"
+                           android:contentDescription="Logo"
+                           app:srcCompat="@drawable/ic_logo"/>
+                <TextView
+                        android:text="@string/app_name"
+                        android:gravity="center"
+                        android:textSize="25sp"
+                        android:fontFamily="@font/q"
+                        android:textColor="#969bd2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView"
+                        android:layout_alignStart="@+id/iv_logo"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="50dp"/>
+
+                <ImageView android:layout_width="50dp"
+                           android:id="@+id/iv_settings"
+                           android:contentDescription="Settings"
+                           app:srcCompat="@drawable/ic_settings"
+                           android:layout_height="35dp"
+                           android:layout_centerVertical="true"
+                           android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+
 
         </android.support.v7.widget.Toolbar>
         <ListView

@@ -11,12 +11,12 @@ import kotlinx.android.synthetic.main.activity_login.*
 class Login : AppCompatActivity() {
 
     //Create toast message
-    fun toast(string: String) {
+    private fun toast(string: String) {
         Toast.makeText(applicationContext, string, Toast.LENGTH_LONG).show()
     }
 
     //SignUp new user
-    fun signUp() {
+    private fun signUp() {
         val user = ParseUser()
         user.username = et_username.text.toString()
         user.setPassword(et_password.text.toString())
@@ -31,7 +31,7 @@ class Login : AppCompatActivity() {
 
 
     //LogIn user
-    fun logIn() {
+    private fun logIn() {
         ParseUser.logInInBackground(
             et_username.text.toString(),
             et_password.text.toString()
