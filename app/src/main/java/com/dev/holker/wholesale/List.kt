@@ -86,10 +86,6 @@ class List : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btn_logOut.setOnClickListener {
-            ParseUser.logOut()
-            goToLogin()
-        }
 
         iv_settings.setOnClickListener {
             goToSettings()

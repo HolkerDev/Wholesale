@@ -59,18 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/lv_orders"/>
-        <Button
-                android:text="Log Out"
-                android:layout_width="match_parent"
-                android:layout_gravity="bottom"
-                android:textColor="#fff"
-                android:fontFamily="@font/trueno_lt"
-                android:background="@drawable/btn_rounded_white"
-                android:layout_height="wrap_content"
-                android:id="@+id/btn_logOut"
-                android:layout_margin="10dp"
-                android:textAllCaps="false"
-                android:layout_weight="0"/>
+
     </LinearLayout>
     <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
