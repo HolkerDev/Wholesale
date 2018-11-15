@@ -32,7 +32,7 @@ class List : AppCompatActivity() {
 
     //check if user logged
     private fun checkUser() {
-        if (ParseUser.getCurrentUser() == null) {
+        if (ParseUser.getCurrentSessionToken() == null) {
             goToLogin()
         }
     }
@@ -41,38 +41,40 @@ class List : AppCompatActivity() {
     private fun updateOrders() {
         mOrders.clear()
         val query = ParseQuery<ParseObject>("Orders")
-        query.whereEqualTo("username", ParseUser.getCurrentUser().username.toString())
-        query.orderByDescending("createdAt")
-        query.findInBackground { objects, e ->
-            run {
-                if (objects.size > 0) {
-                    if (e == null) {
-                        for (obj: ParseObject in objects) {
-                            mOrders.add(OrderItem(obj.get("name").toString(), obj.get("amount").toString()))
+        if (ParseUser.getCurrentUser() != null) {
+            query.whereEqualTo("username", ParseUser.getCurrentUser().username.toString())
+            query.orderByDescending("createdAt")
+            query.findInBackground { objects, e ->
+                run {
+                    if (objects.size > 0) {
+                        if (e == null) {
+                            for (obj: ParseObject in objects) {
+                                mOrders.add(OrderItem(obj.get("name").toString(), obj.get("amount").toString()))
+                            }
+                            lv_orders.adapter = mAdapter
+                        } else {
+                            toast(e.message.toString())
                         }
-                        lv_orders.adapter = mAdapter
                     } else {
-                        toast(e.message.toString())
+                        toast("Objects null")
                     }
-                } else {
-                    toast("Objects null")
                 }
             }
         }
-
     }
 
     override fun onStart() {
         super.onStart()
+        checkUser()
         updateOrders()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
+        checkUser()
         mAdapter = OrderAdapter(applicationContext, R.layout.item_order, mOrders)
 
-        checkUser()
 
         fab.setOnClickListener {
             val intent = Intent(applicationContext, Order::class.java)
