@@ -26,17 +26,21 @@
             android:id="@+id/textView"/>
     <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:inputType="textPersonName"
             android:layout_margin="20dp"
+            android:background="@drawable/gaps"
+            android:gravity="center"
             android:layout_marginTop="50dp"
             android:ems="10"
             android:id="@+id/et_username"
             android:hint="username"/>
     <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
+            android:gravity="center"
             android:inputType="textPassword"
+            android:background="@drawable/gaps"
             android:layout_margin="20dp"
             android:ems="10"
             android:id="@+id/et_password"
