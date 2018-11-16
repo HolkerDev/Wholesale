@@ -31,11 +31,15 @@
                 android:name=".Order"
                 android:parentActivityName=".List">
         </activity>
-        <activity android:name=".OrderDescription"
-                  android:parentActivityName=".List">
+        <activity
+                android:name=".OrderDescription"
+                android:parentActivityName=".List">
         </activity>
-        <activity android:name=".Settings"
-                  android:parentActivityName=".List">
+        <activity
+                android:name=".Settings"
+                android:parentActivityName=".List">
+        </activity>
+        <activity android:name=".MainActivity">
         </activity>
     </application>
 
