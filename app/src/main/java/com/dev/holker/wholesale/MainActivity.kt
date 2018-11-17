@@ -6,6 +6,10 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
+import android.R.anim.slide_out_right
+import android.R.anim.slide_in_left
+import android.support.v4.app.FragmentManager
+
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -32,7 +36,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     private fun loadFragment(fragment: Fragment): Boolean {
-        supportFragmentManager.beginTransaction().replace(R.id.fragmemt_container, fragment).commit()
+        val fm = supportFragmentManager
+        fm.beginTransaction().replace(R.id.fragmemt_container, fragment).commit()
         return true
     }
 
