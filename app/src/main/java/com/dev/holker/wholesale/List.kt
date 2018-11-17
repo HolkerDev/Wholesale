@@ -2,9 +2,7 @@ package com.dev.holker.wholesale
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.parse.ParseObject
 import com.parse.ParseQuery
@@ -51,7 +49,7 @@ class List : AppCompatActivity() {
                             for (obj: ParseObject in objects) {
                                 mOrders.add(OrderItem(obj.get("name").toString(), obj.get("amount").toString()))
                             }
-                            lv_orders.adapter = mAdapter
+                            lv_test.adapter = mAdapter
                         } else {
                             toast(e.message.toString())
                         }
