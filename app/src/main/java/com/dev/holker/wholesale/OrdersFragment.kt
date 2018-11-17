@@ -1,5 +1,6 @@
 package com.dev.holker.wholesale
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -55,6 +56,10 @@ class OrdersFragment : Fragment() {
 
         updateOrders()
 
+        add_order.setOnClickListener {
+            val i = Intent(activity!!.applicationContext, Order::class.java)
+            startActivity(i)
+        }
 
         lv_orders.adapter = mAdapter
     }

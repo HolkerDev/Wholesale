@@ -79,10 +79,10 @@ class List : AppCompatActivity() {
         mAdapter = OrderAdapter(applicationContext, R.layout.item_order, mOrders)
 
 
-        fab.setOnClickListener {
-            val intent = Intent(applicationContext, Order::class.java)
-            startActivity(intent)
-        }
+//        fab.setOnClickListener {
+//            val intent = Intent(applicationContext, Order::class.java)
+//            startActivity(intent)
+//        }
 
 
         iv_settings.setOnClickListener {

@@ -28,8 +28,7 @@
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name=".Order"
-                android:parentActivityName=".List">
+                android:name=".Order">
         </activity>
         <activity
                 android:name=".OrderDescription"
