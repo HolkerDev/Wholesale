@@ -20,7 +20,6 @@ class OrdersFragment : Fragment() {
     val mOrders = arrayListOf<OrderItem>()
     lateinit var mAdapter: ArrayAdapter<OrderItem>
 
-
     private fun toast(string: String?) {
         Toast.makeText(activity!!.applicationContext, string, Toast.LENGTH_SHORT).show()
     }
