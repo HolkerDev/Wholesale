@@ -39,7 +39,7 @@ class Login : AppCompatActivity() {
             run {
                 if (e == null) {
                     toast("Successful")
-                    val intent = Intent(applicationContext, List::class.java)
+                    val intent = Intent(applicationContext, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 } else {
