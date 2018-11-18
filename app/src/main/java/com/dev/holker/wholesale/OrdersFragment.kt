@@ -56,6 +56,11 @@ class OrdersFragment : Fragment() {
 
         updateOrders()
 
+        refresh.setOnRefreshListener {
+            updateOrders()
+            refresh.isRefreshing = false
+        }
+
         add_order.setOnClickListener {
             val i = Intent(activity!!.applicationContext, Order::class.java)
             startActivity(i)
