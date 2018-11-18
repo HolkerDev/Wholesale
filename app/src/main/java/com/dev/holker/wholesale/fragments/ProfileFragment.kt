@@ -1,4 +1,4 @@
-package com.dev.holker.wholesale
+package com.dev.holker.wholesale.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.dev.holker.wholesale.activities.Login
+import com.dev.holker.wholesale.R
 import com.parse.ParseUser
 import kotlinx.android.synthetic.main.fragment_profile.*
 

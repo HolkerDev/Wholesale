@@ -1,4 +1,4 @@
-package com.dev.holker.wholesale
+package com.dev.holker.wholesale.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,10 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.dev.holker.wholesale.activities.Order
+import com.dev.holker.wholesale.OrderAdapter
+import com.dev.holker.wholesale.OrderItem
+import com.dev.holker.wholesale.R
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseUser
-import kotlinx.android.synthetic.main.activity_list.*
 import kotlinx.android.synthetic.main.fragment_orders.*
 
 
@@ -36,7 +39,12 @@ class OrdersFragment : Fragment() {
                     if (objects.size > 0) {
                         if (e == null) {
                             for (obj: ParseObject in objects) {
-                                mOrders.add(OrderItem(obj.get("name").toString(), obj.get("amount").toString()))
+                                mOrders.add(
+                                    OrderItem(
+                                        obj.get("name").toString(),
+                                        obj.get("amount").toString()
+                                    )
+                                )
                             }
                             lv_orders.adapter = mAdapter
                         } else {
@@ -69,7 +77,11 @@ class OrdersFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mAdapter = OrderAdapter(activity!!.applicationContext, R.layout.item_order, mOrders)
+        mAdapter = OrderAdapter(
+            activity!!.applicationContext,
+            R.layout.item_order,
+            mOrders
+        )
         return inflater.inflate(R.layout.fragment_orders, null)
     }
 }

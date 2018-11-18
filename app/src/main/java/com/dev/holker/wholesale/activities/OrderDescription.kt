@@ -1,7 +1,8 @@
-package com.dev.holker.wholesale
+package com.dev.holker.wholesale.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.dev.holker.wholesale.R
 import kotlinx.android.synthetic.main.activity_order_description.*
 
 class OrderDescription : AppCompatActivity() {

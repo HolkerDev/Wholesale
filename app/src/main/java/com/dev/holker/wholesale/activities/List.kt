@@ -1,9 +1,12 @@
-package com.dev.holker.wholesale
+package com.dev.holker.wholesale.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast
+import com.dev.holker.wholesale.OrderAdapter
+import com.dev.holker.wholesale.OrderItem
+import com.dev.holker.wholesale.R
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseUser
@@ -47,7 +50,12 @@ class List : AppCompatActivity() {
                     if (objects.size > 0) {
                         if (e == null) {
                             for (obj: ParseObject in objects) {
-                                mOrders.add(OrderItem(obj.get("name").toString(), obj.get("amount").toString()))
+                                mOrders.add(
+                                    OrderItem(
+                                        obj.get("name").toString(),
+                                        obj.get("amount").toString()
+                                    )
+                                )
                             }
                             lv_test.adapter = mAdapter
                         } else {
@@ -76,7 +84,11 @@ class List : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
         checkUser()
-        mAdapter = OrderAdapter(applicationContext, R.layout.item_order, mOrders)
+        mAdapter = OrderAdapter(
+            applicationContext,
+            R.layout.item_order,
+            mOrders
+        )
 
 
 //        fab.setOnClickListener {

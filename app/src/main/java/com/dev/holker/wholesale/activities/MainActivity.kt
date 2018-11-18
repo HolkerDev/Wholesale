@@ -1,4 +1,4 @@
-package com.dev.holker.wholesale
+package com.dev.holker.wholesale.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -6,10 +6,12 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
-import android.R.anim.slide_out_right
-import android.R.anim.slide_in_left
 import android.content.Intent
-import android.support.v4.app.FragmentManager
+import com.dev.holker.wholesale.R
+import com.dev.holker.wholesale.fragments.ChatFragment
+import com.dev.holker.wholesale.fragments.OrdersFragment
+import com.dev.holker.wholesale.fragments.ProfileFragment
+import com.dev.holker.wholesale.fragments.SearchFragment
 import com.parse.ParseUser
 
 

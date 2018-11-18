@@ -1,9 +1,9 @@
-package com.dev.holker.wholesale
+package com.dev.holker.wholesale.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
+import com.dev.holker.wholesale.R
 import com.parse.ParseObject
 import com.parse.ParseUser
 import kotlinx.android.synthetic.main.activity_order.*

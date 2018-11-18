@@ -15,7 +15,7 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
         <activity
-                android:name=".MainActivity"
+                android:name=".activities.MainActivity"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,22 +24,22 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".Login"
+                android:name=".activities.Login"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".Order">
+        <activity android:name=".activities.Order">
         </activity>
         <activity
-                android:name=".OrderDescription"
-                android:parentActivityName=".List">
+                android:name=".activities.OrderDescription"
+                android:parentActivityName=".activities.List">
         </activity>
         <activity
-                android:name=".Settings"
-                android:parentActivityName=".List">
+                android:name=".activities.Settings"
+                android:parentActivityName=".activities.List">
         </activity>
-        <activity android:name=".List">
+        <activity android:name=".activities.List">
         </activity>
-        <activity android:name=".SignUp">
+        <activity android:name=".activities.SignUp">
         </activity>
     </application>
 

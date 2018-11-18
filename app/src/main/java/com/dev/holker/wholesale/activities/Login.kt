@@ -1,9 +1,10 @@
-package com.dev.holker.wholesale
+package com.dev.holker.wholesale.activities
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.dev.holker.wholesale.R
 import com.parse.ParseException
 import com.parse.ParseUser
 import kotlinx.android.synthetic.main.activity_login.*
@@ -54,14 +55,15 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        //login and go to Home Activity
         btn_login.setOnClickListener {
             logIn()
         }
 
+        //open signUp activity
         tv_signup.setOnClickListener {
             val i = Intent(applicationContext, SignUp::class.java)
             startActivity(i)
         }
-
     }
 }
