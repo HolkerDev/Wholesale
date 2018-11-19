@@ -16,20 +16,6 @@ class Login : AppCompatActivity() {
         Toast.makeText(applicationContext, string, Toast.LENGTH_LONG).show()
     }
 
-    //SignUp new user
-    private fun signUp() {
-        val user = ParseUser()
-        user.username = et_username.text.toString()
-        user.setPassword(et_password.text.toString())
-        user.signUpInBackground {
-            if (it == null) {
-                toast("Successful")
-            } else {
-                toast(it.message.toString())
-            }
-        }
-    }
-
 
     //LogIn user
     private fun logIn() {
