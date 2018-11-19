@@ -1,5 +1,6 @@
 package com.dev.holker.wholesale.activities
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -10,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUp : AppCompatActivity() {
 
-    fun toast(string: String) {
+    private fun toast(string: String) {
         Toast.makeText(applicationContext, string, Toast.LENGTH_SHORT).show()
     }
 
@@ -34,6 +35,12 @@ class SignUp : AppCompatActivity() {
 
     }
 
+
+    private fun goToHome() {
+        val i = Intent(applicationContext, MainActivity::class.java)
+        startActivity(i)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -41,6 +48,7 @@ class SignUp : AppCompatActivity() {
 
         btn_signup.setOnClickListener {
             signUp()
+            goToHome()
         }
     }
 }
