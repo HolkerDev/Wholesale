@@ -3,6 +3,7 @@ package com.dev.holker.wholesale.activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.dev.holker.wholesale.R
 import com.parse.ParseUser
@@ -45,6 +46,12 @@ class SignUp : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
+
+        var role = arrayListOf<String>("Client", "Supplier")
+
+        val arrayAdapter = ArrayAdapter<String>(applicationContext, android.R.layout.simple_spinner_item, role)
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = arrayAdapter
 
         btn_signup.setOnClickListener {
             val i = Intent(applicationContext, SignupDescription::class.java)

@@ -10,7 +10,6 @@
         android:orientation="vertical">
 
     <ImageView android:layout_width="match_parent"
-               android:layout_marginTop="30dp"
                android:layout_height="50dp"
                app:srcCompat="@drawable/ic_logo"/>
 
@@ -52,6 +51,14 @@
             android:ems="10"
             android:hint="confirm password"
             android:id="@+id/et_sign_password_confirm"/>
+    <Spinner
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="45dp"
+            android:background="@drawable/gaps"
+            android:id="@+id/spinner"/>
     <Button
             android:text="Sign up"
             android:textSize="20sp"
