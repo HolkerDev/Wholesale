@@ -47,8 +47,8 @@ class SignUp : AppCompatActivity() {
 
 
         btn_signup.setOnClickListener {
-            signUp()
-            goToHome()
+            val i = Intent(applicationContext, SignupDescription::class.java)
+            startActivity(i)
         }
     }
 }

@@ -39,8 +39,11 @@
         </activity>
         <activity android:name=".activities.List">
         </activity>
-        <activity android:name=".activities.SignUp"
-                  android:parentActivityName=".activities.Login">
+        <activity
+                android:name=".activities.SignUp"
+                android:parentActivityName=".activities.Login">
+        </activity>
+        <activity android:name=".activities.SignupDescription">
         </activity>
     </application>
 

@@ -14,7 +14,7 @@ class StartServer : Application() {
             Parse.Configuration.Builder(this)
                 .applicationId("f5f11f8268c9a944e7927a67983ebaeac2433dd0")
                 .clientKey("131fe7f87d4fff6c04bab6603c66346a191ac9cb")
-                .server("http://18.217.57.179:80/parse")
+                .server("http://18.217.57.179/parse")
                 .build()
         )
 
