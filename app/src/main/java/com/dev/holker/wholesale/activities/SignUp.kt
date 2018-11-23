@@ -47,7 +47,7 @@ class SignUp : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up)
 
 
-        var role = arrayListOf<String>("Client", "Supplier")
+        val role = arrayListOf("Client", "Supplier")
 
         val arrayAdapter = ArrayAdapter<String>(applicationContext, android.R.layout.simple_spinner_item, role)
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -55,6 +55,7 @@ class SignUp : AppCompatActivity() {
 
         btn_signup.setOnClickListener {
             val i = Intent(applicationContext, SignupDescription::class.java)
+            i.putExtra("typeOfUser", spinner.selectedItem.toString())
             startActivity(i)
         }
     }
