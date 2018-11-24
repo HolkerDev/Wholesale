@@ -1,16 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
+        android:background="#2c3345"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.SignupDescription">
+        tools:context=".activities.SignupDescription"
+        android:orientation="vertical">
 
+    <ImageView android:layout_width="match_parent"
+               android:layout_height="50dp"
+               app:srcCompat="@drawable/ic_logo"/>
 
-    <TextView
-            android:text="TextView"
+    <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2"/>
+            android:layout_height="45dp"
+            android:inputType="textPersonName"
+            android:layout_margin="20dp"
+            android:background="@drawable/gaps"
+            android:gravity="center"
+            android:ems="10"
+            android:hint="Name of your company"
+            android:id="@+id/et_signup_descr_name"/>
+
+    <Button
+            android:text="Attach profile photo"
+            android:textSize="20sp"
+            android:fontFamily="@font/trueno_lt"
+            android:layout_width="250dp"
+            android:layout_gravity="center"
+            android:layout_height="40dp"
+            android:textColor="#fff"
+            android:id="@+id/btn_attach"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_rounded_white"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content">
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:hint="Interested in"
+                android:inputType="textPersonName"
+                android:background="@drawable/gaps"
+                android:ems="10"
+                android:id="@+id/editText"
+                android:layout_weight="1"/>
+        <Button
+                android:text="Add"
+                android:layout_width="35dp"
+                android:layout_height="40dp"
+                android:fontFamily="@font/trueno_lt"
+                android:id="@+id/button2"
+                android:textColor="#fff"
+                android:textAllCaps="false"
+                android:background="@drawable/btn_rounded_white"
+                android:layout_weight="1"/>
+    </LinearLayout>
+    <ListView
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_margin="20dp"/>
+    <Button
+            android:text="Sign up"
+            android:textSize="18sp"
+            android:fontFamily="@font/trueno_lt"
+            android:layout_width="250dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center"
+            android:layout_height="40dp"
+            android:textColor="#fff"
+            android:id="@+id/btn_signup"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_rounded_white"/>
+
+
 </LinearLayout>

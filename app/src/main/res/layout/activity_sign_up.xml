@@ -60,7 +60,7 @@
             android:background="@drawable/gaps"
             android:id="@+id/spinner"/>
     <Button
-            android:text="Sign up"
+            android:text="Next"
             android:textSize="20sp"
             android:fontFamily="@font/trueno_lt"
             android:layout_width="250dp"
@@ -68,7 +68,7 @@
             android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:textColor="#fff"
-            android:id="@+id/btn_signup"
+            android:id="@+id/btn_next"
             android:textAllCaps="false"
             android:background="@drawable/btn_rounded_white"/>
 

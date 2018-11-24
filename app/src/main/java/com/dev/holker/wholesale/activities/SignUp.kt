@@ -53,7 +53,7 @@ class SignUp : AppCompatActivity() {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = arrayAdapter
 
-        btn_signup.setOnClickListener {
+        btn_next.setOnClickListener {
             val i = Intent(applicationContext, SignupDescription::class.java)
             i.putExtra("typeOfUser", spinner.selectedItem.toString())
             startActivity(i)
