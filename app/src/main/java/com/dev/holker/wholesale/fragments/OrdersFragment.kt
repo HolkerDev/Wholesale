@@ -77,7 +77,6 @@ class OrdersFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        ParseUser.logOut()
         mAdapter = OrderAdapter(
             activity!!.applicationContext,
             R.layout.item_order,

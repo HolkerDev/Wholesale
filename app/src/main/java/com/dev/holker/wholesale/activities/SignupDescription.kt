@@ -79,19 +79,6 @@ class SignupDescription : AppCompatActivity() {
         }
     }
 
-//    fun signUp() {
-//        val user = ParseUser()
-//        user.username = "c"
-//        user.setPassword("c")
-//        user.signUp()
-//
-//        val query = ParseQuery<ParseRole>("_Role")
-//        query.whereEqualTo("name", "ClientTest")
-//        val role = query.first
-//        role.users.add(user)
-//        role.save()
-//    }
-
     //open gallery and user can select the photo
     private fun getPhoto() {
         val photoIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
