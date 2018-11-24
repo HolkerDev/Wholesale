@@ -55,6 +55,8 @@ class SignUp : AppCompatActivity() {
 
         btn_next.setOnClickListener {
             val i = Intent(applicationContext, SignupDescription::class.java)
+            i.putExtra("username", et_sign_username.text.toString())
+            i.putExtra("password", et_sign_password.text.toString())
             i.putExtra("typeOfUser", spinner.selectedItem.toString())
             startActivity(i)
         }
