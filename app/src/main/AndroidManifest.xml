@@ -43,7 +43,8 @@
                 android:name=".activities.SignUp"
                 android:parentActivityName=".activities.Login">
         </activity>
-        <activity android:name=".activities.SignupDescription">
+        <activity android:name=".activities.SignupDescription"
+                  android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

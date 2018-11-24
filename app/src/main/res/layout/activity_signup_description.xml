@@ -9,9 +9,16 @@
         tools:context=".activities.SignupDescription"
         android:orientation="vertical">
 
-    <ImageView android:layout_width="match_parent"
-               android:layout_height="50dp"
-               app:srcCompat="@drawable/ic_logo"/>
+    <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="80dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_height="80dp"
+            android:src="@drawable/unknown"
+            app:civ_border_color="#4dda54"
+            app:civ_border_width="3dp"/>
 
     <EditText
             android:layout_width="match_parent"

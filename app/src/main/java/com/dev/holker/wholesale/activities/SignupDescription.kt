@@ -12,7 +12,5 @@ class SignupDescription : AppCompatActivity() {
         setContentView(R.layout.activity_signup_description)
 
         val i = intent
-        textView2.text = intent.getStringExtra("typeOfUser")
-
     }
 }
