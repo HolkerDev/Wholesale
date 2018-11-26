@@ -60,6 +60,7 @@ class SignupDescription : AppCompatActivity() {
         val user = ParseUser()
         user.username = username
         user.setPassword(password)
+
         if (userType == "Client") {
             user.put("orderId", "Ddz31dBK1e")
         } else {
