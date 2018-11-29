@@ -1,4 +1,24 @@
 <resources>
     <string name="app_name">Wholesale</string>
     <string name="title_activity_list">List</string>
+    <string name="sign_in">Sign in</string>
+    <string name="tv_sign_up">Don\'t have a Wholesale Account? Sign up</string>
+    <string name="et_username">username</string>
+    <string name="et_password">password</string>
+    <string name="btn_submit_order">Submit order</string>
+    <string name="h_product_name">Product name</string>
+    <string name="h_description">Description</string>
+    <string name="h_amount">Amount</string>
+    <string name="btn_attach_photo">Attach photo</string>
+    <string name="h_user_name">User name</string>
+    <string name="h_password">password</string>
+    <string name="h_confirm_password">confirm password</string>
+    <string name="btn_next">Next</string>
+    <string name="btn_sign_up">Sign up</string>
+    <string name="btn_add">Add</string>
+    <string name="h_interested">Interested in</string>
+    <string name="btn_add_profile_photo">Attach profile photo</string>
+    <string name="h_company_name">Name of your company</string>
+    <string name="btn_logout">LogOut</string>
+    <string name="tv_company_name">Company Name</string>
 </resources>

@@ -4,58 +4,76 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/background_log"
         tools:context=".activities.Order">
 
+    <EditText
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:inputType="text"
+            android:gravity="center"
+            android:ems="10"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/gaps"
+            android:id="@+id/et_productName"
+            android:layout_marginTop="40dp"
+            android:hint="@string/h_product_name"/>
+    <EditText
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:inputType="numberSigned"
+            android:ems="10"
+            android:id="@+id/et_amount"
+            android:layout_alignStart="@+id/et_productName"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/gaps"
+            android:hint="@string/h_amount"
+            android:layout_below="@+id/et_productName"/>
+
+    <EditText
+            android:layout_width="250dp"
+            android:layout_gravity="center"
+            android:layout_height="129dp"
+            android:inputType="textMultiLine"
+            android:gravity="center"
+            android:ems="10"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/gaps"
+            android:id="@+id/et_description"
+            android:layout_marginTop="20dp"
+            android:hint="@string/h_description"
+            android:layout_above="@+id/btn_send_photo"
+            android:layout_below="@+id/et_amount"/>
+
     <Button
-            android:text=" Submit order"
-            android:layout_width="wrap_content"
+            android:text="@string/btn_attach_photo"
+            android:textSize="20sp"
+            android:fontFamily="@font/trueno_lt"
+            android:layout_width="250dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/btn_send_photo"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_rounded_white"
+            android:layout_marginTop="20dp"
+            android:layout_above="@+id/btn_submit"/>
+
+    <Button
+            android:text="@string/btn_submit_order"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:id="@+id/btn_submit"
-            android:layout_marginBottom="16dp"
-            android:textAllCaps="false"/>
-
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"
-            android:id="@+id/et_productName"
-            android:layout_marginTop="46dp"
-            android:hint="Product name"/>
-
-    <EditText
-            android:layout_width="285dp"
-            android:layout_height="129dp"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"
-            android:id="@+id/et_description"
-            android:layout_marginTop="152dp"
-            android:hint="Description"/>
-
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="numberSigned"
-            android:ems="10"
-            android:layout_alignParentTop="true"
-            android:id="@+id/et_amount"
-            android:layout_marginTop="90dp"
-            android:hint="Amount" android:layout_alignStart="@+id/et_productName"/>
-
-    <Button
-            android:text="Attach photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/btn_send_photo"
-            android:layout_marginBottom="140dp"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:fontFamily="@font/trueno_lt"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_rounded_white"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"/>
 
 </RelativeLayout>
