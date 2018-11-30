@@ -33,7 +33,7 @@ public class UserAdapter extends ArrayAdapter<User> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
 
-        View view = inflater.inflate(R.layout.item_order, null);
+        View view = inflater.inflate(R.layout.item_user, null);
 
 
         final User user = mUsers.get(position);
