@@ -1,6 +1,6 @@
 package com.dev.holker.wholesale
 
-import com.parse.ParseFile
+import android.graphics.Bitmap
 
-class User constructor(val username: String, val avatar: ParseFile, val description: String) {
+class User constructor(val username: String, val avatar: Bitmap, val description: String) {
 }

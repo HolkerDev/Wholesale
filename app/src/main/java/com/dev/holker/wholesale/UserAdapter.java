@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.dev.holker.wholesale.activities.OrderDescription;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import java.util.ArrayList;
 
@@ -34,10 +35,10 @@ public class UserAdapter extends ArrayAdapter<User> {
         LayoutInflater inflater = LayoutInflater.from(mContext);
 
         View view = inflater.inflate(R.layout.item_user, null);
-
+        CircleImageView circleImageView = view.findViewById(R.id.user_item_image);
 
         final User user = mUsers.get(position);
-
+        circleImageView.setImageBitmap(user.getAvatar());
 
         return view;
 

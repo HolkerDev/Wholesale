@@ -6,7 +6,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image"
+            android:id="@+id/user_item_image"
             android:layout_gravity="center"
             android:src="@drawable/unknown"
             app:civ_border_color="#4dda54"
