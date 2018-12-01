@@ -1,5 +1,6 @@
 package com.dev.holker.wholesale.fragments
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import com.dev.holker.wholesale.R
 import com.dev.holker.wholesale.User
 import com.dev.holker.wholesale.UserAdapter
+import com.parse.ParseFile
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseUser
@@ -16,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_search.*
 class SearchFragment : Fragment() {
 
     lateinit var mUsers: ArrayList<User>
-    lateinit var mAdapter:UserAdapter
+    lateinit var mAdapter: UserAdapter
 
     fun updateUserList() {
         mUsers.clear()
@@ -26,7 +28,12 @@ class SearchFragment : Fragment() {
             run {
                 if (objects.size > 0 && e == null) {
                     for (i: ParseObject in objects) {
-                        mUsers.add(User(i.getString("name")!!, i.getParseFile("avatar")!!, i.getString("description")!!))
+                        val file = i.getParseFile("avatar")
+                        file!!.getDataInBackground { data, e ->
+                            kotlin.run {
+
+                            }
+                        }
                     }
                 }
             }
