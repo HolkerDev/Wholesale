@@ -8,10 +8,11 @@
                   android:orientation="horizontal"
                   android:layout_height="wrap_content">
 
-        <EditText android:layout_width="0dp"
-                  android:hint="Search"
-                  android:layout_weight="1"
-                  android:layout_height="wrap_content"/>
+        <android.support.v7.widget.SearchView
+                android:layout_width="0dp"
+                android:hint="Search"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" android:id="@+id/searchView"/>
 
         <Button android:layout_width="wrap_content"
                 android:text="Search"
