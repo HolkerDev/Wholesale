@@ -53,7 +53,8 @@ class List : AppCompatActivity() {
                                 mOrders.add(
                                     OrderItem(
                                         obj.get("name").toString(),
-                                        obj.get("amount").toString()
+                                        obj.get("amount").toString(),
+                                        obj.get("description").toString()
                                     )
                                 )
                             }
