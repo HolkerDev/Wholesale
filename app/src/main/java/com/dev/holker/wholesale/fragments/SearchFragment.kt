@@ -1,6 +1,5 @@
 package com.dev.holker.wholesale.fragments
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -9,14 +8,9 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.dev.holker.wholesale.R
-import com.dev.holker.wholesale.R.id.lv_users
-import com.dev.holker.wholesale.User
-import com.dev.holker.wholesale.UserAdapter
-import com.parse.ParseFile
-import com.parse.ParseObject
-import com.parse.ParseQuery
 import com.parse.ParseUser
 import kotlinx.android.synthetic.main.fragment_search.*
+import java.util.*
 
 class SearchFragment : Fragment() {
 
@@ -57,7 +51,7 @@ class SearchFragment : Fragment() {
 
         mAdapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, mUsers);
         updateUserList()
-        
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
