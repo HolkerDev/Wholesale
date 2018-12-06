@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:background="#2c3345"
+        android:background="@drawable/background_log"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activities.SignupDescription"
@@ -28,11 +28,11 @@
             android:background="@drawable/gaps"
             android:gravity="center"
             android:ems="10"
-            android:hint="Name of your company"
+            android:hint="@string/h_company_name"
             android:id="@+id/et_signup_descr_name"/>
 
     <Button
-            android:text="Attach profile photo"
+            android:text="@string/btn_add_profile_photo"
             android:textSize="20sp"
             android:fontFamily="@font/trueno_lt"
             android:layout_width="250dp"
@@ -53,29 +53,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:gravity="center"
-                android:hint="Interested in"
+                android:hint="@string/h_interested"
                 android:inputType="textPersonName"
                 android:background="@drawable/gaps"
                 android:ems="10"
                 android:id="@+id/editText"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:layout_marginEnd="20dp"/>
         <Button
-                android:text="Add"
-                android:layout_width="35dp"
+                android:text="@string/btn_add"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
+                android:gravity="center"
                 android:fontFamily="@font/trueno_lt"
-                android:id="@+id/button2"
-                android:textColor="#fff"
+                android:id="@+id/btn_add"
+                android:textColor="@color/colorText"
                 android:textAllCaps="false"
                 android:background="@drawable/btn_rounded_white"
-                android:layout_weight="1"/>
+                android:layout_weight="2"/>
     </LinearLayout>
     <ListView
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_margin="20dp"/>
     <Button
-            android:text="Sign up"
+            android:text="@string/btn_sign_up"
             android:textSize="18sp"
             android:fontFamily="@font/trueno_lt"
             android:layout_width="250dp"
@@ -83,7 +86,7 @@
             android:layout_marginRight="20dp"
             android:layout_gravity="center"
             android:layout_height="40dp"
-            android:textColor="#fff"
+            android:textColor="@color/colorText"
             android:id="@+id/btn_signup"
             android:textAllCaps="false"
             android:background="@drawable/btn_rounded_white"/>

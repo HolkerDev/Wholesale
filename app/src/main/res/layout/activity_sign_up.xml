@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:background="#2c3345"
+        android:background="@drawable/background_log"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activities.SignUp"
@@ -18,39 +18,46 @@
             android:gravity="center"
             android:textSize="35sp"
             android:fontFamily="@font/q"
-            android:textColor="#969bd2"
+            android:textColor="@color/app_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:inputType="textPersonName"
-            android:layout_margin="20dp"
             android:background="@drawable/gaps"
             android:gravity="center"
             android:ems="10"
-            android:hint="username"
-            android:id="@+id/et_sign_username"/>
+            android:hint="@string/h_user_name"
+            android:id="@+id/et_sign_username"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:gravity="center"
             android:inputType="textPassword"
             android:background="@drawable/gaps"
-            android:layout_margin="20dp"
             android:ems="10"
-            android:hint="password"
-            android:id="@+id/et_sign_password"/>
+            android:hint="@string/h_password"
+            android:id="@+id/et_sign_password"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:gravity="center"
             android:inputType="textPassword"
             android:background="@drawable/gaps"
-            android:layout_margin="20dp"
             android:ems="10"
-            android:hint="confirm password"
-            android:id="@+id/et_sign_password_confirm"/>
+            android:hint="@string/h_confirm_password"
+            android:id="@+id/et_sign_password_confirm"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"/>
     <Spinner
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -58,16 +65,17 @@
             android:gravity="center"
             android:layout_height="45dp"
             android:background="@drawable/gaps"
-            android:id="@+id/spinner"/>
+            android:id="@+id/spinner"
+            android:layout_marginTop="40dp"/>
     <Button
-            android:text="Next"
+            android:text="@string/btn_next"
             android:textSize="20sp"
             android:fontFamily="@font/trueno_lt"
             android:layout_width="250dp"
             android:layout_margin="20dp"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
+            android:textColor="@color/colorText"
             android:id="@+id/btn_next"
             android:textAllCaps="false"
             android:background="@drawable/btn_rounded_white"/>
