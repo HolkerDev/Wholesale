@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import com.dev.holker.wholesale.activities.Order
 import com.dev.holker.wholesale.OrderAdapter
 import com.dev.holker.wholesale.OrderItem
 import com.dev.holker.wholesale.R
+import com.dev.holker.wholesale.activities.Order
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseUser
@@ -19,6 +19,9 @@ import kotlinx.android.synthetic.main.fragment_orders.*
 
 
 class OrdersFragment : Fragment() {
+
+    //TODO: Fix error connected with async listview
+
 
     val mOrders = arrayListOf<OrderItem>()
     lateinit var mAdapter: ArrayAdapter<OrderItem>
@@ -42,7 +45,8 @@ class OrdersFragment : Fragment() {
                                 mOrders.add(
                                     OrderItem(
                                         obj.get("name").toString(),
-                                        obj.get("amount").toString()
+                                        obj.get("amount").toString(),
+                                        obj.get("description").toString()
                                     )
                                 )
                             }

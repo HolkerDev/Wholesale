@@ -17,26 +17,6 @@ class SignUp : AppCompatActivity() {
     }
 
 
-    //SignUp new user
-    private fun signUp() {
-        val user = ParseUser()
-        if (et_password.text.toString().equals(et_sign_password_confirm.text.toString())) {
-            user.username = et_sign_username.text.toString()
-            user.setPassword(et_sign_password_confirm.text.toString())
-            user.signUpInBackground {
-                if (it == null) {
-                    toast("Successful")
-                } else {
-                    toast(it.message.toString())
-                }
-            }
-        } else {
-            toast("Wrong password!")
-        }
-
-    }
-
-
     private fun goToHome() {
         val i = Intent(applicationContext, MainActivity::class.java)
         startActivity(i)
