@@ -1,19 +1,14 @@
 package com.dev.holker.wholesale.activities
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.support.v4.app.ActivityCompat.startActivityForResult
+import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.dev.holker.wholesale.R
-import com.dev.holker.wholesale.R.id.profile_image
 import com.parse.ParseQuery
 import com.parse.ParseRole
-import com.parse.ParseSession
 import com.parse.ParseUser
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_signup_description.*
 
 class SignupDescription : AppCompatActivity() {
@@ -60,11 +55,6 @@ class SignupDescription : AppCompatActivity() {
         user.username = username
         user.setPassword(password)
 
-        if (userType == "Client") {
-            user.put("orderId", "Ddz31dBK1e")
-        } else {
-            user.put("orderId", "ApHm7d1h5J")
-        }
         user.signUpInBackground {
             if (it == null) {
                 val query = ParseQuery<ParseRole>("_Role")
@@ -72,6 +62,8 @@ class SignupDescription : AppCompatActivity() {
                 val role = query.first
                 role.users.add(user)
                 role.save()
+                user.put("role", role)
+                user.save()
                 toast("Fine!")
             } else {
                 toast(it.message.toString())
