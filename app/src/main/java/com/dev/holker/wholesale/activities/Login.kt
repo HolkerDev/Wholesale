@@ -1,9 +1,10 @@
 package com.dev.holker.wholesale.activities
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import com.dev.holker.wholesale.LoginPresenter
 import com.dev.holker.wholesale.R
 import com.parse.ParseException
 import com.parse.ParseUser
@@ -41,6 +42,7 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val presenter = LoginPresenter(findViewById(android.R.id.content))
         //login and go to Home Activity
         btn_login.setOnClickListener {
             logIn()
@@ -48,8 +50,7 @@ class Login : AppCompatActivity() {
 
         //open signUp activity
         tv_signup.setOnClickListener {
-            val i = Intent(applicationContext, SignUp::class.java)
-            startActivity(i)
+            presenter.goToSignUp()
         }
     }
 }
