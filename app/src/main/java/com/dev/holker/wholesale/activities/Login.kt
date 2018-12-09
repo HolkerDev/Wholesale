@@ -1,54 +1,26 @@
 package com.dev.holker.wholesale.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
-import com.dev.holker.wholesale.LoginPresenter
 import com.dev.holker.wholesale.R
-import com.parse.ParseException
-import com.parse.ParseUser
+import com.dev.holker.wholesale.presenters.LoginPresenter
 import kotlinx.android.synthetic.main.activity_login.*
 
 class Login : AppCompatActivity() {
-
-    //Create toast message
-    private fun toast(string: String) {
-        Toast.makeText(applicationContext, string, Toast.LENGTH_LONG).show()
-    }
-
-
-    //LogIn user
-    private fun logIn() {
-        ParseUser.logInInBackground(
-            et_username.text.toString(),
-            et_password.text.toString()
-        ) { _: ParseUser?, e: ParseException? ->
-            run {
-                if (e == null) {
-                    toast("Successful")
-                    val intent = Intent(applicationContext, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                } else {
-                    toast(e.message.toString())
-                }
-            }
-        }
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        //Create presenter
         val presenter = LoginPresenter(findViewById(android.R.id.content))
-        //login and go to Home Activity
+
+        //Button Log In
         btn_login.setOnClickListener {
-            logIn()
+            presenter.logIn(et_username.text.toString(), et_password.text.toString())
         }
 
-        //open signUp activity
+        //Button 'Don't have an account'
         tv_signup.setOnClickListener {
             presenter.goToSignUp()
         }
