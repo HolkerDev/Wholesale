@@ -21,7 +21,7 @@ class SignupDescription : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_description)
 
-        userType = intent.getStringExtra("typeOfUser")
+        userType = intent.getStringExtra("type ")
         username = intent.getStringExtra("username")
         password = intent.getStringExtra("password")
 

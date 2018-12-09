@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import com.dev.holker.wholesale.activities.MainActivity
 import com.dev.holker.wholesale.activities.SignUp
+import com.dev.holker.wholesale.presenters.interfaces.ILoginPresenter
 import com.parse.ParseUser
 
 class LoginPresenter(val view: View) : ILoginPresenter {
