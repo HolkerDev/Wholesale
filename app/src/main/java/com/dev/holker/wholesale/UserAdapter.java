@@ -33,7 +33,7 @@ public class UserAdapter extends ArrayAdapter<User> {
         View view = inflater.inflate(R.layout.item_user, null);
         CircleImageView circleImageView = view.findViewById(R.id.user_item_image);
 
-        final User user = mUsers.get(position);
+        User user = mUsers.get(position);
         circleImageView.setImageBitmap(user.getAvatar());
 
         return view;
