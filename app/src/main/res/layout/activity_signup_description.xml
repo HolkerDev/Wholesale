@@ -41,7 +41,7 @@
             android:textColor="#fff"
             android:id="@+id/btn_attach"
             android:textAllCaps="false"
-            android:background="@drawable/btn_rounded_white"/>
+            android:background="@drawable/btn_rounded"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                 android:id="@+id/btn_add"
                 android:textColor="@color/colorWhite"
                 android:textAllCaps="false"
-                android:background="@drawable/btn_rounded_white"
+                android:background="@drawable/btn_rounded"
                 android:layout_weight="2"/>
     </LinearLayout>
     <ListView
@@ -89,7 +89,7 @@
             android:textColor="@color/colorWhite"
             android:id="@+id/btn_signup"
             android:textAllCaps="false"
-            android:background="@drawable/btn_rounded_white"/>
+            android:background="@drawable/btn_rounded"/>
 
 
 </LinearLayout>

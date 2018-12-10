@@ -57,7 +57,7 @@
             android:layout_centerHorizontal="true"
             android:id="@+id/btn_send_photo"
             android:textAllCaps="false"
-            android:background="@drawable/btn_rounded_white"
+            android:background="@drawable/btn_rounded"
             android:layout_marginTop="20dp"
             android:layout_above="@+id/btn_submit"/>
 
@@ -72,7 +72,7 @@
             android:textSize="20sp"
             android:fontFamily="@font/trueno_lt"
             android:layout_gravity="center"
-            android:background="@drawable/btn_rounded_white"
+            android:background="@drawable/btn_rounded"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="40dp"/>
 

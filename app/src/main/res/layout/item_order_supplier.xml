@@ -69,6 +69,7 @@
         <View
                 android:text="Здесь должна быть иконка статуса заказа (принят, откланен, на рассмотрении)
 (після прочитання - зітри)"
+                android:background="@drawable/ic_order_status_pending_50dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:id="@+id/view_order_status"/>

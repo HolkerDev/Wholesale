@@ -10,14 +10,17 @@
 
         <android.support.v7.widget.SearchView
                 android:layout_width="0dp"
-                android:hint="Search"
+                android:hint="@string/h_search"
                 android:layout_weight="1"
-                android:layout_height="wrap_content" android:id="@+id/searchView"/>
+                android:layout_height="wrap_content"
+                android:id="@+id/searchView"/>
 
         <Button android:layout_width="wrap_content"
-                android:text="Search"
+                android:text="@string/h_search"
                 android:textAllCaps="false"
-                android:layout_height="wrap_content"/>
+                android:textColor="@color/colorText"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rounded"/>
 
     </LinearLayout>
 

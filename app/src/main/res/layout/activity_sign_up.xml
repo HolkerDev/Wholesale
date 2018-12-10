@@ -78,7 +78,7 @@
             android:textColor="@color/colorWhite"
             android:id="@+id/btn_next"
             android:textAllCaps="false"
-            android:background="@drawable/btn_rounded_white"/>
+            android:background="@drawable/btn_rounded"/>
 
 
 </LinearLayout>

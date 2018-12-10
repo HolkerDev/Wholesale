@@ -13,7 +13,7 @@
             android:textColor="@color/colorWhite"
             android:textSize="20sp"
             android:fontFamily="@font/trueno_lt"
-            android:background="@drawable/btn_rounded_white"
+            android:background="@drawable/btn_rounded"
             android:layout_height="40dp"
             android:id="@+id/btn_logOut"
             android:layout_margin="20dp"
