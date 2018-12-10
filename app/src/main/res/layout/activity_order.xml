@@ -37,7 +37,7 @@
             android:layout_gravity="center"
             android:layout_height="129dp"
             android:inputType="textMultiLine"
-            android:gravity="center"
+            android:gravity="fill_horizontal"
             android:ems="10"
             android:layout_centerHorizontal="true"
             android:background="@drawable/gaps"
