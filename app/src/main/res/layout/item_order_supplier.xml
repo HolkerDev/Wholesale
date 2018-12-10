@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/rl_item"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="1dp">
+
+        <TextView
+                android:text="порядковий, актуальний, номер ордеру. Повинен вираховуватись з дати створення замовлення
+                за наступним прикладом: клієнт виставляє замовлення вперше 12.04.2018, в спску замовлень
+                його sequence_of_actual_order=1(і висвітлюється '1'). Наступне замовлення він створив 15.04.2018,
+                sequence_of_actual_order=2 і номер замовлення висвітлюється '2'. І тепер важливий момент в списку,
+                в першу чергу повинне бути найактуальніше замовлення, тобто спершу висвітлиться замовлення з
+                порядковим номером '2', а останнім na liście буде '1'
+(після прочитання - зітри)
+                №"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/sequence_of_actual_order"
+                android:textColor="@color/colorText"
+                android:layout_margin="1dp"
+                android:gravity="center"/>
+        <TextView
+                android:text="Название заказа (обрати внимание: не продукта)
+(після прочитання - зітри)
+                Order Name"
+                android:fontFamily="@font/trueno_lt"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorText"
+                android:background="@drawable/stroke"
+                android:id="@+id/tv_product_name"
+                android:layout_margin="1dp"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+        <TextView
+                android:text="Описание продукта, но не полное (столько, сколько уместиться в 100dp i '...' в конце)
+(після прочитання - зітри)
+                Description"
+                android:textColor="@color/colorText"
+                android:fontFamily="@font/trueno_lt"
+                android:layout_width="60dp"
+                android:background="@drawable/stroke"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_amount_product"
+                android:layout_margin="1dp"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+        <TextView
+                android:text="Название клиента, его имя (столько, сколько уместиться в 60dp i '...' в конце)
+(після прочитання - зітри)
+                Client Name"
+                android:textColor="@color/colorText"
+                android:fontFamily="@font/trueno_lt"
+                android:layout_width="40dp"
+                android:background="@drawable/stroke"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_client_name"
+                android:layout_margin="1dp"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+        <View
+                android:text="Здесь должна быть иконка статуса заказа (принят, откланен, на рассмотрении)
+(після прочитання - зітри)"
+                android:background="@drawable/ic_order_status_pending_50dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/view_order_status"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

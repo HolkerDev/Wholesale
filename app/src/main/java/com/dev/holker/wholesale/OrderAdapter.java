@@ -37,7 +37,7 @@ public class OrderAdapter extends ArrayAdapter<OrderItem> {
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
 
-        View view = inflater.inflate(R.layout.item_order, null);
+        View view = inflater.inflate(R.layout.item_order_client, null);
 
 
         LinearLayout linearLayoutItem = view.findViewById(R.id.rl_item);
@@ -50,7 +50,7 @@ public class OrderAdapter extends ArrayAdapter<OrderItem> {
         textViewProductName.setText(orderItem.getProductName());
         textViewProductAmount.setText(orderItem.getProductAmount());
 
-        linearLayoutItem.setOnClickListener(new View.OnClickListener() {
+        textViewProductName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(mContext, OrderDescription.class);

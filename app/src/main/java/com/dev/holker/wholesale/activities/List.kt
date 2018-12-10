@@ -87,7 +87,7 @@ class List : AppCompatActivity() {
         checkUser()
         mAdapter = OrderAdapter(
             applicationContext,
-            R.layout.item_order,
+            R.layout.item_order_client,
             mOrders
         )
 

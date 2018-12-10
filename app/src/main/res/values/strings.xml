@@ -21,4 +21,6 @@
     <string name="h_company_name">Name of your company</string>
     <string name="btn_logout">LogOut</string>
     <string name="tv_company_name">Company Name</string>
+    <string name="search">Search</string>
+    <string name="h_search">Search</string>
 </resources>

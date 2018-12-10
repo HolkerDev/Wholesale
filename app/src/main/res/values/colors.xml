@@ -3,10 +3,12 @@
     <color name="colorPrimary">#0e1036</color>
     <color name="colorPrimaryDark">#1e2261</color>
     <color name="colorAccent">#463db2</color>
-    <color name="colorButton">#c73949</color>
-    <color name="colorText">#ffffff</color>
+    <color name="colorButton">#e47323</color>
+    <color name="colorTextView">#8f39f2</color>
+    <color name="colorText">#e9eada</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#ffffff</color>
     <color name="colorLink">#11a0ff</color>
-    <color name="app_name">#ffffff</color>
-    <color name="colorGaps">#eae4ff</color>
+    <color name="colorGaps">#cbccc7</color>
     <color name="colorLogo">#A8FF4D</color>
 </resources>

@@ -83,7 +83,7 @@ class OrdersFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mAdapter = OrderAdapter(
             activity!!.applicationContext,
-            R.layout.item_order,
+            R.layout.item_order_client,
             mOrders
         )
         return inflater.inflate(R.layout.fragment_orders, null)
