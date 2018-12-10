@@ -33,22 +33,26 @@ class OrdersFragment : Fragment() {
 
     private fun updateOrders() {
         mOrders.clear()
-        val query = ParseQuery<ParseObject>("Orders")
         if (ParseUser.getCurrentUser() != null) {
-            query.whereEqualTo("username", ParseUser.getCurrentUser().username.toString())
-            query.orderByDescending("createdAt")
+            val query = ParseQuery<ParseObject>("Order")
+            //query.whereEqualTo("username", ParseUser.getCurrentUser().username.toString())
+            query.whereContainedIn("user", listOf(ParseUser.getCurrentUser()))
+            query.orderByAscending("createdAt")
             query.findInBackground { objects, e ->
                 run {
-                    if (objects.size > 0) {
+                    if (objects != null) {
                         if (e == null) {
+                            var number = 1
                             for (obj: ParseObject in objects) {
                                 mOrders.add(
                                     OrderItem(
+                                        number.toString(),
                                         obj.get("name").toString(),
-                                        obj.get("amount").toString(),
+                                        obj.getInt("amount").toString(),
                                         obj.get("description").toString()
                                     )
                                 )
+                                number++
                             }
                             lv_orders.adapter = mAdapter
                         } else {

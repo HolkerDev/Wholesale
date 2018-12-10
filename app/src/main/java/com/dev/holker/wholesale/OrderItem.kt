@@ -1,8 +1,5 @@
 package com.dev.holker.wholesale
 
 
-class OrderItem constructor(name:String,amount:String,description:String){
-    var productName:String = name
-    var productAmount:String = amount
-    var productDescription:String = description
+class OrderItem(val number: String, val name: String, val amount: String, val description: String) {
 }

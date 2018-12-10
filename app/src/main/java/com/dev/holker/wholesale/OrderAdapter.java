@@ -1,14 +1,12 @@
 package com.dev.holker.wholesale;
 
 import android.content.Context;
-
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.dev.holker.wholesale.activities.OrderDescription;
 import org.jetbrains.annotations.NotNull;
@@ -39,22 +37,22 @@ public class OrderAdapter extends ArrayAdapter<OrderItem> {
 
         View view = inflater.inflate(R.layout.item_order_client, null);
 
-
-        LinearLayout linearLayoutItem = view.findViewById(R.id.rl_item);
-        TextView textViewProductName = view.findViewById(R.id.tv_product_name);
-        TextView textViewProductAmount = view.findViewById(R.id.tv_amount_product);
+        TextView textViewProductName = view.findViewById(R.id.tv_i_order_client_name);
+        TextView textViewNumber = view.findViewById(R.id.tv_i_order_client_number);
+        TextView textViewProductAmount = view.findViewById(R.id.tv_i_order_client_descr);
 
 
         final OrderItem orderItem = mObjects.get(position);
 
-        textViewProductName.setText(orderItem.getProductName());
-        textViewProductAmount.setText(orderItem.getProductAmount());
+        textViewNumber.setText(orderItem.getNumber());
+        textViewProductName.setText(orderItem.getName());
+        textViewProductAmount.setText(orderItem.getAmount());
 
         textViewProductName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(mContext, OrderDescription.class);
-                i.putExtra("order", orderItem.getProductName());
+                i.putExtra("order", orderItem.getName());
                 mContext.startActivity(i);
             }
         });

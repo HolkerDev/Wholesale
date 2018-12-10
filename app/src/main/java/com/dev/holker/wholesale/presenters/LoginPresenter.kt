@@ -15,7 +15,7 @@ class LoginPresenter(val view: View) : ILoginPresenter {
     }
 
     override fun logIn(username: String, password: String) {
-        ParseUser.logInInBackground(username, password) { user, e ->
+        ParseUser.logInInBackground(username, password) { _, e ->
             run {
                 if (e != null) {
                     toast(e.message.toString())
