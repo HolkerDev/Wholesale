@@ -91,5 +91,12 @@
             android:textAllCaps="false"
             android:background="@drawable/btn_rounded"/>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
+
 
 </LinearLayout>

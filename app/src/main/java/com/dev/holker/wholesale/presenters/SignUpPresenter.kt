@@ -12,7 +12,7 @@ class SignUpPresenter(val view: View) : ISignUpPresenter {
         val intent = Intent(view.context, SignupDescription::class.java)
         intent.putExtra("username", name)
         intent.putExtra("password", password)
-        intent.putExtra("type", type)
+        intent.putExtra("role", type)
         view.context.startActivity(intent)
     }
 

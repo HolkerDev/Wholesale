@@ -1,14 +1,14 @@
 package com.dev.holker.wholesale.activities
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
+import android.view.View
 import com.dev.holker.wholesale.R
-import com.parse.ParseQuery
-import com.parse.ParseRole
-import com.parse.ParseUser
+import com.dev.holker.wholesale.presenters.SignUpDescriptionPresenter
 import kotlinx.android.synthetic.main.activity_signup_description.*
 
 class SignupDescription : AppCompatActivity() {
@@ -16,58 +16,31 @@ class SignupDescription : AppCompatActivity() {
     lateinit var username: String
     lateinit var password: String
     lateinit var userType: String
+    lateinit var avatar: Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_description)
 
-        userType = intent.getStringExtra("type ")
-        username = intent.getStringExtra("username")
-        password = intent.getStringExtra("password")
+        //set avatar as default image
+        avatar = ((profile_image.drawable) as BitmapDrawable).bitmap
 
-        //change hint of 'company name'
-        when (userType) {
-            "Client" -> {
-                et_signup_descr_name.hint = "Your name"
-            }
-            "Supplier" -> {
-                et_signup_descr_name.hint = "Name of your company"
-            }
-        }
+        //create presenter
+        val presenter = SignUpDescriptionPresenter(findViewById(android.R.id.content))
+
+        //change hint of name pole
+        et_signup_descr_name.hint = presenter.getHint(intent)
+
         btn_attach.setOnClickListener {
             getPhoto()
         }
 
         btn_signup.setOnClickListener {
-            signUp()
-        }
-    }
-
-
-    fun toast(string: String) {
-        Toast.makeText(applicationContext, string, Toast.LENGTH_SHORT).show()
-    }
-
-
-    //sign up new user
-    private fun signUp() {
-        val user = ParseUser()
-        user.username = username
-        user.setPassword(password)
-
-        user.signUpInBackground {
-            if (it == null) {
-                val query = ParseQuery<ParseRole>("_Role")
-                query.whereEqualTo("name", userType)
-                val role = query.first
-                role.users.add(user)
-                role.save()
-                user.put("role", role)
-                user.save()
-                toast("Fine!")
-            } else {
-                toast(it.message.toString())
-            }
+            progressBar.visibility = View.VISIBLE
+            btn_signup.isActivated = false
+            presenter.signUp(intent, avatar)
+            btn_signup.isActivated = true
+            progressBar.visibility = View.INVISIBLE
         }
     }
 
@@ -84,10 +57,9 @@ class SignupDescription : AppCompatActivity() {
 
         if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
             val image = data.data
-            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, image)
-            profile_image.setImageBitmap(bitmap)
+            avatar = MediaStore.Images.Media.getBitmap(contentResolver, image)
+            profile_image.setImageBitmap(avatar)
         }
-
     }
 
 }
