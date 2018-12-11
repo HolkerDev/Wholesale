@@ -13,9 +13,6 @@ import kotlinx.android.synthetic.main.activity_signup_description.*
 
 class SignupDescription : AppCompatActivity() {
 
-    lateinit var username: String
-    lateinit var password: String
-    lateinit var userType: String
     lateinit var avatar: Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {

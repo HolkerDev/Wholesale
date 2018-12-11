@@ -29,7 +29,7 @@ class SignUpDescriptionPresenter(val view: View) : ISignUpDescriptionPresenter {
         val user = ParseUser()
         user.username = intent.getStringExtra("username")
         user.setPassword(intent.getStringExtra("password"))
-        
+
         user.signUpInBackground {
             if (it == null) {
 
