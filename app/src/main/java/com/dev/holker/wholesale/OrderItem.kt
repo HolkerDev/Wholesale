@@ -1,5 +1,5 @@
 package com.dev.holker.wholesale
 
 
-class OrderItem(val number: String, val name: String, val amount: String, val description: String) {
+class OrderItem(val id: String, val number: String, val name: String, val amount: String, val description: String) {
 }

@@ -35,6 +35,7 @@
         <activity
             android:name=".activities.SignupDescription"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.OrderDescription" />
     </application>
 
 </manifest>

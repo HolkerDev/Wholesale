@@ -46,6 +46,7 @@ class OrdersFragment : Fragment() {
                             for (obj: ParseObject in objects) {
                                 mOrders.add(
                                     OrderItem(
+                                        obj.get("objectId").toString(),
                                         number.toString(),
                                         obj.get("name").toString(),
                                         obj.getInt("amount").toString(),

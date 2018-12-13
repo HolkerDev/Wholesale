@@ -52,7 +52,7 @@ public class OrderAdapter extends ArrayAdapter<OrderItem> {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(mContext, OrderDescription.class);
-                i.putExtra("order", orderItem.getName());
+                i.putExtra("id", orderItem.getId());
                 mContext.startActivity(i);
             }
         });

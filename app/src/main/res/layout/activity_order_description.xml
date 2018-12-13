@@ -9,10 +9,10 @@
 
 
     <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars"
-            android:id="@+id/img_order_descr"/>
+        android:id="@+id/img_order_descr"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        tools:srcCompat="@tools:sample/avatars" />
     <TextView
             android:text="TextView"
             android:layout_width="match_parent"
