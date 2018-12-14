@@ -7,8 +7,6 @@ import com.dev.holker.wholesale.presenters.OrderDescriptionPresenter
 import kotlinx.android.synthetic.main.activity_order_description.*
 
 class OrderDescription : AppCompatActivity() {
-
-    //TODO:Fix empty image
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_description)
