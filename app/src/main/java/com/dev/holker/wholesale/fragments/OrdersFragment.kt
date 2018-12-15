@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.dev.holker.wholesale.OrderAdapter
-import com.dev.holker.wholesale.OrderItem
+import com.dev.holker.wholesale.model.OrderItem
 import com.dev.holker.wholesale.R
 import com.dev.holker.wholesale.activities.Order
 import com.parse.ParseObject

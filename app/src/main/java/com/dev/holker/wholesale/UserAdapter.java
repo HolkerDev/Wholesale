@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import com.dev.holker.wholesale.model.User;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import java.util.ArrayList;

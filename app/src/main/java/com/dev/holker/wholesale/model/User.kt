@@ -1,4 +1,4 @@
-package com.dev.holker.wholesale
+package com.dev.holker.wholesale.model
 
 import android.graphics.Bitmap
 
