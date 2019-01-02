@@ -10,16 +10,17 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.dev.holker.wholesale.R
+import com.dev.holker.wholesale.UserAdapter
+import com.dev.holker.wholesale.model.User
 import com.parse.ParseUser
 import io.reactivex.ObservableOnSubscribe
 import kotlinx.android.synthetic.main.fragment_search.*
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 class SearchFragment : Fragment() {
 
-    lateinit var mUsers: ArrayList<String>
-    lateinit var mAdapter: ArrayAdapter<String>
+    val mUsers = arrayListOf<User>()
+    lateinit var mAdapter: ArrayAdapter<User>
 
 
     fun toast(string: String) {
@@ -38,7 +39,14 @@ class SearchFragment : Fragment() {
                             if (!filter.equals("")) {
                                 Log.i("MyLog", "Filter : $filter")
                             } else {
-                                mUsers.add(i.username)
+                                mUsers.add(
+                                    User(
+                                        "s",
+                                        "Something",
+                                        null,
+                                        "some"
+                                    )
+                                )
                             }
                         }
                         lv_users.adapter = mAdapter
@@ -55,9 +63,6 @@ class SearchFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        mUsers = arrayListOf<String>()
-
-        mAdapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, mUsers);
         updateUserList("")
 
         io.reactivex.Observable.create(ObservableOnSubscribe<String> { subscriber ->
@@ -85,6 +90,11 @@ class SearchFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+        mAdapter = UserAdapter(
+            activity!!.applicationContext,
+            R.layout.card_user,
+            mUsers
+        )
         return inflater.inflate(R.layout.fragment_search, null)
     }
 }
