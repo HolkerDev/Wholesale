@@ -34,11 +34,11 @@ public class UserAdapter extends ArrayAdapter<User> {
         View view = inflater.inflate(R.layout.card_user, null);
         User user = mUsers.get(position);
         //CircleImageView circleImageView = view.findViewById(R.id.profile_image);
-        TextView nameOfUser = (TextView) view.findViewById(R.id.tv_profile_name);
+        //TextView nameOfUser = (TextView) view.findViewById(R.id.tv_profile_name);
 
 
         //circleImageView.setImageBitmap(user.getAvatar());
-        nameOfUser.setText("Some");
+        //nameOfUser.setText("Some");
         return view;
 
     }
