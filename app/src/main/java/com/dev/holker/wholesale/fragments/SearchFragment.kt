@@ -41,10 +41,11 @@ class SearchFragment : Fragment() {
                             } else {
                                 mUsers.add(
                                     User(
-                                        "s",
-                                        "Something",
+                                        i.objectId,
+                                        i.username,
                                         null,
-                                        "some"
+                                        i.getString("descriprion"),
+                                        i.getInt("background")
                                     )
                                 )
                             }

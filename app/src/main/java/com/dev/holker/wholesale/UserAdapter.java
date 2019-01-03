@@ -7,13 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import com.dev.holker.wholesale.model.ResourcesW;
 import com.dev.holker.wholesale.model.User;
 
 import java.util.ArrayList;
 
 public class UserAdapter extends ArrayAdapter<User> {
-    //TODO: Implement adapter
     private Context mContext;
     private int mResources;
     private ArrayList<User> mUsers;
@@ -34,11 +35,13 @@ public class UserAdapter extends ArrayAdapter<User> {
         View view = inflater.inflate(R.layout.card_user, null);
         User user = mUsers.get(position);
         //CircleImageView circleImageView = view.findViewById(R.id.profile_image);
-        //TextView nameOfUser = (TextView) view.findViewById(R.id.tv_profile_name);
+        TextView nameOfUser = (TextView) view.findViewById(R.id.tv_profile_name);
 
 
         //circleImageView.setImageBitmap(user.getAvatar());
-        //nameOfUser.setText("Some");
+        nameOfUser.setText(user.getUsername());
+        ImageView background = (ImageView) view.findViewById(R.id.card_background);
+        background.setImageBitmap(ResourcesW.Companion.getBackground(user.getBack(),mContext));
         return view;
 
     }
