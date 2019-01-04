@@ -1,68 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_log"
+    android:orientation="vertical"
+    tools:context=".activities.Login">
+
+    <!--Logo-->
+    <ImageView
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/background_log"
-        android:layout_height="match_parent"
-        tools:context=".activities.Login">
-
-
-    <ImageView android:layout_width="match_parent"
-               android:layout_marginTop="50dp"
-               android:layout_height="80dp"
-               app:srcCompat="@drawable/ic_logo"/>
-
+        android:layout_height="80dp"
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/ic_logo" />
+    <!--Name of the app-->
     <TextView
-            android:text="@string/app_name"
-            android:gravity="center"
-            android:textSize="35sp"
-            android:fontFamily="@font/beautiful"
-            android:textColor="@color/colorWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"/>
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/beautiful"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/colorWhite"
+        android:textSize="35sp" />
+
+    <!--Username-->
     <EditText
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:inputType="textPersonName"
-            android:layout_margin="20dp"
-            android:background="@drawable/gaps"
-            android:gravity="center"
-            android:layout_marginTop="50dp"
-            android:ems="10"
-            android:id="@+id/et_username"
-            android:hint="@string/et_username"/>
+        android:id="@+id/et_username"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="20dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/gaps"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/et_username"
+        android:inputType="textPersonName" />
+
+    <!--Password-->
     <EditText
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:gravity="center"
-            android:inputType="textPassword"
-            android:background="@drawable/gaps"
-            android:layout_margin="20dp"
-            android:ems="10"
-            android:id="@+id/et_password"
-            android:hint="@string/et_password"/>
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/gaps"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/et_password"
+        android:inputType="textPassword" />
+
+    <!--Sign in button-->
     <Button
-            android:text="@string/sign_in"
-            android:textSize="20sp"
-            android:fontFamily="@font/buttons"
-            android:layout_width="250dp"
-            android:layout_margin="20dp"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
-            android:id="@+id/btn_login"
-            android:textAllCaps="false"
-            android:background="@drawable/btn_rounded"/>
+        android:id="@+id/btn_login"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:background="@drawable/btn_rounded"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="@string/sign_in"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="30sp" />
+
+    <!--Sign up text-->
     <TextView
-            android:text="@string/tv_sign_up"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/colorLink"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_signup"/>
+        android:id="@+id/tv_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="@string/tv_sign_up"
+        android:textColor="@color/colorLink" />
+
 </LinearLayout>

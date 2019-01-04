@@ -27,6 +27,8 @@ class SearchFragment : Fragment() {
         Toast.makeText(context, string, Toast.LENGTH_SHORT).show()
     }
 
+    //fill listview
+    //TODO:Add avatar to user
     fun updateUserList(filter: String) {
         mUsers.clear()
         val query = ParseUser.getQuery()
@@ -66,6 +68,8 @@ class SearchFragment : Fragment() {
         super.onStart()
         updateUserList("")
 
+        //search using RxJava
+        //TODO:Add search to search fragment
         io.reactivex.Observable.create(ObservableOnSubscribe<String> { subscriber ->
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextChange(newText: String?): Boolean {
