@@ -5,7 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.MediaStore
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import com.dev.holker.wholesale.R
 import com.dev.holker.wholesale.presenters.SignUpDescriptionPresenter
@@ -33,11 +33,9 @@ class SignupDescription : AppCompatActivity() {
         }
 
         btn_signup.setOnClickListener {
-            progressBar.visibility = View.VISIBLE
             btn_signup.isActivated = false
             presenter.signUp(intent, avatar)
             btn_signup.isActivated = true
-            progressBar.visibility = View.INVISIBLE
         }
     }
 

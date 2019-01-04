@@ -1,8 +1,8 @@
 package com.dev.holker.wholesale.fragments
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.SearchView
+import androidx.fragment.app.Fragment
+import androidx.appcompat.widget.SearchView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +17,7 @@ import io.reactivex.ObservableOnSubscribe
 import kotlinx.android.synthetic.main.fragment_search.*
 import java.util.concurrent.TimeUnit
 
-class SearchFragment : Fragment() {
+class SearchFragment : androidx.fragment.app.Fragment() {
 
     val mUsers = arrayListOf<User>()
     lateinit var mAdapter: ArrayAdapter<User>

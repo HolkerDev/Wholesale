@@ -1,7 +1,7 @@
 package com.dev.holker.wholesale.activities
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.dev.holker.wholesale.R
 import com.dev.holker.wholesale.presenters.SignUpPresenter
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -18,7 +18,7 @@ class SignUp : AppCompatActivity() {
         btn_next.setOnClickListener {
             presenter.goToNext(
                 et_sign_username.text.toString(),
-                et_sign_password_confirm.toString(),
+                et_sign_password.toString(),
                 spinner.selectedItem.toString()
             )
         }

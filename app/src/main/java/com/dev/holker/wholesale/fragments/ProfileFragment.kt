@@ -2,7 +2,7 @@ package com.dev.holker.wholesale.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,7 @@ import com.dev.holker.wholesale.R
 import com.parse.ParseUser
 import kotlinx.android.synthetic.main.fragment_profile.*
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : androidx.fragment.app.Fragment() {
 
     override fun onStart() {
         super.onStart()

@@ -1,102 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:background="@drawable/background_log"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_log"
+    android:orientation="vertical"
+    tools:context=".activities.SignupDescription">
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activities.SignupDescription"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image"
-            android:layout_width="80dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_height="80dp"
-            android:src="@drawable/unknown"
-            app:civ_border_color="#4dda54"
-            app:civ_border_width="3dp"/>
-
-    <EditText
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:inputType="textPersonName"
-            android:layout_margin="20dp"
-            android:background="@drawable/gaps"
-            android:gravity="center"
-            android:ems="10"
-            android:hint="@string/h_company_name"
-            android:id="@+id/et_signup_descr_name"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-            android:text="@string/btn_add_profile_photo"
-            android:textSize="20sp"
-            android:fontFamily="@font/trueno_lt"
-            android:layout_width="250dp"
-            android:layout_gravity="center"
-            android:layout_height="40dp"
-            android:textColor="#fff"
-            android:id="@+id/btn_attach"
-            android:textAllCaps="false"
-            android:background="@drawable/btn_rounded"/>
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_height="wrap_content">
-        <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:hint="@string/h_interested"
-                android:inputType="textPersonName"
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/unknown"
+                app:civ_border_color="#000000"
+                app:civ_border_width="3dp" />
+
+            <EditText
+                android:id="@+id/et_signup_descr_name"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="20dp"
                 android:background="@drawable/gaps"
                 android:ems="10"
-                android:id="@+id/editText"
-                android:layout_weight="1"
-                android:layout_marginEnd="20dp"/>
-        <Button
-                android:text="@string/btn_add"
-                android:textSize="20sp"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
                 android:gravity="center"
-                android:fontFamily="@font/trueno_lt"
-                android:id="@+id/btn_add"
-                android:textColor="@color/colorWhite"
-                android:textAllCaps="false"
+                android:hint="@string/h_company_name"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/btn_attach"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
                 android:background="@drawable/btn_rounded"
-                android:layout_weight="2"/>
-    </LinearLayout>
-    <ListView
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_margin="20dp"/>
-    <Button
-            android:text="@string/btn_sign_up"
-            android:textSize="18sp"
-            android:fontFamily="@font/trueno_lt"
-            android:layout_width="250dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_gravity="center"
-            android:layout_height="40dp"
-            android:textColor="@color/colorWhite"
-            android:id="@+id/btn_signup"
-            android:textAllCaps="false"
-            android:background="@drawable/btn_rounded"/>
+                android:fontFamily="@font/ubuntu_light"
+                android:text="@string/btn_add_profile_photo"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="25sp" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="invisible" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/layout_stroke"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
 
+                <Button
+                    android:id="@+id/btn_add"
+                    android:layout_width="300dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="2"
+                    android:layout_gravity="center"
+                    android:background="@drawable/btn_rounded"
+                    android:fontFamily="@font/ubuntu_light"
+                    android:gravity="center"
+                    android:text="@string/btn_add"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="25sp" />
+
+                <ListView
+                    android:id="@+id/lv_interests"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_margin="20dp" />
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="select backfround"
+                android:textAllCaps="false" />
+
+
+            <Button
+                android:id="@+id/btn_signup_descr_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter location"
+                android:textAllCaps="false" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="350dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:hint="Write short description"
+                android:ems="10"
+                android:background="@drawable/description_gap"
+                android:inputType="textMultiLine" />
+
+            <Button
+                android:id="@+id/btn_signup"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/btn_rounded"
+                android:fontFamily="@font/ubuntu_light"
+                android:text="@string/btn_sign_up"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="25sp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

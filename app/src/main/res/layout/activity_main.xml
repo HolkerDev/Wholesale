@@ -14,7 +14,7 @@
             android:layout_weight="1">
     </FrameLayout>
 
-    <android.support.design.widget.BottomNavigationView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/navigation_bottom"
             android:layout_width="match_parent"
             app:itemIconTint="@color/bottom_navigation_colors"
