@@ -1,5 +1,6 @@
 package com.dev.holker.wholesale.presenters
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.view.View
@@ -13,6 +14,35 @@ import com.parse.ParseUser
 import java.io.ByteArrayOutputStream
 
 class SignUpDescriptionPresenter(val view: View) : ISignUpDescriptionPresenter {
+    override fun addInterests() {
+        val dialog:AlertDialog
+        val checkedItems = booleanArrayOf(false, false, false, false)
+        val items = arrayOf("Architecture", "Carpets", "Sofas", "Chairs")
+
+        val builder = AlertDialog.Builder(view.context)
+        builder.setTitle("Select interests")
+        builder.setMultiChoiceItems(items, checkedItems, { dialog, which, isChecked ->
+            checkedItems[which] = isChecked
+            // Get the clicked item
+            val color = items[which]
+
+            // Display the clicked item text
+            toast("$color clicked.")
+        })
+
+        builder.setPositiveButton("OK") { _, _ ->
+        }
+        dialog = builder.create()
+        dialog.show()
+    }
+
+    override fun selectLocation() {
+
+    }
+
+    override fun selectBackground() {
+
+    }
 
     override fun goToMain() {
         val intent = Intent(view.context, MainActivity::class.java)

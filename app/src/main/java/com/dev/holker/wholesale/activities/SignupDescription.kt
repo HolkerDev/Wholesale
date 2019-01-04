@@ -6,7 +6,6 @@ import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
-import android.view.View
 import com.dev.holker.wholesale.R
 import com.dev.holker.wholesale.presenters.SignUpDescriptionPresenter
 import kotlinx.android.synthetic.main.activity_signup_description.*
@@ -30,6 +29,9 @@ class SignupDescription : AppCompatActivity() {
 
         btn_attach.setOnClickListener {
             getPhoto()
+        }
+        btn_add_inter.setOnClickListener {
+            presenter.addInterests()
         }
 
         btn_signup.setOnClickListener {

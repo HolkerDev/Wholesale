@@ -55,18 +55,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/layout_stroke"
-                android:layout_marginBottom="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/layout_stroke"
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/btn_add"
+                    android:id="@+id/btn_add_inter"
                     android:layout_width="300dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="2"
+                    android:layout_height="0dp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="2"
                     android:background="@drawable/btn_rounded"
                     android:fontFamily="@font/ubuntu_light"
                     android:gravity="center"
@@ -87,7 +87,7 @@
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="select backfround"
+                android:text="Select backfround"
                 android:textAllCaps="false" />
 
 
@@ -100,15 +100,15 @@
 
             <EditText
                 android:id="@+id/editText"
-                android:gravity="center"
-                android:layout_gravity="center"
                 android:layout_width="350dp"
                 android:layout_height="200dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:hint="Write short description"
-                android:ems="10"
                 android:background="@drawable/description_gap"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Write short description"
                 android:inputType="textMultiLine" />
 
             <Button
@@ -117,8 +117,8 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:layout_marginBottom="30dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginBottom="30dp"
                 android:background="@drawable/btn_rounded"
                 android:fontFamily="@font/ubuntu_light"
                 android:text="@string/btn_sign_up"

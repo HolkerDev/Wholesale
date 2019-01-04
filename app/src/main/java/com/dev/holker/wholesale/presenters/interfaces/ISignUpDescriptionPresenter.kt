@@ -8,4 +8,7 @@ interface ISignUpDescriptionPresenter {
     fun toast(string: String)
     fun goToMain()
     fun getHint(intent: Intent): String
+    fun addInterests()
+    fun selectLocation()
+    fun selectBackground()
 }
