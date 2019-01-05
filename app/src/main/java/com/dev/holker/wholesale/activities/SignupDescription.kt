@@ -39,6 +39,14 @@ class SignupDescription : AppCompatActivity() {
             presenter.signUp(intent, avatar)
             btn_signup.isActivated = true
         }
+
+        btn_signup_descr_back.setOnClickListener {
+            presenter.selectBackground()
+        }
+
+        btn_signup_descr_location.setOnClickListener {
+            presenter.selectLocation()
+        }
     }
 
     //open gallery and user can select the photo

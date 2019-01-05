@@ -84,10 +84,10 @@
 
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btn_signup_descr_back"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select backfround"
+                android:text="Select background"
                 android:textAllCaps="false" />
 
 

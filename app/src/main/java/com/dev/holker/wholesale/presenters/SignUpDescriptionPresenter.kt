@@ -14,34 +14,48 @@ import com.parse.ParseUser
 import java.io.ByteArrayOutputStream
 
 class SignUpDescriptionPresenter(val view: View) : ISignUpDescriptionPresenter {
+
+    //Show AlertDialog with multichoice items
     override fun addInterests() {
-        val dialog:AlertDialog
+        val dialog: AlertDialog
         val checkedItems = booleanArrayOf(false, false, false, false)
         val items = arrayOf("Architecture", "Carpets", "Sofas", "Chairs")
 
         val builder = AlertDialog.Builder(view.context)
         builder.setTitle("Select interests")
-        builder.setMultiChoiceItems(items, checkedItems, { dialog, which, isChecked ->
+        builder.setMultiChoiceItems(items, checkedItems) { dialog, which, isChecked ->
             checkedItems[which] = isChecked
             // Get the clicked item
-            val color = items[which]
+            val choice = items[which]
 
             // Display the clicked item text
-            toast("$color clicked.")
-        })
+            toast("$choice clicked.")
+        }
 
         builder.setPositiveButton("OK") { _, _ ->
+            //TODO:Return answer
         }
         dialog = builder.create()
         dialog.show()
     }
 
     override fun selectLocation() {
-
     }
 
     override fun selectBackground() {
-
+        val dialog: AlertDialog
+        val items = arrayOf("CHINAAAAA!", "Garden", "Office", "We are all of us stars, and we deserve to twinkle.(lol)")
+        val builder = AlertDialog.Builder(view.context)
+        builder.setTitle("Select background")
+        builder.setSingleChoiceItems(items, -1) { _, which ->
+            val choice = items[which]
+            toast("$choice clicked!")
+        }
+        builder.setPositiveButton("Yeah") { _, _ ->
+            //TODO:Return answer
+        }
+        dialog = builder.create()
+        dialog.show()
     }
 
     override fun goToMain() {
