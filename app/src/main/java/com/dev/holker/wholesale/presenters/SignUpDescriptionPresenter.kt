@@ -7,10 +7,7 @@ import android.view.View
 import android.widget.Toast
 import com.dev.holker.wholesale.activities.MainActivity
 import com.dev.holker.wholesale.presenters.interfaces.ISignUpDescriptionPresenter
-import com.parse.ParseFile
-import com.parse.ParseQuery
-import com.parse.ParseRole
-import com.parse.ParseUser
+import com.parse.*
 import java.io.ByteArrayOutputStream
 
 class SignUpDescriptionPresenter(val view: View) : ISignUpDescriptionPresenter {
@@ -33,13 +30,28 @@ class SignUpDescriptionPresenter(val view: View) : ISignUpDescriptionPresenter {
         }
 
         builder.setPositiveButton("OK") { _, _ ->
-            //TODO:Return answer
+            //TODO: Return answer
         }
         dialog = builder.create()
         dialog.show()
     }
 
     override fun selectLocation() {
+        val query = ParseQuery<ParseObject>("Country")
+        var result: String = ""
+        query.findInBackground { objects, e ->
+            if (e != null) {
+                toast("Error with country")
+            }
+            for (obj: ParseObject in objects) {
+                result += obj.getString("name")
+                result += " : "
+                val id = obj.objectId
+//                val query = ParseQuery<ParseObject>("City")
+//                query.whereContains(id)
+                toast("$result countries")
+            }
+        }
     }
 
     override fun selectBackground() {
@@ -52,7 +64,7 @@ class SignUpDescriptionPresenter(val view: View) : ISignUpDescriptionPresenter {
             toast("$choice clicked!")
         }
         builder.setPositiveButton("Yeah") { _, _ ->
-            //TODO:Return answer
+            //TODO: Return answer
         }
         dialog = builder.create()
         dialog.show()
@@ -105,9 +117,7 @@ class SignUpDescriptionPresenter(val view: View) : ISignUpDescriptionPresenter {
             }
         }
     }
-
     override fun toast(string: String) {
         Toast.makeText(view.context, string, Toast.LENGTH_SHORT).show()
     }
-
 }
