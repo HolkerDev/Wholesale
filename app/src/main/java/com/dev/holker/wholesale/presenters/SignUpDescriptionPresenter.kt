@@ -1,13 +1,18 @@
 package com.dev.holker.wholesale.presenters
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.view.View
 import android.widget.Toast
 import com.dev.holker.wholesale.activities.MainActivity
+import com.dev.holker.wholesale.model.LocationDialog
 import com.dev.holker.wholesale.presenters.interfaces.ISignUpDescriptionPresenter
-import com.parse.*
+import com.parse.ParseFile
+import com.parse.ParseQuery
+import com.parse.ParseRole
+import com.parse.ParseUser
 import java.io.ByteArrayOutputStream
 
 class SignUpDescriptionPresenter(val view: View) : ISignUpDescriptionPresenter {
@@ -37,21 +42,23 @@ class SignUpDescriptionPresenter(val view: View) : ISignUpDescriptionPresenter {
     }
 
     override fun selectLocation() {
-        val query = ParseQuery<ParseObject>("Country")
-        var result: String = ""
-        query.findInBackground { objects, e ->
-            if (e != null) {
-                toast("Error with country")
-            }
-            for (obj: ParseObject in objects) {
-                result += obj.getString("name")
-                result += " : "
-                val id = obj.objectId
-//                val query = ParseQuery<ParseObject>("City")
-//                query.whereContains(id)
-                toast("$result countries")
-            }
-        }
+//        val query = ParseQuery<ParseObject>("Country")
+//        var result: String = ""
+//        query.findInBackground { objects, e ->
+//            if (e != null) {
+//                toast("Error with country")
+//            }
+//            for (obj: ParseObject in objects) {
+//                result += obj.getString("name")
+//                result += " : "
+//                val id = obj.objectId
+//                toast("$result countries")
+//            }
+//        }
+
+        val dialog = LocationDialog(view.context as Activity)
+        dialog.show()
+
     }
 
     override fun selectBackground() {
@@ -117,6 +124,7 @@ class SignUpDescriptionPresenter(val view: View) : ISignUpDescriptionPresenter {
             }
         }
     }
+
     override fun toast(string: String) {
         Toast.makeText(view.context, string, Toast.LENGTH_SHORT).show()
     }
