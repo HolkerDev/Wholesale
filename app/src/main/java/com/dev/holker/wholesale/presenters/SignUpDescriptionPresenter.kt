@@ -1,24 +1,23 @@
 package com.dev.holker.wholesale.presenters
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.view.View
 import android.widget.Toast
 import com.dev.holker.wholesale.activities.MainActivity
-import com.dev.holker.wholesale.model.LocationDialog
-import com.dev.holker.wholesale.presenters.interfaces.ISignUpDescriptionPresenter
+import com.dev.holker.wholesale.model.Location
 import com.parse.ParseFile
 import com.parse.ParseQuery
 import com.parse.ParseRole
 import com.parse.ParseUser
 import java.io.ByteArrayOutputStream
 
-class SignUpDescriptionPresenter(val view: View) : ISignUpDescriptionPresenter {
+class SignUpDescriptionPresenter(val view: View) {
+    var location: Location = Location("Poland", "Rzeszow", "Sucharskiego")
 
     //Show AlertDialog with multichoice items
-    override fun addInterests() {
+    fun addInterests() {
         val dialog: AlertDialog
         val checkedItems = booleanArrayOf(false, false, false, false)
         val items = arrayOf("Architecture", "Carpets", "Sofas", "Chairs")
@@ -41,29 +40,10 @@ class SignUpDescriptionPresenter(val view: View) : ISignUpDescriptionPresenter {
         dialog.show()
     }
 
-    override fun selectLocation() {
-//        val query = ParseQuery<ParseObject>("Country")
-//        var result: String = ""
-//        query.findInBackground { objects, e ->
-//            if (e != null) {
-//                toast("Error with country")
-//            }
-//            for (obj: ParseObject in objects) {
-//                result += obj.getString("name")
-//                result += " : "
-//                val id = obj.objectId
-//                toast("$result countries")
-//            }
-//        }
 
-        val dialog = LocationDialog(view.context as Activity)
-        dialog.show()
-
-    }
-
-    override fun selectBackground() {
+    fun selectBackground() {
         val dialog: AlertDialog
-        val items = arrayOf("CHINAAAAA!", "Garden", "Office", "We are all of us stars, and we deserve to twinkle.(lol)")
+        val items = arrayOf("Chinese house", "Garden", "Office", "Rand")
         val builder = AlertDialog.Builder(view.context)
         builder.setTitle("Select background")
         builder.setSingleChoiceItems(items, -1) { _, which ->
@@ -77,18 +57,18 @@ class SignUpDescriptionPresenter(val view: View) : ISignUpDescriptionPresenter {
         dialog.show()
     }
 
-    override fun goToMain() {
+    fun goToMain() {
         val intent = Intent(view.context, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         view.context.startActivity(intent)
     }
 
-    override fun getHint(intent: Intent): String {
+    fun getHint(intent: Intent): String {
         return intent.getStringExtra("role")
     }
 
 
-    override fun signUp(intent: Intent, avatar: Bitmap) {
+    fun signUp(intent: Intent, avatar: Bitmap) {
         val user = ParseUser()
         user.username = intent.getStringExtra("username")
         user.setPassword(intent.getStringExtra("password"))
@@ -125,7 +105,8 @@ class SignUpDescriptionPresenter(val view: View) : ISignUpDescriptionPresenter {
         }
     }
 
-    override fun toast(string: String) {
+
+    fun toast(string: String) {
         Toast.makeText(view.context, string, Toast.LENGTH_SHORT).show()
     }
 }
