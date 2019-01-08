@@ -7,21 +7,18 @@ import android.os.Bundle
 import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
 import com.dev.holker.wholesale.R
+import com.dev.holker.wholesale.model.Location
 import com.dev.holker.wholesale.model.LocationDialog
 import com.dev.holker.wholesale.presenters.SignUpDescriptionPresenter
 import kotlinx.android.synthetic.main.activity_signup_description.*
 
 class SignupDescription : AppCompatActivity(), LocationDialog.NoticeDialogListener {
 
-    private lateinit var country: String
-    private lateinit var city: String
-    private lateinit var street: String
+    lateinit var location: Location
 
 
     override fun apply(country: String, city: String, street: String) {
-        this.country = country
-        this.city = city
-        this.street = street
+        this.location = Location(country, city, street)
     }
 
     lateinit var avatar: Bitmap
@@ -48,7 +45,11 @@ class SignupDescription : AppCompatActivity(), LocationDialog.NoticeDialogListen
 
         btn_signup.setOnClickListener {
             btn_signup.isActivated = false
-            presenter.signUp(intent, avatar)
+            presenter.signUp(
+                intent,
+                avatar, location, et_signup_descr_name.text.toString(),
+                et_sign_up_descr_descr.text.toString()
+            )
             btn_signup.isActivated = true
         }
 

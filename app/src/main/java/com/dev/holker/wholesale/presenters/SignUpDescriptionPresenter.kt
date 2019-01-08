@@ -3,44 +3,46 @@ package com.dev.holker.wholesale.presenters
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.dev.holker.wholesale.activities.MainActivity
 import com.dev.holker.wholesale.model.Location
-import com.parse.ParseFile
-import com.parse.ParseQuery
-import com.parse.ParseRole
-import com.parse.ParseUser
+import com.parse.*
 import java.io.ByteArrayOutputStream
 
 class SignUpDescriptionPresenter(val view: View) {
-    var location: Location = Location("Poland", "Rzeszow", "Sucharskiego")
+    private var background: Int = 4
 
     //Show AlertDialog with multichoice items
-    fun addInterests() {
+    fun addInterests(): ArrayList<String> {
         val dialog: AlertDialog
-        val checkedItems = booleanArrayOf(false, false, false, false)
-        val items = arrayOf("Architecture", "Carpets", "Sofas", "Chairs")
+        val interests = ArrayList<String>()
+        val checkedItems = booleanArrayOf(false, false, false, false, false, false)
+        val items = arrayOf(
+            "Dining Sets", "Outdoor Lounge Chairs", "Banquet Chairs", "Tables",
+            "High chairs", "Bar Stools"
+        )
 
         val builder = AlertDialog.Builder(view.context)
         builder.setTitle("Select interests")
-        builder.setMultiChoiceItems(items, checkedItems) { dialog, which, isChecked ->
+        builder.setMultiChoiceItems(items, checkedItems) { _, which, isChecked ->
             checkedItems[which] = isChecked
             // Get the clicked item
             val choice = items[which]
-
+            interests.add(choice)
             // Display the clicked item text
             toast("$choice clicked.")
         }
 
         builder.setPositiveButton("OK") { _, _ ->
-            //TODO: Return answer
         }
         dialog = builder.create()
         dialog.show()
+        return interests
     }
 
-
+    //Creates dialog for choosing background
     fun selectBackground() {
         val dialog: AlertDialog
         val items = arrayOf("Chinese house", "Garden", "Office", "Rand")
@@ -49,9 +51,9 @@ class SignUpDescriptionPresenter(val view: View) {
         builder.setSingleChoiceItems(items, -1) { _, which ->
             val choice = items[which]
             toast("$choice clicked!")
+            background = which
         }
-        builder.setPositiveButton("Yeah") { _, _ ->
-            //TODO: Return answer
+        builder.setPositiveButton("Submit") { _, _ ->
         }
         dialog = builder.create()
         dialog.show()
@@ -63,12 +65,13 @@ class SignUpDescriptionPresenter(val view: View) {
         view.context.startActivity(intent)
     }
 
+    //Function return hint text for Name gap
     fun getHint(intent: Intent): String {
         return intent.getStringExtra("role")
     }
 
 
-    fun signUp(intent: Intent, avatar: Bitmap) {
+    fun signUp(intent: Intent, avatar: Bitmap, location: Location, name: String, description: String) {
         val user = ParseUser()
         user.username = intent.getStringExtra("username")
         user.setPassword(intent.getStringExtra("password"))
@@ -76,27 +79,70 @@ class SignUpDescriptionPresenter(val view: View) {
         user.signUpInBackground {
             if (it == null) {
 
-                //save a role
+
+                //Attach and save a role for user
                 val query = ParseQuery<ParseRole>("_Role")
                 query.whereEqualTo("name", intent.getStringExtra("role"))
                 val role = query.first
                 role.users.add(user)
                 role.save()
                 user.put("role", role)
+                user.put("companyName", name)
+                user.put("description", description)
+                user.put("background", background)
 
+                //Compressing image to bite array
                 val stream = ByteArrayOutputStream()
                 avatar.compress(Bitmap.CompressFormat.PNG, 100, stream)
                 val bytes = stream.toByteArray()
 
-                val file = ParseFile("avatar.png", bytes)
-                user.put("avatar", file)
+                //Create new object in table Location
+                val obj = ParseObject("Location")
+                //Put street to this table
+                obj.put("street", location.street)
 
-                user.saveInBackground() {
+                //Query for finding a city
+                val queryCity = ParseQuery<ParseObject>("City")
+                queryCity.whereEqualTo("objectId", getCityId(location.city))
+                val objCity = queryCity.first
+
+                //Then put it in Location table like a pointer
+                obj.put("city", objCity)
+
+                //Query for finding an country.
+                val queryCountry = ParseQuery<ParseObject>("Country")
+                queryCountry.whereEqualTo("objectId", getCountryId(location.country))
+                val objCountry = queryCountry.first
+                //Then put it in Location table like a pointer
+                obj.put("country", objCountry)
+
+                //Save location obj
+                obj.saveInBackground() {
                     if (it != null) {
-                        toast("Error while registration process")
+                        Log.i("MyLog", it.message.toString())
                     } else {
-                        toast("Hallelujah")
-                        goToMain()
+                        //Get this object again
+                        val locationObj = obj
+                        //put location to user
+                        user.put("location", locationObj)
+                        //LOGS
+                        Log.i("MyLog", obj.objectId.toString())
+                        Log.i("MyLog", "Done with location")
+                        //Convert image byte array to ParseFile
+                        val file = ParseFile("avatar.png", bytes)
+                        //Attach this file(image) to user
+                        user.put("avatar", file)
+
+                        //Save user
+                        user.saveInBackground() {
+                            if (it != null) {
+                                toast("Error while registration process")
+                            } else {
+                                toast("Hallelujah")
+                                //Go to main activity
+                                goToMain()
+                            }
+                        }
                     }
                 }
             } else {
@@ -105,6 +151,62 @@ class SignUpDescriptionPresenter(val view: View) {
         }
     }
 
+    //Function gets name of country and returns objectId from server
+    fun getCountryId(country: String): String {
+        when (country) {
+            "Ukraine" -> {
+                return "tPwElQRFQg"
+            }
+            "Russia" -> {
+                return "l3l9QpsnLo"
+            }
+            "Poland" -> {
+                return "PCH76fXtrn"
+            }
+            "UK" -> {
+                return "44sDh3COMk"
+            }
+            "USA" -> {
+                return "Xn5biIk2ea"
+            }
+            else -> {
+                return "PCH76fXtrn"
+            }
+        }
+    }
+
+    //looks terrible, but I can't make it easier
+    //Function gets name of city and returns objectId from server
+    fun getCityId(city: String): String {
+        when (city) {
+            "London" -> return "wlnKfUpFwK"
+            "Cracow" -> return "LdGK8NgugX"
+            "Rzeszow" -> return "dQAVroflnm"
+            "Warsaw" -> return "n7OBJhPnjY"
+            "Poznan" -> return "FkGEmnQFsW"
+            "Wroclaw" -> return "E50DqDKfXM"
+            "Leeds" -> return "BWRUnBunvn"
+            "Liverpool" -> return "V9dbI3N7LG"
+            "Edinburgh" -> return "TJdhPxr4Bj"
+            "Belfast" -> return "X38zcx7NJZ"
+            "Dnipro" -> return "r94iHP9BK4"
+            "Kiev" -> return "py69HQHy6c"
+            "Ternopil" -> return "5gZUYFkMmd"
+            "Lviv" -> return "DLWLRqF9vk"
+            "Odessa" -> return "RoT3o3bQxc"
+            "Saint Petersburg" -> return "HtNn3qX6iJ"
+            "Moscow" -> return "K3HAaAK6AK"
+            "Novosibirsk" -> return "EfVc36uER3"
+            "Yekaterinburg" -> return "tV8AhLbdeD"
+            "Rostov-on-Don" -> return "a5qDwHEZh7"
+            "New York" -> return "K9oCQgg4Zd"
+            "San Francisco" -> return "UXNkGY4tNv"
+            "Washington, D.C." -> return "N04iZLvGNR"
+            "Boston" -> return "FkUL5HFwW1"
+            "Chicago" -> return "mj9NcjVdZx"
+            else -> return "dQAVroflnm"
+        }
+    }
 
     fun toast(string: String) {
         Toast.makeText(view.context, string, Toast.LENGTH_SHORT).show()
