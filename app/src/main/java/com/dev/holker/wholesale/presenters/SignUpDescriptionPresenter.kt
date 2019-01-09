@@ -13,6 +13,7 @@ import java.io.ByteArrayOutputStream
 
 class SignUpDescriptionPresenter(val view: View) {
     private var background: Int = 4
+    private lateinit var interest: ArrayList<String>
 
     //Show AlertDialog with multichoice items
     fun addInterests(): ArrayList<String> {
@@ -30,12 +31,17 @@ class SignUpDescriptionPresenter(val view: View) {
             checkedItems[which] = isChecked
             // Get the clicked item
             val choice = items[which]
-            interests.add(choice)
+            if (checkedItems[which] == true) {
+                interests.add(choice)
+            } else {
+                interests.remove(items[which])
+            }
             // Display the clicked item text
             toast("$choice clicked.")
         }
 
         builder.setPositiveButton("OK") { _, _ ->
+            this.interest = interests
         }
         dialog = builder.create()
         dialog.show()
@@ -138,6 +144,21 @@ class SignUpDescriptionPresenter(val view: View) {
                             if (it != null) {
                                 toast("Error while registration process")
                             } else {
+                                //loop threw interests
+                                for (string: String in interest) {
+                                    val preference = ParseObject("Preference")
+                                    //put pointer of user to each preference object
+                                    preference.put("user", user)
+                                    //query productType object
+                                    val queryType = ParseQuery<ParseObject>("ProductType")
+                                    queryType.whereEqualTo("name", string)
+                                    val type = queryType.first
+                                    //put this object to preference
+                                    preference.put("productType", type)
+                                    //save preference
+                                    preference.saveInBackground()
+                                }
+
                                 toast("Hallelujah")
                                 //Go to main activity
                                 goToMain()
