@@ -9,7 +9,7 @@
     <!--Background image-->
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="170dp">
 
         <!--Background image-->
         <ImageView
@@ -31,7 +31,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="170dp"
         android:gravity="bottom"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
@@ -53,7 +53,7 @@
         <!--Name and rating layout-->
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:layout_height="170dp"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="25dp"
             android:layout_marginLeft="10dp"
@@ -67,20 +67,9 @@
                 android:id="@+id/tv_profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
+                android:layout_marginBottom="50dp"
                 android:fontFamily="@font/text"
                 android:text="Name Surname"
-                android:textColor="#fff"
-                android:textStyle="bold" />
-
-            <!--Can be rating-->
-            <TextView
-                android:id="@+id/profile_followers"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="65dp"
-                android:fontFamily="@font/text"
-                android:text="rating"
                 android:textColor="#fff"
                 android:textStyle="bold" />
 
@@ -96,7 +85,7 @@
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="35dp"
             android:background="@drawable/btn_rounded"
-            android:fontFamily="@font/buttons"
+            android:fontFamily="@font/ubuntu_light"
             android:text="Check"
             android:textAllCaps="true"
             android:textColor="@color/colorWhite"
