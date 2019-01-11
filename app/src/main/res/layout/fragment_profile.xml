@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:orientation="vertical"
-              android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image"
-                android:layout_width="80dp"
-                android:layout_gravity="center"
-                android:layout_height="80dp"
-                android:src="@drawable/unknown"
-                app:civ_border_color="#4dda54"
-                app:civ_border_width="3dp"/>
-        <LinearLayout android:layout_width="wrap_content"
-                      android:orientation="vertical"
-                      android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/unknown"
+            app:civ_border_color="#4dda54"
+            app:civ_border_width="3dp" />
 
-            <TextView android:layout_width="wrap_content"
-                      android:text="@string/tv_company_name"
-                      android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <ImageView android:layout_width="100dp"
-                       android:layout_height="50dp"
-            android:src="@drawable/star_rating_1_of_5"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_company_name" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="50dp" />
         </LinearLayout>
 
 
@@ -35,15 +38,16 @@
 
 
     <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
     <Button
-            android:text="@string/btn_logout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorText"
-            android:layout_gravity="center"
-            android:background="@drawable/btn_rounded"
-            android:id="@+id/btn_profile_logout"/>
+        android:id="@+id/btn_profile_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_rounded"
+        android:text="@string/btn_logout"
+        android:textColor="@color/colorText" />
 </LinearLayout>

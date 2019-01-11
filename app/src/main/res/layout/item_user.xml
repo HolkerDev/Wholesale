@@ -46,7 +46,6 @@
         <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                app:srcCompat="@drawable/star_rating_1_of_5"
                 android:id="@+id/imageView"/>
         <TextView
                 android:text="@string/h_interested"

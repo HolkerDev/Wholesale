@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_log"
+    android:orientation="vertical"
     tools:context=".activities.Order">
 
     <EditText
         android:id="@+id/et_productName"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:background="@drawable/gaps"
         android:ems="10"
@@ -23,8 +23,7 @@
         android:id="@+id/et_amount"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/et_productName"
-        android:layout_alignStart="@+id/et_productName"
+        android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@drawable/gaps"
         android:ems="10"
@@ -35,10 +34,7 @@
     <EditText
         android:id="@+id/et_description"
         android:layout_width="250dp"
-        android:layout_height="129dp"
-        android:layout_above="@+id/btn_send_photo"
-        android:layout_below="@+id/et_amount"
-        android:layout_centerHorizontal="true"
+        android:layout_height="100dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@drawable/gaps"
@@ -47,35 +43,47 @@
         android:hint="@string/h_description"
         android:inputType="textMultiLine" />
 
+    <!--Attach photo-->
+    <Button
+        android:id="@+id/btn_select_type"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_rounded"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="Select product type"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
     <Button
         android:id="@+id/btn_send_photo"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_submit"
-        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:textColor="#fff"
         android:layout_marginTop="20dp"
         android:background="@drawable/btn_rounded"
-        android:fontFamily="@font/buttons"
+        android:fontFamily="@font/ubuntu_light"
         android:text="@string/btn_attach_photo"
         android:textAllCaps="false"
+        android:textColor="#fff"
         android:textSize="20sp" />
 
+
+    <!--Submit order-->
     <Button
         android:id="@+id/btn_submit"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:textColor="#fff"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/btn_rounded"
-        android:fontFamily="@font/buttons"
+        android:fontFamily="@font/ubuntu_light"
         android:text="@string/btn_submit_order"
         android:textAllCaps="false"
+        android:textColor="#fff"
         android:textSize="20sp" />
 
-</RelativeLayout>
+</LinearLayout>
