@@ -2,16 +2,16 @@ package com.dev.holker.wholesale.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.dev.holker.wholesale.OrderAdapter
-import com.dev.holker.wholesale.model.OrderItem
 import com.dev.holker.wholesale.R
 import com.dev.holker.wholesale.activities.Order
+import com.dev.holker.wholesale.model.OrderItem
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseUser
@@ -46,7 +46,7 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
                             for (obj: ParseObject in objects) {
                                 mOrders.add(
                                     OrderItem(
-                                        obj.get("objectId").toString(),
+                                        obj.objectId,
                                         number.toString(),
                                         obj.get("name").toString(),
                                         obj.getInt("amount").toString(),

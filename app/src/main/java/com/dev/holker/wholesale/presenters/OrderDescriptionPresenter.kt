@@ -18,35 +18,7 @@ class OrderDescriptionPresenter(val view: View) : IOrderDescriptionPresenter {
     override fun downloadPhoto(id: String): Bitmap? {
         val query = ParseQuery<ParseObject>("Order")
         query.whereEqualTo("objectId", id)
-        query.findInBackground { objects, e ->
-            run {
-                if (e != null) {
-                    toast(e.message.toString())
-                } else {
-                    if (objects == null) {
-                        toast("No image")
-                    } else {
-                        for (obj: ParseObject in objects) {
-                            val photo = obj.get("photo") as ParseFile
-                            photo.getDataInBackground { data, e ->
-                                run {
-                                    if (e != null) {
-                                        toast(e.message.toString())
-                                    } else {
-                                        if (data == null) {
-                                            toast("No image data")
-                                        } else {
-                                            bitmap = BitmapFactory.decodeByteArray(data, 0, data.size)
-                                            return@run bitmap
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return null
+        val order = query.first
+        val photo = order.get("photo")
     }
 }
