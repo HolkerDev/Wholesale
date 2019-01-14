@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.dev.holker.wholesale.R
+import com.dev.holker.wholesale.presenters.OrderDescriptionPresenter
 import com.parse.ParseFile
 import com.parse.ParseObject
 import com.parse.ParseQuery
@@ -17,7 +18,7 @@ class OrderDescription : AppCompatActivity() {
 
         Log.i("MyLog", intent.getStringExtra("id"))
 
-//        val presenter = OrderDescriptionPresenter(findViewById(android.R.id.content))
+        val presenter = OrderDescriptionPresenter(findViewById(android.R.id.content))
 
         //TODO: Move this code to presenter
         //download photo and then attach it to imageview
@@ -34,5 +35,8 @@ class OrderDescription : AppCompatActivity() {
                 img_order_descr.setImageBitmap(photoBit)
             }
         }
+
+        presenter.getName(order)
+
     }
 }
