@@ -36,7 +36,10 @@ class OrderDescription : AppCompatActivity() {
             }
         }
 
-        presenter.getName(order)
+        //set name of order
+        tv_name_order_descr.text = presenter.getName(order)
+        //set description of order
+        tv_descr_order_descr.text = presenter.getDescription(order)
 
     }
 }

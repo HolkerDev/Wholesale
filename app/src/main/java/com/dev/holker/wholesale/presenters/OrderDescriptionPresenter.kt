@@ -10,6 +10,7 @@ class OrderDescriptionPresenter(val view: View) {
         Toast.makeText(view.context, string, Toast.LENGTH_SHORT).show()
     }
 
+    //return name field
     fun getName(obj: ParseObject): String {
         if (obj.getString("name") == null) {
             return "Nothing"
@@ -18,6 +19,7 @@ class OrderDescriptionPresenter(val view: View) {
         }
     }
 
+    //returns description field
     fun getDescription(obj: ParseObject): String {
         return obj.getString("description")!!
     }
