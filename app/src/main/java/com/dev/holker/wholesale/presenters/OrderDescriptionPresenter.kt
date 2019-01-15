@@ -23,4 +23,8 @@ class OrderDescriptionPresenter(val view: View) {
     fun getDescription(obj: ParseObject): String {
         return obj.getString("description")!!
     }
+
+    fun getAdapter() {
+
+    }
 }
