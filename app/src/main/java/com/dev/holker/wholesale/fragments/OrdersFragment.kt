@@ -14,6 +14,7 @@ import com.dev.holker.wholesale.activities.Order
 import com.dev.holker.wholesale.model.OrderItem
 import com.parse.ParseObject
 import com.parse.ParseQuery
+import com.parse.ParseRole
 import com.parse.ParseUser
 import kotlinx.android.synthetic.main.fragment_orders.*
 
@@ -36,7 +37,16 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
         if (ParseUser.getCurrentUser() != null) {
             val query = ParseQuery<ParseObject>("Order")
             //query.whereEqualTo("username", ParseUser.getCurrentUser().username.toString())
-            query.whereContainedIn("user", listOf(ParseUser.getCurrentUser()))
+
+            val queryRole = ParseQuery<ParseRole>("_Role")
+            queryRole.whereEqualTo("users", ParseUser.getCurrentUser())
+            val role = queryRole.first
+            Log.i("MyLog", role.get("roleId").toString())
+
+            if (role.getNumber("roleId") == 2) {
+                Log.i("MyLog", "IT'S CLIENT")
+                query.whereContainedIn("user", listOf(ParseUser.getCurrentUser()))
+            }else if(role.getNumber("roleId") == 3)
             query.orderByAscending("createdAt")
             query.findInBackground { objects, e ->
                 run {
