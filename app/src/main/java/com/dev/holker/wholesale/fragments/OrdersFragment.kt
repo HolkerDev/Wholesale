@@ -114,6 +114,38 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
     }
 
     fun showForSupplier() {
-        //TODO:Show list of order when supplier(user) appears
+        val query = ParseQuery<ParseObject>("OrderOffer")
+        query.whereEqualTo("user", ParseUser.getCurrentUser())
+        query.findInBackground { objects, e ->
+            if (e != null) {
+                toast("Error: check logs")
+                Log.i("MyLog", e.message)
+            } else {
+                if (objects.size > 0) {
+                    //for counting the order of orders
+                    var number = 1
+                    for (objOffer in objects) {
+                        val objOrder = objOffer.getParseObject("order")
+
+                        if (objOrder != null) {
+                            mOrders.add(
+                                OrderItem(
+                                    objOrder.objectId,
+                                    number.toString(),
+                                    objOrder.fetchIfNeeded<ParseObject>().getString("name"),
+                                    objOrder.getInt("amount").toString(),
+                                    objOrder.get("description").toString()
+                                )
+                            )
+                            number++
+                        }
+
+                        lv_orders.adapter = mAdapter
+                    }
+                } else {
+                    toast("You have no offers! Try to add one!")
+                }
+            }
+        }
     }
 }
