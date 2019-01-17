@@ -35,44 +35,18 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
     private fun updateOrders() {
         mOrders.clear()
         if (ParseUser.getCurrentUser() != null) {
-            val query = ParseQuery<ParseObject>("Order")
-            //query.whereEqualTo("username", ParseUser.getCurrentUser().username.toString())
-
             val queryRole = ParseQuery<ParseRole>("_Role")
             queryRole.whereEqualTo("users", ParseUser.getCurrentUser())
             val role = queryRole.first
-            Log.i("MyLog", role.get("roleId").toString())
 
             if (role.getNumber("roleId") == 2) {
-                Log.i("MyLog", "IT'S CLIENT")
-                query.whereContainedIn("user", listOf(ParseUser.getCurrentUser()))
-            }else if(role.getNumber("roleId") == 3)
-            query.orderByAscending("createdAt")
-            query.findInBackground { objects, e ->
-                run {
-                    if (objects != null) {
-                        if (e == null) {
-                            var number = 1
-                            for (obj: ParseObject in objects) {
-                                mOrders.add(
-                                    OrderItem(
-                                        obj.objectId,
-                                        number.toString(),
-                                        obj.get("name").toString(),
-                                        obj.getInt("amount").toString(),
-                                        obj.get("description").toString()
-                                    )
-                                )
-                                number++
-                            }
-                            lv_orders.adapter = mAdapter
-                        } else {
-                            toast(e.message.toString())
-                        }
-                    } else {
-                        toast("Objects null")
-                    }
-                }
+                Log.i("MyLog", "it's a client")
+                showForClient()
+            } else if (role.getNumber("roleId") == 3) {
+                Log.i("MyLog", "it's a supplier")
+                showForSupplier()
+            } else {
+                //if Admin
             }
         }
     }
@@ -102,5 +76,44 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
             mOrders
         )
         return inflater.inflate(R.layout.fragment_orders, null)
+    }
+
+    //Shows orders that user created
+    fun showForClient() {
+        val query = ParseQuery<ParseObject>("Order")
+        //query.whereEqualTo("username", ParseUser.getCurrentUser().username.toString())
+        query.whereContainedIn("user", listOf(ParseUser.getCurrentUser()))
+
+        query.orderByAscending("createdAt")
+        query.findInBackground { objects, e ->
+            run {
+                if (objects != null) {
+                    if (e == null) {
+                        var number = 1
+                        for (obj: ParseObject in objects) {
+                            mOrders.add(
+                                OrderItem(
+                                    obj.objectId,
+                                    number.toString(),
+                                    obj.get("name").toString(),
+                                    obj.getInt("amount").toString(),
+                                    obj.get("description").toString()
+                                )
+                            )
+                            number++
+                        }
+                        lv_orders.adapter = mAdapter
+                    } else {
+                        toast(e.message.toString())
+                    }
+                } else {
+                    toast("Objects null")
+                }
+            }
+        }
+    }
+
+    fun showForSupplier() {
+        //TODO:Show list of order when supplier(user) appears
     }
 }
