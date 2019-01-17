@@ -3,14 +3,13 @@ package com.dev.holker.wholesale.activities
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.dev.holker.wholesale.OfferAdapter
 import com.dev.holker.wholesale.R
 import com.dev.holker.wholesale.model.Offer
 import com.dev.holker.wholesale.presenters.OrderDescriptionPresenter
-import com.parse.ParseFile
-import com.parse.ParseObject
-import com.parse.ParseQuery
+import com.parse.*
 import kotlinx.android.synthetic.main.activity_order_description.*
 
 class OrderDescription : AppCompatActivity() {
@@ -21,6 +20,22 @@ class OrderDescription : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_description)
 
+
+        //Checks the role
+        if (ParseUser.getCurrentUser() != null) {
+            val queryRole = ParseQuery<ParseRole>("_Role")
+            queryRole.whereEqualTo("users", ParseUser.getCurrentUser())
+            val role = queryRole.first
+
+            if (role.getNumber("roleId") == 2) {
+                Log.i("OrderDescription", "it's a client")
+                add_offer.visibility = View.INVISIBLE
+            } else if (role.getNumber("roleId") == 3) {
+                Log.i("OrderDescription", "it's a supplier")
+            } else {
+                //if Admin
+            }
+        }
 
         val presenter = OrderDescriptionPresenter(findViewById(android.R.id.content))
 
@@ -45,7 +60,7 @@ class OrderDescription : AppCompatActivity() {
         //set description of order
         tv_descr_order_descr.text = presenter.getDescription(order)
 
-
+        //Download offers
         val queryOffer = ParseQuery<ParseObject>("OrderOffer")
         queryOffer.whereEqualTo("order", order)
         queryOffer.findInBackground { objects, e ->
