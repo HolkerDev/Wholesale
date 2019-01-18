@@ -44,7 +44,7 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
                 showForClient()
             } else if (role.getNumber("roleId") == 3) {
                 Log.i("MyLog", "it's a supplier")
-                showForSupplier()
+                showForSupplierOld()
             } else {
                 //if Admin
             }
@@ -113,7 +113,7 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
         }
     }
 
-    fun showForSupplier() {
+    fun showForSupplierOld() {
         val query = ParseQuery<ParseObject>("OrderOffer")
         query.whereEqualTo("user", ParseUser.getCurrentUser())
         query.findInBackground { objects, e ->
@@ -124,10 +124,12 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
                 if (objects.size > 0) {
                     //for counting the order of orders
                     var number = 1
+
+                    var objectId = "dawd"
                     for (objOffer in objects) {
                         val objOrder = objOffer.getParseObject("order")
 
-                        if (objOrder != null) {
+                        if (objOrder != null && objOrder.objectId != objectId) {
                             mOrders.add(
                                 OrderItem(
                                     objOrder.objectId,
@@ -137,6 +139,7 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
                                     objOrder.get("description").toString()
                                 )
                             )
+                            objectId = objOrder.objectId
                             number++
                         }
 
@@ -145,6 +148,42 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
                 } else {
                     toast("You have no offers! Try to add one!")
                 }
+            }
+        }
+    }
+
+    fun showForSupplier() {
+        val queryOrder = ParseQuery<ParseObject>("Order")
+        queryOrder.findInBackground { objects, e ->
+            if (e != null) {
+                Log.i("OrderFragment", e.message)
+            } else if (objects.size == 0) {
+                toast("You have no offers! Try to add one!")
+            } else {
+                for (order in objects) {
+                    val queryOffer = ParseQuery<ParseObject>("OrderOffer")
+                    queryOffer.whereEqualTo("order", order)
+                    queryOffer.findInBackground { offers, errorOffers ->
+                        if (errorOffers != null) {
+                            Log.i("OrderFragment", errorOffers.message)
+                        } else if (objects.size > 0) {
+                            for (offer in offers) {
+                                if (ParseUser.getCurrentUser().objectId.equals(offer.getParseUser("user")!!.objectId)) {
+                                    mOrders.add(
+                                        OrderItem(
+                                            order.objectId,
+                                            "1",
+                                            order.fetchIfNeeded<ParseObject>().getString("name"),
+                                            order.getInt("amount").toString(),
+                                            order.get("description").toString()
+                                        )
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+                lv_orders.adapter = mAdapter
             }
         }
     }

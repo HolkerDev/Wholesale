@@ -1,5 +1,6 @@
 package com.dev.holker.wholesale.activities
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
@@ -7,15 +8,17 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.dev.holker.wholesale.OfferAdapter
 import com.dev.holker.wholesale.R
-import com.dev.holker.wholesale.model.Offer
+import com.dev.holker.wholesale.model.OfferItem
 import com.dev.holker.wholesale.presenters.OrderDescriptionPresenter
 import com.parse.*
 import kotlinx.android.synthetic.main.activity_order_description.*
 
 class OrderDescription : AppCompatActivity() {
 
+    //TODO: Update list after adding new offer
+
     lateinit var mAdapter: OfferAdapter
-    val mOffers = arrayListOf<Offer>()
+    val mOffers = arrayListOf<OfferItem>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_description)
@@ -81,7 +84,7 @@ class OrderDescription : AppCompatActivity() {
                                     Log.i("MyLog", e.message.toString())
                                 } else {
                                     mOffers.add(
-                                        Offer(
+                                        OfferItem(
                                             BitmapFactory.decodeByteArray(data, 0, data.size),
                                             sup.username,
                                             obj.getString("status"),
@@ -111,6 +114,12 @@ class OrderDescription : AppCompatActivity() {
         )
 
         rv_offers_order_descr.adapter = mAdapter
+
+        add_offer.setOnClickListener {
+            val i = Intent(this, Offer::class.java)
+            i.putExtra("order", order.objectId)
+            startActivity(i)
+        }
 
     }
 

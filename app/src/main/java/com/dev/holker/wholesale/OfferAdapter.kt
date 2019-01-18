@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import com.dev.holker.wholesale.model.Offer
+import com.dev.holker.wholesale.model.OfferItem
 import kotlinx.android.synthetic.main.item_offer.view.*
 import java.util.*
 
 class OfferAdapter(
     private val mContext: Context,
     private val mResource: Int,
-    private val mObjects: ArrayList<Offer>
-) : ArrayAdapter<Offer>(mContext, mResource, mObjects) {
+    private val mObjects: ArrayList<OfferItem>
+) : ArrayAdapter<OfferItem>(mContext, mResource, mObjects) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
