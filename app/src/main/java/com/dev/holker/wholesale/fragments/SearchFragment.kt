@@ -1,27 +1,27 @@
 package com.dev.holker.wholesale.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.appcompat.widget.SearchView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.viewpager.widget.ViewPager
 import com.dev.holker.wholesale.R
+import com.dev.holker.wholesale.SelectionsPagerAdapter
 import com.dev.holker.wholesale.UserAdapter
 import com.dev.holker.wholesale.model.User
+import com.google.android.material.tabs.TabLayout
 import com.parse.ParseUser
-import io.reactivex.ObservableOnSubscribe
 import kotlinx.android.synthetic.main.fragment_search.*
-import java.util.concurrent.TimeUnit
 
 class SearchFragment : androidx.fragment.app.Fragment() {
 
     val mUsers = arrayListOf<User>()
     lateinit var mAdapter: ArrayAdapter<User>
-
+    private lateinit var mSelectionsPagerAdapter: SelectionsPagerAdapter
+    private lateinit var mViewPager: ViewPager
 
     fun toast(string: String) {
         Toast.makeText(context, string, Toast.LENGTH_SHORT).show()
@@ -66,30 +66,20 @@ class SearchFragment : androidx.fragment.app.Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+        mSelectionsPagerAdapter = SelectionsPagerAdapter(fragmentManager)
+
+        setupWithPager()
+
+
+        tabs.setupWithViewPager(container)
+
+
         updateUserList("")
+    }
 
-        //search using RxJava
-        //TODO:Add search to search fragment
-        io.reactivex.Observable.create(ObservableOnSubscribe<String> { subscriber ->
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    subscriber.onNext(newText!!)
-                    return false
-                }
-
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    subscriber.onNext(query!!)
-                    return false
-                }
-            })
-        })
-            .map { text -> text.toLowerCase().trim() }
-            .debounce(250, TimeUnit.MILLISECONDS)
-            .distinct()
-            .filter { text -> text.isNotBlank() }
-            .subscribe { text ->
-                updateUserList(text)
-            }
+    private fun setupWithPager() {
+        mSelectionsPagerAdapter = SelectionsPagerAdapter(fragmentManager)
 
     }
 
