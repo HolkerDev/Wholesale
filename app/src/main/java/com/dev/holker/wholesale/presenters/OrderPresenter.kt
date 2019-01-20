@@ -35,7 +35,7 @@ class OrderPresenter(val view: View) {
         obj.put("photo", photoFile)
         obj.put("user", user)
         obj.put("productType", type)
-        obj.put("status", "In process")
+        obj.put("status", "In progress")
 
         obj.saveInBackground {
             if (it != null) {
