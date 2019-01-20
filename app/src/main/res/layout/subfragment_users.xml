@@ -4,10 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <ListView
+        android:id="@+id/lv_users_all"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="First Fragment"
-        android:textSize="50dp"/>
-
+        android:layout_height="match_parent" />
 </LinearLayout>
