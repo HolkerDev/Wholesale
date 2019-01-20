@@ -12,7 +12,8 @@ import com.dev.holker.wholesale.R
 import com.dev.holker.wholesale.SelectionsPagerAdapter
 import com.dev.holker.wholesale.UserAdapter
 import com.dev.holker.wholesale.model.User
-import com.google.android.material.tabs.TabLayout
+import com.dev.holker.wholesale.subfragments.OrdersSubfragment
+import com.dev.holker.wholesale.subfragments.UsersSubfragment
 import com.parse.ParseUser
 import kotlinx.android.synthetic.main.fragment_search.*
 
@@ -52,7 +53,7 @@ class SearchFragment : androidx.fragment.app.Fragment() {
                                 )
                             }
                         }
-                        lv_users.adapter = mAdapter
+                        //lv_users.adapter = mAdapter
                     } else {
                         toast("No objects!")
                     }
@@ -67,20 +68,31 @@ class SearchFragment : androidx.fragment.app.Fragment() {
     override fun onStart() {
         super.onStart()
 
-        mSelectionsPagerAdapter = SelectionsPagerAdapter(fragmentManager)
+        mSelectionsPagerAdapter = SelectionsPagerAdapter(childFragmentManager)
 
-        setupWithPager()
-
+        setupViewPager(container)
 
         tabs.setupWithViewPager(container)
-
-
-        updateUserList("")
+        container.currentItem = 0
+        //updateUserList("")
     }
 
-    private fun setupWithPager() {
-        mSelectionsPagerAdapter = SelectionsPagerAdapter(fragmentManager)
 
+    override fun onResume() {
+        super.onResume()
+        mSelectionsPagerAdapter = SelectionsPagerAdapter(childFragmentManager)
+
+        setupViewPager(container)
+
+        tabs.setupWithViewPager(container)
+        container.currentItem = 0
+    }
+
+    private fun setupViewPager(viewPager: ViewPager) {
+        val adapterSubfragments = SelectionsPagerAdapter(childFragmentManager)
+        adapterSubfragments.addFragment(UsersSubfragment(), "Users")
+        adapterSubfragments.addFragment(OrdersSubfragment(), "Orders")
+        viewPager.adapter = adapterSubfragments
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

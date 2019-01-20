@@ -42,12 +42,12 @@
 
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/lv_users"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="50dp">
+    <!--<ListView-->
+        <!--android:id="@+id/lv_users"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:paddingTop="50dp">-->
 
-    </ListView>
+    <!--</ListView>-->
 
 </RelativeLayout>
