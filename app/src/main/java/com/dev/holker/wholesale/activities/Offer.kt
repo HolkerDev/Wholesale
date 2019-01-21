@@ -29,7 +29,7 @@ class Offer : AppCompatActivity() {
             //put link to current order
             offer.put("order", order)
             offer.put("price", offer_price.text.toString())
-            offer.put("status", "In process")
+            offer.put("status", "In progress")
 
 
             offer.saveInBackground {
