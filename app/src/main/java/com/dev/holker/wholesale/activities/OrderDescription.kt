@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.dev.holker.wholesale.OfferAdapter
+import com.dev.holker.wholesale.OfferAdapterMain
 import com.dev.holker.wholesale.R
 import com.dev.holker.wholesale.model.OfferItem
 import com.dev.holker.wholesale.presenters.OrderDescriptionPresenter
@@ -17,7 +18,6 @@ class OrderDescription : AppCompatActivity() {
 
     //TODO: Update list after adding new offer
 
-    lateinit var mAdapter: OfferAdapter
     val mOffers = arrayListOf<OfferItem>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +33,7 @@ class OrderDescription : AppCompatActivity() {
             if (role.getNumber("roleId") == 2) {
                 Log.i("OrderDescription", "it's a client")
                 add_offer.visibility = View.INVISIBLE
+
             } else if (role.getNumber("roleId") == 3) {
                 Log.i("OrderDescription", "it's a supplier")
             } else {
@@ -47,6 +48,7 @@ class OrderDescription : AppCompatActivity() {
         val query = ParseQuery<ParseObject>("Order")
         query.whereEqualTo("objectId", intent.getStringExtra("id"))
         val order = query.first
+
         val photo = order.get("photo") as ParseFile
 
         photo.getDataInBackground { data, e ->
@@ -92,12 +94,29 @@ class OrderDescription : AppCompatActivity() {
                                         )
                                     )
                                     Log.i("MyLog", "Down finish")
-                                    mAdapter = OfferAdapter(
-                                        applicationContext,
-                                        R.layout.item_offer,
-                                        mOffers
-                                    )
-                                    rv_offers_order_descr.adapter = mAdapter
+//                                    mAdapter = OfferAdapter(
+//                                        applicationContext,
+//                                        R.layout.item_offer,
+//                                        mOffers
+//                                    )
+                                    if (order.getParseUser("user")!!.objectId == ParseUser.getCurrentUser().objectId) {
+                                        Log.i("OrderDescription", "owner!")
+                                        val mAdapter = OfferAdapterMain(
+                                            applicationContext,
+                                            R.layout.item_offer_client,
+                                            mOffers
+                                        )
+                                        rv_offers_order_descr.adapter = mAdapter
+                                    } else {
+                                        Log.i("OrderDescription", "just user")
+                                        val mAdapter = OfferAdapter(
+                                            applicationContext,
+                                            R.layout.item_offer,
+                                            mOffers
+                                        )
+                                        rv_offers_order_descr.adapter = mAdapter
+                                    }
+
                                 }
                             }
                         }
@@ -107,24 +126,11 @@ class OrderDescription : AppCompatActivity() {
             }
         }
 
-        mAdapter = OfferAdapter(
-            applicationContext,
-            R.layout.item_offer,
-            mOffers
-        )
-
-        rv_offers_order_descr.adapter = mAdapter
-
         add_offer.setOnClickListener {
             val i = Intent(this, Offer::class.java)
             i.putExtra("order", order.objectId)
             startActivity(i)
         }
 
-    }
-
-    override fun onResume() {
-        rv_offers_order_descr.adapter = mAdapter
-        super.onResume()
     }
 }
