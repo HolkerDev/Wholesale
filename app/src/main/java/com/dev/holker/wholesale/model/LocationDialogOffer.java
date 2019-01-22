@@ -29,7 +29,7 @@ public class LocationDialogOffer extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_location, null);
+        View view = inflater.inflate(R.layout.dialog_location_offer, null);
         builder.setView(view);
 
         //presenter

@@ -5,10 +5,10 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.dev.holker.wholesale.R
-import com.dev.holker.wholesale.model.Location
 import com.dev.holker.wholesale.model.LocationDialog
 import com.dev.holker.wholesale.model.LocationDialogOffer
 import com.dev.holker.wholesale.model.LocationShort
+import com.dev.holker.wholesale.presenters.SignUpDescriptionPresenter
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseUser
@@ -47,6 +47,12 @@ class Offer : AppCompatActivity(), LocationDialogOffer.NoticeDialogListenerShort
             offer.put("status", "In progress")
             offer.put("comment", offer_comment.text.toString())
 
+            val queryCity = ParseQuery<ParseObject>("City")
+            queryCity.whereEqualTo("objectId", SignUpDescriptionPresenter.getCityId(location.city))
+            val objCity = queryCity.first
+
+            offer.put("supplierLocation", objCity)
+
 
             offer.saveInBackground {
                 if (it != null) {
@@ -60,7 +66,7 @@ class Offer : AppCompatActivity(), LocationDialogOffer.NoticeDialogListenerShort
     }
 
     fun getLocation() {
-        val dialog = LocationDialog()
+        val dialog = LocationDialogOffer()
         val fm = supportFragmentManager
         dialog.show(fm, "location")
     }
