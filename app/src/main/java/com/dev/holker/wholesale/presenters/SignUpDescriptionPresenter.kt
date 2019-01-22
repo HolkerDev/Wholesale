@@ -93,7 +93,7 @@ class SignUpDescriptionPresenter(val view: View) {
                 role.users.add(user)
                 role.save()
                 user.put("role", role)
-                user.put("companyName", name)
+                user.put("name", name)
                 user.put("description", description)
                 user.put("background", background)
 
