@@ -125,11 +125,12 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
                     //for counting the order of orders
                     var number = 1
 
-                    var objectId = "dawd"
+                    var objectId = arrayListOf("nothing")
                     for (objOffer in objects) {
                         val objOrder = objOffer.getParseObject("order")
 
-                        if (objOrder != null && objOrder.objectId != objectId) {
+                        //remove repeatings
+                        if (objOrder != null && !objectId.contains(objOrder.objectId)) {
                             mOrders.add(
                                 OrderItem(
                                     objOrder.objectId,
@@ -139,7 +140,7 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
                                     objOrder.get("description").toString()
                                 )
                             )
-                            objectId = objOrder.objectId
+                            objectId.add(objOrder.objectId)
                             number++
                         }
 
