@@ -44,6 +44,7 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
                 showForClient()
             } else if (role.getNumber("roleId") == 3) {
                 Log.i("MyLog", "it's a supplier")
+                add_order.visibility = View.INVISIBLE
                 showForSupplierOld()
             } else {
                 //if Admin
