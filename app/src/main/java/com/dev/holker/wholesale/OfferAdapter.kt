@@ -23,10 +23,10 @@ class OfferAdapter(
 
         val offer = mObjects[position]
 
-        view.order_item_avatar.setImageBitmap(offer.avatar)
-        view.order_item_name.text = offer.name
-        view.order_item_price.text = offer.price
-        view.order_item_status.text = offer.status
+        view.offer_item_avatar.setImageBitmap(offer.avatar)
+        view.offer_item_name.text = offer.name
+        view.offer_item_price.text = offer.price
+        view.offer_item_status.text = offer.status
 
         return view
 

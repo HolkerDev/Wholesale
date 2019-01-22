@@ -81,12 +81,13 @@ class OrderDescription : AppCompatActivity() {
                             Log.i("MyLog", obj.objectId)
                             val photoOffer = sup.get("avatar") as ParseFile
 
-                            photoOffer.getDataInBackground { data, e ->
-                                if (e != null) {
-                                    Log.i("MyLog", e.message.toString())
+                            photoOffer.getDataInBackground { data, error ->
+                                if (error != null) {
+                                    Log.i("MyLog", error.message.toString())
                                 } else {
                                     mOffers.add(
                                         OfferItem(
+                                            obj.objectId,
                                             BitmapFactory.decodeByteArray(data, 0, data.size),
                                             sup.username,
                                             obj.getString("status"),
