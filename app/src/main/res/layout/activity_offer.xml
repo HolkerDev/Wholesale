@@ -16,6 +16,23 @@
         android:hint="Your offer"
         android:inputType="textMultiLine" />
 
+    <EditText
+        android:id="@+id/offer_comment"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="20dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Comment"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/offer_add_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Add location" />
+
     <Button
         android:id="@+id/offer_submit"
         android:layout_width="match_parent"

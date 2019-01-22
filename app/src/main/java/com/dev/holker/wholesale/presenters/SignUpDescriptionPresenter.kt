@@ -172,60 +172,63 @@ class SignUpDescriptionPresenter(val view: View) {
         }
     }
 
-    //Function gets name of country and returns objectId from server
-    fun getCountryId(country: String): String {
-        when (country) {
-            "Ukraine" -> {
-                return "tPwElQRFQg"
-            }
-            "Russia" -> {
-                return "l3l9QpsnLo"
-            }
-            "Poland" -> {
-                return "PCH76fXtrn"
-            }
-            "UK" -> {
-                return "44sDh3COMk"
-            }
-            "USA" -> {
-                return "Xn5biIk2ea"
-            }
-            else -> {
-                return "PCH76fXtrn"
+    companion object {
+
+        //Function gets name of country and returns objectId from server
+        fun getCountryId(country: String): String {
+            when (country) {
+                "Ukraine" -> {
+                    return "tPwElQRFQg"
+                }
+                "Russia" -> {
+                    return "l3l9QpsnLo"
+                }
+                "Poland" -> {
+                    return "PCH76fXtrn"
+                }
+                "UK" -> {
+                    return "44sDh3COMk"
+                }
+                "USA" -> {
+                    return "Xn5biIk2ea"
+                }
+                else -> {
+                    return "PCH76fXtrn"
+                }
             }
         }
-    }
 
-    //looks terrible, but I can't make it easier
-    //Function gets name of city and returns objectId from server
-    fun getCityId(city: String): String {
-        when (city) {
-            "London" -> return "wlnKfUpFwK"
-            "Cracow" -> return "LdGK8NgugX"
-            "Rzeszow" -> return "dQAVroflnm"
-            "Warsaw" -> return "n7OBJhPnjY"
-            "Poznan" -> return "FkGEmnQFsW"
-            "Wroclaw" -> return "E50DqDKfXM"
-            "Leeds" -> return "BWRUnBunvn"
-            "Liverpool" -> return "V9dbI3N7LG"
-            "Edinburgh" -> return "TJdhPxr4Bj"
-            "Belfast" -> return "X38zcx7NJZ"
-            "Dnipro" -> return "r94iHP9BK4"
-            "Kiev" -> return "py69HQHy6c"
-            "Ternopil" -> return "5gZUYFkMmd"
-            "Lviv" -> return "DLWLRqF9vk"
-            "Odessa" -> return "RoT3o3bQxc"
-            "Saint Petersburg" -> return "HtNn3qX6iJ"
-            "Moscow" -> return "K3HAaAK6AK"
-            "Novosibirsk" -> return "EfVc36uER3"
-            "Yekaterinburg" -> return "tV8AhLbdeD"
-            "Rostov-on-Don" -> return "a5qDwHEZh7"
-            "New York" -> return "K9oCQgg4Zd"
-            "San Francisco" -> return "UXNkGY4tNv"
-            "Washington, D.C." -> return "N04iZLvGNR"
-            "Boston" -> return "FkUL5HFwW1"
-            "Chicago" -> return "mj9NcjVdZx"
-            else -> return "dQAVroflnm"
+        //looks terrible, but I can't make it easier
+        //Function gets name of city and returns objectId from server
+        fun getCityId(city: String): String {
+            when (city) {
+                "London" -> return "wlnKfUpFwK"
+                "Cracow" -> return "LdGK8NgugX"
+                "Rzeszow" -> return "dQAVroflnm"
+                "Warsaw" -> return "n7OBJhPnjY"
+                "Poznan" -> return "FkGEmnQFsW"
+                "Wroclaw" -> return "E50DqDKfXM"
+                "Leeds" -> return "BWRUnBunvn"
+                "Liverpool" -> return "V9dbI3N7LG"
+                "Edinburgh" -> return "TJdhPxr4Bj"
+                "Belfast" -> return "X38zcx7NJZ"
+                "Dnipro" -> return "r94iHP9BK4"
+                "Kiev" -> return "py69HQHy6c"
+                "Ternopil" -> return "5gZUYFkMmd"
+                "Lviv" -> return "DLWLRqF9vk"
+                "Odessa" -> return "RoT3o3bQxc"
+                "Saint Petersburg" -> return "HtNn3qX6iJ"
+                "Moscow" -> return "K3HAaAK6AK"
+                "Novosibirsk" -> return "EfVc36uER3"
+                "Yekaterinburg" -> return "tV8AhLbdeD"
+                "Rostov-on-Don" -> return "a5qDwHEZh7"
+                "New York" -> return "K9oCQgg4Zd"
+                "San Francisco" -> return "UXNkGY4tNv"
+                "Washington, D.C." -> return "N04iZLvGNR"
+                "Boston" -> return "FkUL5HFwW1"
+                "Chicago" -> return "mj9NcjVdZx"
+                else -> return "dQAVroflnm"
+            }
         }
     }
 
