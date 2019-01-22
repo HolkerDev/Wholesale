@@ -57,7 +57,8 @@ class OrdersSubfragment : Fragment() {
                                     number.toString(),
                                     obj.get("name").toString(),
                                     obj.getInt("amount").toString(),
-                                    obj.get("description").toString()
+                                    obj.get("description").toString(),
+                                    obj.get("status").toString()
                                 )
                             )
                             number++

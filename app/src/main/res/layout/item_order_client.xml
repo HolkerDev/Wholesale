@@ -52,7 +52,7 @@
             android:id="@+id/view_order_status"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/ic_order_status_pending_50dp" />
+            android:background="@color/colorRed" />
 
     </LinearLayout>
 

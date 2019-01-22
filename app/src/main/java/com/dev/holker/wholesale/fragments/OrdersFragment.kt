@@ -97,7 +97,8 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
                                     number.toString(),
                                     obj.get("name").toString(),
                                     obj.getInt("amount").toString(),
-                                    obj.get("description").toString()
+                                    obj.get("description").toString(),
+                                    obj.get("status").toString()
                                 )
                             )
                             number++
@@ -137,7 +138,8 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
                                     number.toString(),
                                     objOrder.fetchIfNeeded<ParseObject>().getString("name"),
                                     objOrder.getInt("amount").toString(),
-                                    objOrder.get("description").toString()
+                                    objOrder.get("description").toString(),
+                                    objOrder.get("status").toString()
                                 )
                             )
                             objectId.add(objOrder.objectId)
@@ -176,7 +178,8 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
                                             "1",
                                             order.fetchIfNeeded<ParseObject>().getString("name"),
                                             order.getInt("amount").toString(),
-                                            order.get("description").toString()
+                                            order.get("description").toString(),
+                                            order.get("status").toString()
                                         )
                                     )
                                 }

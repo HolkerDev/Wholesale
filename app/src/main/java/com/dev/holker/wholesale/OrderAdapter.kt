@@ -2,14 +2,16 @@ package com.dev.holker.wholesale
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.dev.holker.wholesale.activities.OrderDescription
 import com.dev.holker.wholesale.model.OrderItem
+import kotlinx.android.synthetic.main.item_order_client.view.*
 import java.util.*
 
 class OrderAdapter(
@@ -31,6 +33,22 @@ class OrderAdapter(
 
 
         val orderItem = mObjects[position]
+
+        when (orderItem.status) {
+            "In progress" -> {
+                view.view_order_status.background = ColorDrawable(ContextCompat.getColor(mContext, R.color.colorBlue))
+            }
+            "Accepted" -> {
+                view.view_order_status.background = ColorDrawable(ContextCompat.getColor(mContext, R.color.colorGreen))
+            }
+            "Declined" -> {
+                view.view_order_status.background = ColorDrawable(ContextCompat.getColor(mContext, R.color.colorRed))
+            }
+            else -> {
+                view.view_order_status.background = ColorDrawable(ContextCompat.getColor(mContext, R.color.colorGreen))
+            }
+        }
+
 
         textViewNumber.text = orderItem.number
         textViewProductName.text = orderItem.name
