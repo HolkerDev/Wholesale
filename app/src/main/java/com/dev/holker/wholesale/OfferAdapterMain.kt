@@ -2,16 +2,15 @@ package com.dev.holker.wholesale
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.dev.holker.wholesale.activities.MainActivity
-import com.dev.holker.wholesale.activities.OrderDescription
 import com.dev.holker.wholesale.model.OfferItem
 import com.parse.ParseObject
 import com.parse.ParseQuery
-import kotlinx.android.synthetic.main.item_offer.view.*
 import kotlinx.android.synthetic.main.item_offer_client.view.*
 import java.util.*
 
@@ -43,9 +42,26 @@ class OfferAdapterMain(
                 if (orderObject != null) {
                     orderObject.put("status", "Accepted")
                     orderObject.saveInBackground {
-                        val i = Intent(mContext, MainActivity::class.java)
-                        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        mContext.startActivity(i)
+                        val queryOffers = ParseQuery<ParseObject>("OrderOffer")
+                        queryOffers.whereEqualTo("order", orderObject)
+                        queryOffers.whereNotEqualTo("objectId", offer.id)
+                        queryOffers.findInBackground { objects, error ->
+                            if (error != null) {
+                                Log.i("OfferAdapterMain", error.message)
+                            } else {
+                                if (objects.size < 1) {
+                                    Log.i("OfferAdapterMain", "no objects")
+                                } else {
+                                    for (oneOffer in objects) {
+                                        oneOffer.put("status", "Declined")
+                                        oneOffer.save()
+                                    }
+                                }
+                            }
+
+
+                        }
+                        goToMain()
                     }
                 }
             }
@@ -54,5 +70,11 @@ class OfferAdapterMain(
 
         return view
 
+    }
+
+    fun goToMain() {
+        val i = Intent(mContext, MainActivity::class.java)
+        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        mContext.startActivity(i)
     }
 }

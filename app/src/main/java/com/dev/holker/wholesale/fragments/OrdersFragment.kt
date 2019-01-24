@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.dev.holker.wholesale.OfferAdapterSupplier
 import com.dev.holker.wholesale.OrderAdapter
 import com.dev.holker.wholesale.R
 import com.dev.holker.wholesale.activities.Order
+import com.dev.holker.wholesale.model.OfferItem
 import com.dev.holker.wholesale.model.OrderItem
 import com.parse.ParseObject
 import com.parse.ParseQuery
@@ -25,7 +27,9 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
 
 
     val mOrders = arrayListOf<OrderItem>()
+    val mOffers = arrayListOf<OfferItem>()
     lateinit var mAdapter: ArrayAdapter<OrderItem>
+    lateinit var mAdapterOffers: ArrayAdapter<OfferItem>
 
     private fun toast(string: String?) {
         Toast.makeText(activity!!.applicationContext, string, Toast.LENGTH_SHORT).show()
@@ -34,6 +38,7 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
 
     private fun updateOrders() {
         mOrders.clear()
+        mOffers.clear()
         if (ParseUser.getCurrentUser() != null) {
             val queryRole = ParseQuery<ParseRole>("_Role")
             queryRole.whereEqualTo("users", ParseUser.getCurrentUser())
@@ -45,7 +50,7 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
             } else if (role.getNumber("roleId") == 3) {
                 Log.i("MyLog", "it's a supplier")
                 add_order.visibility = View.INVISIBLE
-                showForSupplierOld()
+                showForSupplier()
             } else {
                 //if Admin
             }
@@ -67,15 +72,10 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
             startActivity(i)
         }
 
-        lv_orders.adapter = mAdapter
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mAdapter = OrderAdapter(
-            activity!!.applicationContext,
-            R.layout.item_order_client,
-            mOrders
-        )
+
         return inflater.inflate(R.layout.fragment_orders, null)
     }
 
@@ -104,6 +104,11 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
                             )
                             number++
                         }
+                        mAdapter = OrderAdapter(
+                            activity!!.applicationContext,
+                            R.layout.item_order_client,
+                            mOrders
+                        )
                         lv_orders.adapter = mAdapter
                     } else {
                         toast(e.message.toString())
@@ -129,6 +134,7 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
 
                     var objectId = arrayListOf("nothing")
                     for (objOffer in objects) {
+                        val statusCurrent = objOffer.get("status").toString()
                         val objOrder = objOffer.getParseObject("order")
 
                         //remove repeatings
@@ -140,12 +146,19 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
                                     objOrder.fetchIfNeeded<ParseObject>().getString("name"),
                                     objOrder.getInt("amount").toString(),
                                     objOrder.get("description").toString(),
-                                    objOrder.get("status").toString()
+                                    statusCurrent
+                                    //objOrder.get("status").toString()
                                 )
                             )
                             objectId.add(objOrder.objectId)
                             number++
                         }
+
+                        mAdapter = OrderAdapter(
+                            activity!!.applicationContext,
+                            R.layout.item_order_client,
+                            mOrders
+                        )
 
                         lv_orders.adapter = mAdapter
                     }
@@ -157,38 +170,39 @@ class OrdersFragment : androidx.fragment.app.Fragment() {
     }
 
     fun showForSupplier() {
-        val queryOrder = ParseQuery<ParseObject>("Order")
-        queryOrder.findInBackground { objects, e ->
+        val query = ParseQuery<ParseObject>("OrderOffer")
+        query.whereEqualTo("user", ParseUser.getCurrentUser())
+        query.orderByAscending("createdAt")
+        query.findInBackground { objects, e ->
             if (e != null) {
-                Log.i("OrderFragment", e.message)
-            } else if (objects.size == 0) {
-                toast("You have no offers! Try to add one!")
+                Log.i("OrdersFragment", e.message)
             } else {
-                for (order in objects) {
-                    val queryOffer = ParseQuery<ParseObject>("OrderOffer")
-                    queryOffer.whereEqualTo("order", order)
-                    queryOffer.findInBackground { offers, errorOffers ->
-                        if (errorOffers != null) {
-                            Log.i("OrderFragment", errorOffers.message)
-                        } else if (objects.size > 0) {
-                            for (offer in offers) {
-                                if (ParseUser.getCurrentUser().objectId.equals(offer.getParseUser("user")!!.objectId)) {
-                                    mOrders.add(
-                                        OrderItem(
-                                            order.objectId,
-                                            "1",
-                                            order.fetchIfNeeded<ParseObject>().getString("name"),
-                                            order.getInt("amount").toString(),
-                                            order.get("description").toString(),
-                                            order.get("status").toString()
-                                        )
-                                    )
-                                }
-                            }
+                if (objects.size < 1) {
+                    toast("You don't have a offers. Just add one!")
+                } else {
+                    for (objOffer in objects) {
+                        val orderObject = objOffer.getParseObject("order")
+                        if (orderObject != null) {
+                            mOffers.add(
+                                OfferItem(
+                                    objOffer.objectId,
+                                    null,
+                                    orderObject.fetchIfNeeded<ParseObject>().getString("name"),
+                                    objOffer.getString("status"),
+                                    objOffer.getString("price")
+                                )
+                            )
+
+                            mAdapterOffers = OfferAdapterSupplier(
+                                activity!!.applicationContext,
+                                R.layout.item_offer_supplier,
+                                mOffers
+                            )
+
+                            lv_orders.adapter = mAdapterOffers
                         }
                     }
                 }
-                lv_orders.adapter = mAdapter
             }
         }
     }
