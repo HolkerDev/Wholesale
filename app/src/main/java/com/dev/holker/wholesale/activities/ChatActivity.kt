@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.dev.holker.wholesale.MessagesAdapter
 import com.dev.holker.wholesale.R
+import com.dev.holker.wholesale.model.Functions
 import com.dev.holker.wholesale.model.MessageItem
 import com.parse.ParseObject
 import com.parse.ParseQuery
@@ -42,14 +43,14 @@ class ChatActivity : AppCompatActivity() {
                 if (objects.size < 1) {
                     Toast.makeText(applicationContext, "You have no messages with this user", Toast.LENGTH_LONG).show()
                 } else {
-                    for (message in objects) {
-                        val date = message.getDate("createdAt")
+                    for (messageSend in objects) {
+                        val date = messageSend.getDate("createdAt")
                         mMessages.add(
                             MessageItem(
                                 ParseUser.getCurrentUser().objectId,
-                                message.getString("message"),
+                                messageSend.getString("message"),
                                 true,
-                                date
+                                messageSend.createdAt
                             )
                         )
                     }
@@ -77,13 +78,12 @@ class ChatActivity : AppCompatActivity() {
                                             receiver.objectId,
                                             message.getString("message"),
                                             false,
-                                            date
+                                            message.createdAt
                                         )
                                     )
                                 }
 
-                                //TODO:Add sorting by dates
-
+                                Functions.sortDates(mMessages)
 
                                 val mAdapter = MessagesAdapter(
                                     applicationContext,
@@ -97,7 +97,6 @@ class ChatActivity : AppCompatActivity() {
                 }
             }
         }
-
-
     }
+
 }
