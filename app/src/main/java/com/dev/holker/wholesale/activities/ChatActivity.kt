@@ -83,6 +83,7 @@ class ChatActivity : AppCompatActivity() {
                                         mMessages
                                     )
                                     lv_messages.adapter = mAdapter
+                                    lv_messages.setSelection(mAdapter.count - 1)
                                 }
                             } else {
                                 for (message in messasges) {
@@ -105,6 +106,7 @@ class ChatActivity : AppCompatActivity() {
                                     mMessages
                                 )
                                 lv_messages.adapter = mAdapter
+                                lv_messages.setSelection(mAdapter.count - 1)
                             }
                         }
                     } //end second search
@@ -145,6 +147,7 @@ class ChatActivity : AppCompatActivity() {
                                         mMessages
                                     )
                                     lv_messages.adapter = mAdapter
+                                    lv_messages.setSelection(mAdapter.count - 1)
                                 }
                             } else {
                                 for (message in messasges) {
@@ -167,6 +170,7 @@ class ChatActivity : AppCompatActivity() {
                                     mMessages
                                 )
                                 lv_messages.adapter = mAdapter
+                                lv_messages.setSelection(mAdapter.count - 1)
                             }
                         }
                     }

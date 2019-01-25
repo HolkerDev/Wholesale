@@ -131,7 +131,7 @@ class ChatFragment : androidx.fragment.app.Fragment() {
                                         val interlocutor = queryUser.first
                                         mChats.add(
                                             ChatItem(
-                                                interlocutor.username,
+                                                interlocutor.getString("name"),
                                                 interlocutor.objectId
                                             )
                                         )
