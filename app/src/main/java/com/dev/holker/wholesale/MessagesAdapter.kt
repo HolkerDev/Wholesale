@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import com.dev.holker.wholesale.model.MessageItem
+import com.parse.ParseQuery
+import com.parse.ParseUser
 import kotlinx.android.synthetic.main.item_message.view.*
 import java.util.*
 
@@ -30,8 +32,15 @@ class MessagesAdapter(
         view.tv_message_text.text = messageItem.text
 
         if (messageItem.owner) {
-            view.layout_message.background = ColorDrawable(ContextCompat.getColor(mContext, R.color.colorBlue))
+            view.tv_message_text.background =
+                ContextCompat.getDrawable(mContext, R.drawable.gap_message_blue)
             view.tv_message_text.setTextColor(ContextCompat.getColor(mContext, R.color.colorWhite))
+            view.tv_message_user.setText("You")
+        } else {
+            val query = ParseQuery<ParseUser>("_User")
+            query.whereEqualTo("objectId", messageItem.userId)
+            val userIn = query.first
+            view.tv_message_user.setText(userIn.getString("name"))
         }
 
         return view
