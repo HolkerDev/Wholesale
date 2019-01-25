@@ -23,6 +23,8 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
+        //TODO:REWRITE HOLE CLASS
+
         //find receiver
         val queryReceiver = ParseQuery<ParseUser>("_User")
         queryReceiver.whereEqualTo("objectId", intent.getStringExtra("id"))
@@ -31,6 +33,22 @@ class ChatActivity : AppCompatActivity() {
         //find sender
         sender = ParseUser.getCurrentUser()
 
+        updateEverything()
+
+        btn_send.setOnClickListener {
+            val message = ParseObject("Chat")
+            message.put("message", et_message.text.toString())
+            message.put("sender", ParseUser.getCurrentUser())
+            message.put("receiver", receiver)
+            et_message.setText("")
+            message.saveInBackground {
+                updateEverything()
+            }
+        }
+    }
+
+    fun updateEverything() {
+        mMessages.clear()
         val queryMessages1 = ParseQuery<ParseObject>("Chat")
         queryMessages1.whereEqualTo("sender", sender)
         queryMessages1.whereEqualTo("receiver", receiver)

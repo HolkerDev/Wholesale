@@ -146,9 +146,6 @@ class ChatFragment : androidx.fragment.app.Fragment() {
             }
         }
 
-
-
-
         super.onStart()
     }
 
