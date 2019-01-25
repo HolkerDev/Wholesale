@@ -23,7 +23,7 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
-        //TODO:REWRITE HOLE CLASS
+        //TODO:REWRITE THIS CLASS
 
         //find receiver
         val queryReceiver = ParseQuery<ParseUser>("_User")
