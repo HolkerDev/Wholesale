@@ -29,28 +29,33 @@ class ChatFragment : androidx.fragment.app.Fragment() {
             } else {
                 if (objects.size < 1) {
                     Functions.toast(context, "No chats!")
-
+                    Log.i("ChatFragment", "First Empty")
                     //start
 
+                    Log.i("ChatFragment", "1")
                     val querySecond = ParseQuery<ParseObject>("Chat")
                     querySecond.whereEqualTo("receiver", ParseUser.getCurrentUser())
                     querySecond.findInBackground { objs, error ->
                         if (error != null) {
                             Log.i("ChatFragment", error.message)
+                            Log.i("ChatFragment", "Second Empty")
                         } else {
+                            Log.i("ChatFragment", "2")
                             if (objs.size < 1) {
                                 Functions.toast(context, "No chats!")
 
-                                if (mChats.size >= 1) {
-                                    val mAdapter = ChatAdapter(
-                                        activity!!.applicationContext,
-                                        R.layout.item_message,
-                                        mChats
-                                    )
+//                                if (mChats.size >= 1) {
+//                                    val mAdapter = ChatAdapter(
+//                                        activity!!.applicationContext,
+//                                        R.layout.item_message,
+//                                        mChats
+//                                    )
+//                                    lv_chat_start.adapter = mAdapter
+//                                }
 
-                                    lv_chat_start.adapter = mAdapter
-                                }
+
                             } else {
+                                Log.i("ChatFragment", "3")
                                 for (users in objs) {
                                     val userSecond = users.getParseUser("sender")
                                     if (userSecond != null) {
@@ -58,27 +63,27 @@ class ChatFragment : androidx.fragment.app.Fragment() {
                                     }
                                 }
 
-                                for (oneUser in objectsIds) {
-                                    val queryUser = ParseQuery<ParseUser>("_User")
-                                    queryUser.whereEqualTo("objectId", oneUser)
-                                    val interlocutor = queryUser.first
-                                    mChats.add(
-                                        ChatItem(
-                                            interlocutor.username,
-                                            interlocutor.objectId
+                                Log.i("ChatFragment", "5")
+                                if (objectsIds.size >= 1) {
+                                    for (oneUser in objectsIds) {
+                                        val queryUser = ParseQuery<ParseUser>("_User")
+                                        queryUser.whereEqualTo("objectId", oneUser)
+                                        val interlocutor = queryUser.first
+                                        mChats.add(
+                                            ChatItem(
+                                                interlocutor.username,
+                                                interlocutor.objectId
+                                            )
                                         )
-                                    )
+                                        val mAdapter = ChatAdapter(
+                                            activity!!.applicationContext,
+                                            R.layout.item_message,
+                                            mChats
+                                        )
+
+                                        lv_chat_start.adapter = mAdapter
+                                    }
                                 }
-
-                                val mAdapter = ChatAdapter(
-                                    activity!!.applicationContext,
-                                    R.layout.item_message,
-                                    mChats
-                                )
-
-                                lv_chat_start.adapter = mAdapter
-
-                                Functions.toast(context, objectsIds.toString())
                             }
                         }
                     }
@@ -98,6 +103,7 @@ class ChatFragment : androidx.fragment.app.Fragment() {
                     querySecond.findInBackground { objs, error ->
                         if (error != null) {
                             Log.i("ChatFragment", error.message)
+                            Log.i("ChatFragment", "Third Empty")
                         } else {
                             if (objs.size < 1) {
                                 Functions.toast(context, "No chats!")
@@ -118,27 +124,26 @@ class ChatFragment : androidx.fragment.app.Fragment() {
                                     }
                                 }
 
-                                for (oneUser in objectsIds) {
-                                    val queryUser = ParseQuery<ParseUser>("_User")
-                                    queryUser.whereEqualTo("objectId", oneUser)
-                                    val interlocutor = queryUser.first
-                                    mChats.add(
-                                        ChatItem(
-                                            interlocutor.username,
-                                            interlocutor.objectId
+                                if (objectsIds.size >= 1) {
+                                    for (oneUser in objectsIds) {
+                                        val queryUser = ParseQuery<ParseUser>("_User")
+                                        queryUser.whereEqualTo("objectId", oneUser)
+                                        val interlocutor = queryUser.first
+                                        mChats.add(
+                                            ChatItem(
+                                                interlocutor.username,
+                                                interlocutor.objectId
+                                            )
                                         )
-                                    )
+                                        val mAdapter = ChatAdapter(
+                                            activity!!.applicationContext,
+                                            R.layout.item_message,
+                                            mChats
+                                        )
+
+                                        lv_chat_start.adapter = mAdapter
+                                    }
                                 }
-
-                                val mAdapter = ChatAdapter(
-                                    activity!!.applicationContext,
-                                    R.layout.item_message,
-                                    mChats
-                                )
-
-                                lv_chat_start.adapter = mAdapter
-
-                                Functions.toast(context, objectsIds.toString())
                             }
                         }
                     }
