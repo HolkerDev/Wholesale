@@ -28,7 +28,6 @@ class OrderAdapter(
         val view = inflater.inflate(R.layout.item_order_client, null)
 
         val textViewProductName = view.findViewById<TextView>(R.id.tv_i_order_client_name)
-        val textViewNumber = view.findViewById<TextView>(R.id.tv_i_order_client_number)
         val textViewProductAmount = view.findViewById<TextView>(R.id.tv_i_order_client_descr)
 
 
@@ -37,22 +36,21 @@ class OrderAdapter(
         when (orderItem.status) {
             "In progress" -> {
                 view.view_order_status.background = ColorDrawable(ContextCompat.getColor(mContext, R.color.colorBlue))
+                view.view_order_status.text = "In progress"
             }
-            "Accepted" -> {
+            "Finished" -> {
                 view.view_order_status.background = ColorDrawable(ContextCompat.getColor(mContext, R.color.colorGreen))
-            }
-            "Declined" -> {
-                view.view_order_status.background = ColorDrawable(ContextCompat.getColor(mContext, R.color.colorRed))
+                view.view_order_status.text = "Finished"
             }
             else -> {
-                view.view_order_status.background = ColorDrawable(ContextCompat.getColor(mContext, R.color.colorGreen))
+                view.view_order_status.background = ColorDrawable(ContextCompat.getColor(mContext, R.color.colorBlue))
+                view.view_order_status.text = "In progress"
             }
         }
 
 
-        textViewNumber.text = orderItem.number
         textViewProductName.text = orderItem.name
-        textViewProductAmount.text = orderItem.amount
+        textViewProductAmount.text = orderItem.amount + "$"
 
         textViewProductName.setOnClickListener {
             val i = Intent(mContext, OrderDescription::class.java)
