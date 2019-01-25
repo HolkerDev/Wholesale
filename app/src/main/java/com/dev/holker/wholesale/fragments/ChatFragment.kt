@@ -18,7 +18,6 @@ class ChatFragment : androidx.fragment.app.Fragment() {
 
     val mChats = arrayListOf<ChatItem>()
     val objectsIds = HashSet<String>()
-    lateinit var mAdapter: ChatAdapter
 
     override fun onStart() {
         mChats.clear()
@@ -30,6 +29,62 @@ class ChatFragment : androidx.fragment.app.Fragment() {
             } else {
                 if (objects.size < 1) {
                     Functions.toast(context, "No chats!")
+
+                    //start
+
+                    val querySecond = ParseQuery<ParseObject>("Chat")
+                    querySecond.whereEqualTo("receiver", ParseUser.getCurrentUser())
+                    querySecond.findInBackground { objs, error ->
+                        if (error != null) {
+                            Log.i("ChatFragment", error.message)
+                        } else {
+                            if (objs.size < 1) {
+                                Functions.toast(context, "No chats!")
+
+                                if (mChats.size >= 1) {
+                                    val mAdapter = ChatAdapter(
+                                        activity!!.applicationContext,
+                                        R.layout.item_message,
+                                        mChats
+                                    )
+
+                                    lv_chat_start.adapter = mAdapter
+                                }
+                            } else {
+                                for (users in objs) {
+                                    val userSecond = users.getParseUser("sender")
+                                    if (userSecond != null) {
+                                        objectsIds.add(userSecond.objectId)
+                                    }
+                                }
+
+                                for (oneUser in objectsIds) {
+                                    val queryUser = ParseQuery<ParseUser>("_User")
+                                    queryUser.whereEqualTo("objectId", oneUser)
+                                    val interlocutor = queryUser.first
+                                    mChats.add(
+                                        ChatItem(
+                                            interlocutor.username,
+                                            interlocutor.objectId
+                                        )
+                                    )
+                                }
+
+                                val mAdapter = ChatAdapter(
+                                    activity!!.applicationContext,
+                                    R.layout.item_message,
+                                    mChats
+                                )
+
+                                lv_chat_start.adapter = mAdapter
+
+                                Functions.toast(context, objectsIds.toString())
+                            }
+                        }
+                    }
+
+
+                    //end
                 } else {
                     for (obj in objects) {
                         val user = obj.getParseUser("receiver")
@@ -46,6 +101,15 @@ class ChatFragment : androidx.fragment.app.Fragment() {
                         } else {
                             if (objs.size < 1) {
                                 Functions.toast(context, "No chats!")
+                                if (mChats.size >= 1) {
+                                    val mAdapter = ChatAdapter(
+                                        activity!!.applicationContext,
+                                        R.layout.item_message,
+                                        mChats
+                                    )
+
+                                    lv_chat_start.adapter = mAdapter
+                                }
                             } else {
                                 for (users in objs) {
                                     val userSecond = users.getParseUser("sender")
@@ -86,11 +150,6 @@ class ChatFragment : androidx.fragment.app.Fragment() {
 
 
         super.onStart()
-    }
-
-
-    fun secondSearch() {
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
