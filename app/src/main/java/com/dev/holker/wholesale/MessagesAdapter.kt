@@ -1,7 +1,6 @@
 package com.dev.holker.wholesale
 
 import android.content.Context
-import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +28,7 @@ class MessagesAdapter(
 
         val messageItem = mObjects[position]
 
-        view.tv_message_text.text = messageItem.text
+        view.tv_message_text.text = "  " + messageItem.text
 
         if (messageItem.owner) {
             view.tv_message_text.background =
