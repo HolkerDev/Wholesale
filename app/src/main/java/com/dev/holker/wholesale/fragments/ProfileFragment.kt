@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import com.dev.holker.wholesale.EditActivity
 import com.dev.holker.wholesale.R
 import com.dev.holker.wholesale.activities.Login
 import com.parse.ParseObject
@@ -94,6 +95,11 @@ class ProfileFragment : androidx.fragment.app.Fragment() {
                     profile_profile_image.setImageBitmap(BitmapFactory.decodeByteArray(data, 0, data.size))
                 }
             }
+        }
+
+        btn_profile_edit.setOnClickListener {
+            val intent = Intent(context, EditActivity::class.java)
+            startActivity(intent)
         }
     }
 

@@ -50,7 +50,7 @@ class OrderAdapter(
 
 
         textViewProductName.text = orderItem.name
-        textViewProductAmount.text = orderItem.amount + "$"
+        textViewProductAmount.text = orderItem.amount + " pc"
 
         textViewProductName.setOnClickListener {
             val i = Intent(mContext, OrderDescription::class.java)

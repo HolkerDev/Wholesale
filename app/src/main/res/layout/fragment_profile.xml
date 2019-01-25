@@ -10,11 +10,27 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btn_profile_edit"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:background="@drawable/ic_edit_" />
+
+        <Button
+            android:id="@+id/btn_profile_logout"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@drawable/ic_logout" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_profile_image"
@@ -95,8 +111,8 @@
         android:layout_height="130dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/gaps"
-        android:padding="20dp"
         android:gravity="center"
+        android:padding="20dp"
         android:text="I am looking for someone who can make the original transmission from my previous account but it is not available on this email and any attachments may include confidential and intended solely and the original owner I don't know how much you can get the original transmission"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
         tools:layout_editor_absoluteX="0dp" />
@@ -132,28 +148,17 @@
     <TextView
         android:id="@+id/profile_rating"
         android:layout_width="50dp"
-        android:layout_height="30dp"
+        android:layout_height="25dp"
         android:layout_gravity="center"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="10dp"
         android:background="@color/colorRed"
         android:gravity="center"
         android:text="10"
         android:textColor="@color/colorWhite"
         android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toTopOf="@+id/textView10" />
-
-    <Button
-        android:id="@+id/btn_profile_logout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/btn_rounded"
-        android:text="@string/btn_logout"
-        android:textColor="@color/colorText"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
