@@ -78,16 +78,6 @@ class SearchFragment : androidx.fragment.app.Fragment() {
     }
 
 
-    override fun onResume() {
-        super.onResume()
-        mSelectionsPagerAdapter = SelectionsPagerAdapter(childFragmentManager)
-
-        setupViewPager(container)
-
-        tabs.setupWithViewPager(container)
-        container.currentItem = 0
-    }
-
     private fun setupViewPager(viewPager: ViewPager) {
         val adapterSubfragments = SelectionsPagerAdapter(childFragmentManager)
         adapterSubfragments.addFragment(UsersSubfragment(), "Users")
@@ -97,11 +87,6 @@ class SearchFragment : androidx.fragment.app.Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        mAdapter = UserAdapter(
-            activity!!.applicationContext,
-            R.layout.card_user,
-            mUsers
-        )
         return inflater.inflate(R.layout.fragment_search, null)
     }
 }

@@ -1,12 +1,15 @@
 package com.dev.holker.wholesale
 
 import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.core.content.ContextCompat
 import com.dev.holker.wholesale.model.OfferItem
 import kotlinx.android.synthetic.main.item_offer.view.*
+import kotlinx.android.synthetic.main.item_offer_supplier.view.*
 import java.util.*
 
 class OfferAdapter(
@@ -22,6 +25,32 @@ class OfferAdapter(
         val view = inflater.inflate(R.layout.item_offer, null)
 
         val offer = mObjects[position]
+
+
+        when (offer.status) {
+
+            "In progress" -> {
+                view.offer_item_status.background =
+                    ColorDrawable(ContextCompat.getColor(mContext, R.color.colorBlue))
+
+            }
+            "Accepted" -> {
+                view.offer_item_status.background =
+                    ColorDrawable(ContextCompat.getColor(mContext, R.color.colorGreen))
+
+            }
+            "Declined" -> {
+                view.offer_item_status.background =
+                    ColorDrawable(ContextCompat.getColor(mContext, R.color.colorRed))
+
+            }
+            else -> {
+                view.offer_item_status.background =
+                    ColorDrawable(ContextCompat.getColor(mContext, R.color.colorBlue))
+                view.offer_item_sup_status.text = "Unknown"
+            }
+        }
+
 
         view.offer_item_avatar.setImageBitmap(offer.avatar)
         view.offer_item_name.text = offer.name

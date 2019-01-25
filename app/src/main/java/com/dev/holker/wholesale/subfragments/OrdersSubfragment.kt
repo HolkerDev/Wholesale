@@ -30,18 +30,19 @@ class OrdersSubfragment : Fragment() {
             R.layout.item_order_client,
             mOrders
         )
+        mOrders.clear()
 
+        showAllOrders()
         val view = inflater.inflate(R.layout.subfragment_orders, container, false)
         return view
     }
 
     override fun onStart() {
-        showAllOrders()
         super.onStart()
     }
 
-
     fun showAllOrders() {
+        mOrders.clear()
         val query = ParseQuery<ParseObject>("Order")
 
         query.orderByAscending("createdAt")
