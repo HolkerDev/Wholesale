@@ -20,8 +20,8 @@
             app:itemIconTint="@color/bottom_navigation_colors"
             android:layout_height="50dp"
             android:layout_gravity="bottom"
-            android:background="#ffffff"
-            app:itemTextColor="#000000"
+            android:background="@color/colorAccent"
+            app:itemTextColor="#FFFFFF"
             app:menu="@menu/navigation"/>
 
 </LinearLayout>

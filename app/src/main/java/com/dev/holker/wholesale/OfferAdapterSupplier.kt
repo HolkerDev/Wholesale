@@ -39,19 +39,23 @@ class OfferAdapterSupplier(
         when (offerItem.status) {
             "In progress" -> {
                 view.offer_item_sup_status.background =
-                        ColorDrawable(ContextCompat.getColor(mContext, R.color.colorBlue))
+                    ColorDrawable(ContextCompat.getColor(mContext, R.color.colorBlue))
+                view.offer_item_sup_status.text = "In progress"
             }
             "Accepted" -> {
                 view.offer_item_sup_status.background =
-                        ColorDrawable(ContextCompat.getColor(mContext, R.color.colorGreen))
+                    ColorDrawable(ContextCompat.getColor(mContext, R.color.colorGreen))
+                view.offer_item_sup_status.text = "Accepted"
             }
             "Declined" -> {
                 view.offer_item_sup_status.background =
-                        ColorDrawable(ContextCompat.getColor(mContext, R.color.colorRed))
+                    ColorDrawable(ContextCompat.getColor(mContext, R.color.colorRed))
+                view.offer_item_sup_status.text = "Declined"
             }
             else -> {
                 view.offer_item_sup_status.background =
-                        ColorDrawable(ContextCompat.getColor(mContext, R.color.colorBlue))
+                    ColorDrawable(ContextCompat.getColor(mContext, R.color.colorBlue))
+                view.offer_item_sup_status.text = "Unknown"
             }
         }
 
