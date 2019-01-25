@@ -24,7 +24,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/unknown"
-                app:civ_border_color="#000000"
+                app:civ_border_color="#FFC107"
                 app:civ_border_width="3dp" />
 
             <EditText
@@ -38,17 +38,6 @@
                 android:hint="@string/h_company_name"
                 android:inputType="textPersonName" />
 
-            <Button
-                android:id="@+id/btn_attach"
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:background="@drawable/btn_rounded"
-                android:fontFamily="@font/ubuntu_light"
-                android:text="@string/btn_add_profile_photo"
-                android:textAllCaps="false"
-                android:textColor="#fff"
-                android:textSize="25sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,6 +48,19 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/layout_stroke"
                 android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_attach"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/btn_rounded"
+                    android:fontFamily="@font/ubuntu_light"
+                    android:text="@string/btn_add_profile_photo"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/btn_add_inter"
@@ -75,28 +77,37 @@
                     android:textColor="@color/colorWhite"
                     android:textSize="25sp" />
 
-                <ListView
-                    android:id="@+id/lv_interests"
-                    android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:layout_margin="20dp" />
+
+                <Button
+                    android:id="@+id/btn_signup_descr_back"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/btn_rounded"
+                    android:fontFamily="@font/ubuntu_light"
+                    android:gravity="center"
+                    android:text="Select background"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="25sp" />
+
+                <Button
+                    android:id="@+id/btn_signup_descr_location"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/btn_rounded"
+                    android:fontFamily="@font/ubuntu_light"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="25sp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="Enter location"
+                    android:textAllCaps="false" />
+
             </LinearLayout>
 
-
-            <Button
-                android:id="@+id/btn_signup_descr_back"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Select background"
-                android:textAllCaps="false" />
-
-
-            <Button
-                android:id="@+id/btn_signup_descr_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Enter location"
-                android:textAllCaps="false" />
 
             <EditText
                 android:id="@+id/et_sign_up_descr_descr"
@@ -113,8 +124,8 @@
 
             <Button
                 android:id="@+id/btn_signup"
-                android:layout_width="250dp"
-                android:layout_height="40dp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
