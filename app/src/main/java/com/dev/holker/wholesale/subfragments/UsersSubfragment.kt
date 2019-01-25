@@ -1,5 +1,6 @@
 package com.dev.holker.wholesale.subfragments
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.dev.holker.wholesale.R
 import com.dev.holker.wholesale.UserAdapter
 import com.dev.holker.wholesale.model.User
+import com.parse.ParseFile
 import com.parse.ParseUser
 import kotlinx.android.synthetic.main.subfragment_users.*
 
@@ -48,18 +50,28 @@ class UsersSubfragment : Fragment() {
                             if (!filter.equals("")) {
                                 Log.i("MyLog", "Filter : $filter")
                             } else {
-                                mUsers.add(
-                                    User(
-                                        i.objectId,
-                                        i.username,
-                                        null,
-                                        i.getString("descriprion"),
-                                        i.getInt("background")
-                                    )
-                                )
+                                val photoUser = i.get("avatar") as ParseFile
+                                photoUser.getDataInBackground { data, e ->
+                                    if (e != null) {
+                                        Log.i("MyLog", e.message.toString())
+                                    } else {
+                                        mUsers.add(
+                                            User(
+                                                i.objectId,
+                                                i.getString("name"),
+                                                BitmapFactory.decodeByteArray(data, 0, data.size),
+                                                i.getString("descriprion"),
+                                                i.getInt("background")
+                                            )
+                                        )
+                                        lv_users_all.adapter = mAdapter
+                                    }
+
+                                }
+
                             }
                         }
-                        lv_users_all.adapter = mAdapter
+
                     } else {
                         Toast.makeText(context, "No users to show", Toast.LENGTH_LONG).show()
                     }

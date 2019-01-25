@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import com.dev.holker.wholesale.activities.ChatActivity;
 import com.dev.holker.wholesale.model.ResourcesW;
 import com.dev.holker.wholesale.model.User;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import java.util.ArrayList;
 
@@ -38,12 +39,12 @@ public class UserAdapter extends ArrayAdapter<User> {
 
         View view = inflater.inflate(R.layout.card_user, null);
         final User user = mUsers.get(position);
-        //CircleImageView circleImageView = view.findViewById(R.id.profile_image);
+        CircleImageView circleImageView = view.findViewById(R.id.profile_image);
         TextView nameOfUser = (TextView) view.findViewById(R.id.tv_profile_name);
         Button buttonChat = view.findViewById(R.id.btn_card_chat);
 
 
-        //circleImageView.setImageBitmap(user.getAvatar());
+        circleImageView.setImageBitmap(user.getAvatar());
         nameOfUser.setText(user.getUsername());
         ImageView background = (ImageView) view.findViewById(R.id.card_background);
         background.setImageBitmap(ResourcesW.Companion.getBackground(user.getBack(), mContext));
