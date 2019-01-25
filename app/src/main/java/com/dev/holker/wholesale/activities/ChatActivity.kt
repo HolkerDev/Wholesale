@@ -42,7 +42,56 @@ class ChatActivity : AppCompatActivity() {
             } else {
                 if (objects.size < 1) {
                     Toast.makeText(applicationContext, "You have no messages with this user", Toast.LENGTH_LONG).show()
+                    //start second search
+                    val queryMessagesSecond = ParseQuery<ParseObject>("Chat")
+                    queryMessagesSecond.whereEqualTo("sender", receiver)
+                    queryMessagesSecond.whereEqualTo("receiver", sender)
+
+                    //user send to us
+                    queryMessagesSecond.findInBackground { messasges, error ->
+                        if (error != null) {
+                            Log.i("ChatActivity", error.message)
+                        } else {
+                            if (messasges.size < 1) {
+                                Toast.makeText(
+                                    applicationContext,
+                                    "You have no messages with this user",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                if (mMessages.size >= 1) {
+                                    val mAdapter = MessagesAdapter(
+                                        applicationContext,
+                                        R.layout.item_message,
+                                        mMessages
+                                    )
+                                    lv_messages.adapter = mAdapter
+                                }
+                            } else {
+                                for (message in messasges) {
+                                    val date = message.getDate("createdAt")
+                                    mMessages.add(
+                                        MessageItem(
+                                            receiver.objectId,
+                                            message.getString("message"),
+                                            false,
+                                            message.createdAt
+                                        )
+                                    )
+                                }
+
+                                Functions.sortDates(mMessages)
+
+                                val mAdapter = MessagesAdapter(
+                                    applicationContext,
+                                    R.layout.item_message,
+                                    mMessages
+                                )
+                                lv_messages.adapter = mAdapter
+                            }
+                        }
+                    } //end second search
                 } else {
+                    Log.i("MyLog", objects.size.toString())
                     for (messageSend in objects) {
                         val date = messageSend.getDate("createdAt")
                         mMessages.add(
@@ -70,6 +119,15 @@ class ChatActivity : AppCompatActivity() {
                                     "You have no messages with this user",
                                     Toast.LENGTH_LONG
                                 ).show()
+
+                                if (mMessages.size >= 1) {
+                                    val mAdapter = MessagesAdapter(
+                                        applicationContext,
+                                        R.layout.item_message,
+                                        mMessages
+                                    )
+                                    lv_messages.adapter = mAdapter
+                                }
                             } else {
                                 for (message in messasges) {
                                     val date = message.getDate("createdAt")
