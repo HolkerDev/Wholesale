@@ -9,26 +9,46 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
         android:orientation="vertical">
 
-
-        <ImageView
-            android:id="@+id/img_order_descr"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            tools:srcCompat="@tools:sample/avatars[0]" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/stroke_image">
+
+            <ImageView
+                android:id="@+id/img_order_descr"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/stroke_image"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@drawable/b_architecture_1" />
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/tv_name_order_descr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_margin="15dp"
+            android:fontFamily="@font/ubuntu_light"
+            android:gravity="center"
+            android:text="Order Name"
+            android:textColor="@color/colorWhite"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/tv_descr_order_descr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_margin="5dp"
+            android:fontFamily="@font/ubuntu_light"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp" />
 
         <ListView
             android:id="@+id/rv_offers_order_descr"

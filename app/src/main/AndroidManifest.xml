@@ -14,8 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.ChatActivity"></activity>
-        <activity android:name=".activities.Offer" />
+        <activity android:name=".activities.ChatActivity" />
+        <activity
+            android:name=".activities.Offer"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -37,7 +39,9 @@
         <activity
             android:name=".activities.SignupDescription"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.OrderDescription" />
+        <activity
+            android:name=".activities.OrderDescription"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
