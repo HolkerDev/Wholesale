@@ -23,6 +23,9 @@ class OrderDescription : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_description)
 
+        val query = ParseQuery<ParseObject>("Order")
+        query.whereEqualTo("objectId", intent.getStringExtra("id"))
+        val order = query.first
 
         //Checks the role
         if (ParseUser.getCurrentUser() != null) {
@@ -36,6 +39,10 @@ class OrderDescription : AppCompatActivity() {
 
             } else if (role.getNumber("roleId") == 3) {
                 Log.i("OrderDescription", "it's a supplier")
+                val status = order.getString("status")
+                if (status == "Finished") {
+                    add_offer.visibility = View.INVISIBLE
+                }
             } else {
                 //if Admin
             }
@@ -45,9 +52,7 @@ class OrderDescription : AppCompatActivity() {
 
         //TODO: Move this code to presenter
         //download photo and then attach it to imageview
-        val query = ParseQuery<ParseObject>("Order")
-        query.whereEqualTo("objectId", intent.getStringExtra("id"))
-        val order = query.first
+
 
         val photo = order.get("photo") as ParseFile
 
@@ -102,12 +107,24 @@ class OrderDescription : AppCompatActivity() {
 //                                    )
                                     if (order.getParseUser("user")!!.objectId == ParseUser.getCurrentUser().objectId) {
                                         Log.i("OrderDescription", "owner!")
-                                        val mAdapter = OfferAdapterMain(
-                                            applicationContext,
-                                            R.layout.item_offer_client,
-                                            mOffers
-                                        )
-                                        rv_offers_order_descr.adapter = mAdapter
+
+                                        val status = order.getString("status")
+                                        Log.i("OrderDescription", status)
+                                        if (status == "Finished") {
+                                            val mAdapter = OfferAdapter(
+                                                applicationContext,
+                                                R.layout.item_offer,
+                                                mOffers
+                                            )
+                                            rv_offers_order_descr.adapter = mAdapter
+                                        } else {
+                                            val mAdapter = OfferAdapterMain(
+                                                applicationContext,
+                                                R.layout.item_offer_client,
+                                                mOffers
+                                            )
+                                            rv_offers_order_descr.adapter = mAdapter
+                                        }
                                     } else {
                                         Log.i("OrderDescription", "just user")
                                         val mAdapter = OfferAdapter(

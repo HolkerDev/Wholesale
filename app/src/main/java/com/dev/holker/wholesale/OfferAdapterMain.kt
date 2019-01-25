@@ -40,7 +40,7 @@ class OfferAdapterMain(
             offerObject.saveInBackground {
                 val orderObject = offerObject.getParseObject("order")
                 if (orderObject != null) {
-                    orderObject.put("status", "Accepted")
+                    orderObject.put("status", "Finished")
                     orderObject.saveInBackground {
                         val queryOffers = ParseQuery<ParseObject>("OrderOffer")
                         queryOffers.whereEqualTo("order", orderObject)
@@ -58,8 +58,6 @@ class OfferAdapterMain(
                                     }
                                 }
                             }
-
-
                         }
                         goToMain()
                     }
