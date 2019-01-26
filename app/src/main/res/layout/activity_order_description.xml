@@ -7,6 +7,7 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
@@ -20,7 +21,7 @@
             <ImageView
                 android:id="@+id/img_order_descr"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="180dp"
                 android:layout_margin="20dp"
                 android:background="@drawable/stroke_image"
                 android:scaleType="centerCrop"
@@ -37,7 +38,7 @@
             android:gravity="center"
             android:text="Order Name"
             android:textColor="@color/colorWhite"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/tv_descr_order_descr"
@@ -65,5 +66,14 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_add_black_24dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/ic_rating" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

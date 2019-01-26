@@ -10,6 +10,7 @@ import com.dev.holker.wholesale.OfferAdapter
 import com.dev.holker.wholesale.OfferAdapterMain
 import com.dev.holker.wholesale.R
 import com.dev.holker.wholesale.model.OfferItem
+import com.dev.holker.wholesale.model.RateDialog
 import com.dev.holker.wholesale.presenters.OrderDescriptionPresenter
 import com.parse.*
 import kotlinx.android.synthetic.main.activity_order_description.*
@@ -36,12 +37,24 @@ class OrderDescription : AppCompatActivity() {
             if (role.getNumber("roleId") == 2) {
                 Log.i("OrderDescription", "it's a client")
                 add_offer.visibility = View.INVISIBLE
-
+                if (order.getParseUser("user")!!.objectId == ParseUser.getCurrentUser().objectId) {
+                    if (order.getString("status").equals("Finished") && !order.getBoolean("ratedClient")) {
+                        add_rating.visibility = View.VISIBLE
+                    }
+                }
             } else if (role.getNumber("roleId") == 3) {
                 Log.i("OrderDescription", "it's a supplier")
                 val status = order.getString("status")
                 if (status == "Finished") {
                     add_offer.visibility = View.INVISIBLE
+                    val offerQuery = ParseQuery<ParseObject>("OrderOffer")
+                    offerQuery.whereEqualTo("order", order)
+                    offerQuery.whereEqualTo("status", "Accepted")
+                    val offerObj = offerQuery.first
+                    Log.i("MyLog", offerObj.getParseUser("user")!!.objectId + " Herer")
+                    if (ParseUser.getCurrentUser().objectId == offerObj.getParseUser("user")!!.objectId && !order.getBoolean("ratedSupplier")) {
+                        add_rating.visibility = View.VISIBLE
+                    }
                 }
             } else {
                 //if Admin
@@ -150,5 +163,19 @@ class OrderDescription : AppCompatActivity() {
             startActivity(i)
         }
 
+        add_rating.setOnClickListener {
+            val dialog = RateDialog()
+            val fm = supportFragmentManager
+
+            val queryRole = ParseQuery<ParseRole>("_Role")
+            queryRole.whereEqualTo("users", ParseUser.getCurrentUser())
+            val role = queryRole.first
+
+            dialog.client = role.getNumber("roleId") == 2
+            Log.i("MyLog", "Order id before ${order.objectId}")
+            dialog.orderId = order.objectId
+
+            dialog.show(fm, "Rating")
+        }
     }
 }

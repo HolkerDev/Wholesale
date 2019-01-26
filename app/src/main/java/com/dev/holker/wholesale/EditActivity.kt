@@ -63,6 +63,10 @@ class EditActivity : AppCompatActivity(), LocationDialog.NoticeDialogListener {
             dialog.show(fm, "Information")
         }
 
+        edit_background.setOnClickListener {
+
+        }
+
         edit_photo.setOnClickListener {
             getPhoto()
         }

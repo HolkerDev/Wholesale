@@ -156,7 +156,12 @@ class SignUpDescriptionPresenter(val view: View) {
                                     //put this object to preference
                                     preference.put("productType", type)
                                     //save preference
-                                    preference.saveInBackground()
+                                    preference.saveInBackground {
+                                        val ratingObj = ParseObject("Rating")
+                                        ratingObj.put("user", user)
+                                        ratingObj.put("rate", 0)
+                                        ratingObj.saveInBackground()
+                                    }
                                 }
 
                                 toast("Hallelujah")
