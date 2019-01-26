@@ -3,6 +3,7 @@ package com.dev.holker.wholesale.presenters
 import android.content.Intent
 import android.view.View
 import android.widget.ArrayAdapter
+import com.dev.holker.wholesale.R
 import com.dev.holker.wholesale.activities.SignupDescription
 import com.dev.holker.wholesale.presenters.interfaces.ISignUpPresenter
 
@@ -19,8 +20,8 @@ class SignUpPresenter(val view: View) : ISignUpPresenter {
     override fun getAdapter(): ArrayAdapter<String> {
         val listOfRoles = listOf<String>("Client", "Supplier")
         val adapter: ArrayAdapter<String> =
-            ArrayAdapter(view.context, android.R.layout.simple_spinner_item, listOfRoles)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            ArrayAdapter(view.context,R.layout.test_spinner_style, listOfRoles)
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         return adapter
     }
 

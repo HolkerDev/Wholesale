@@ -73,7 +73,12 @@ class SignUpDescriptionPresenter(val view: View) {
 
     //Function return hint text for Name gap
     fun getHint(intent: Intent): String {
-        return intent.getStringExtra("role")
+
+        if (intent.getStringExtra("role").equals("Client")) {
+            return "Your name"
+        } else {
+            return "Company name"
+        }
     }
 
 

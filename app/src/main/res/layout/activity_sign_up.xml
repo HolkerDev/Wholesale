@@ -10,9 +10,9 @@
 
     <!--Logo-->
     <ImageView
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="20dp"
         app:srcCompat="@drawable/ic_logo" />
 
     <!--Name of the app-->
@@ -66,8 +66,8 @@
         android:hint="@string/h_password"
         android:inputType="textPassword" />
 
-
     <!--Choose type of user-->
+
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
@@ -76,7 +76,8 @@
         android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/gaps"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textAlignment="center" />
 
     <!--Next button-->
     <Button
