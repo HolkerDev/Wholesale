@@ -50,6 +50,8 @@ public class InfoDialog extends DialogFragment {
         });
 
 
+
+
         return builder.create();
     }
 }
