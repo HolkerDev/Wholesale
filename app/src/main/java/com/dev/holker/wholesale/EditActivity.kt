@@ -8,6 +8,8 @@ import android.provider.MediaStore
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.dev.holker.wholesale.model.InfoDialog
+import com.dev.holker.wholesale.model.LocationDialog
+import com.dev.holker.wholesale.presenters.SignUpDescriptionPresenter
 import com.parse.ParseFile
 import com.parse.ParseObject
 import com.parse.ParseQuery
@@ -15,7 +17,41 @@ import com.parse.ParseUser
 import kotlinx.android.synthetic.main.activity_edit.*
 import java.io.ByteArrayOutputStream
 
-class EditActivity : AppCompatActivity() {
+class EditActivity : AppCompatActivity(), LocationDialog.NoticeDialogListener {
+    override fun apply(country: String?, city: String?, street: String?) {
+        val obj = ParseObject("Location")
+
+        //Put street to this table
+        if (street != null) {
+            obj.put("street", street)
+        }
+
+        //Query for finding a city
+        val queryCity = ParseQuery<ParseObject>("City")
+        queryCity.whereEqualTo("objectId", SignUpDescriptionPresenter.getCityId(city))
+        val objCity = queryCity.first
+
+        //Then put it in Location table like a pointer
+        obj.put("city", objCity)
+
+        //Query for finding an country.
+        val queryCountry = ParseQuery<ParseObject>("Country")
+        queryCountry.whereEqualTo("objectId", SignUpDescriptionPresenter.getCountryId(country))
+        val objCountry = queryCountry.first
+        //Then put it in Location table like a pointer
+        obj.put("country", objCountry)
+
+        obj.saveInBackground {
+            val locationObj = obj
+            //put location to user
+            val userCurrent = ParseUser.getCurrentUser()
+            userCurrent.put("location", locationObj)
+            userCurrent.saveInBackground {
+
+            }
+
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,8 +125,17 @@ class EditActivity : AppCompatActivity() {
         edit_go_back.setOnClickListener {
             finish()
         }
+
+        edit_location.setOnClickListener {
+            getLocation()
+        }
     }
 
+    fun getLocation() {
+        val dialog = LocationDialog()
+        val fm = supportFragmentManager
+        dialog.show(fm, "location")
+    }
 
     //get selected photo if its was selected
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

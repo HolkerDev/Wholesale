@@ -175,7 +175,7 @@ class SignUpDescriptionPresenter(val view: View) {
     companion object {
 
         //Function gets name of country and returns objectId from server
-        fun getCountryId(country: String): String {
+        fun getCountryId(country: String?): String {
             when (country) {
                 "Ukraine" -> {
                     return "tPwElQRFQg"
@@ -200,7 +200,7 @@ class SignUpDescriptionPresenter(val view: View) {
 
         //looks terrible, but I can't make it easier
         //Function gets name of city and returns objectId from server
-        fun getCityId(city: String): String {
+        fun getCityId(city: String?): String {
             when (city) {
                 "London" -> return "wlnKfUpFwK"
                 "Cracow" -> return "LdGK8NgugX"
