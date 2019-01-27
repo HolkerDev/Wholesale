@@ -30,7 +30,7 @@ class OfferAdapterMain(
 
         view.offer_item_client_avatar.setImageBitmap(offer.avatar)
         view.offer_item_client_name.text = offer.name
-        view.offer_item_client_price.text = offer.price
+        view.offer_item_client_price.text = offer.price + "$"
 
         view.offer_item_client_accept.setOnClickListener {
             val query = ParseQuery<ParseObject>("OrderOffer")
@@ -64,6 +64,12 @@ class OfferAdapterMain(
                 }
             }
 
+        }
+
+        view.layout_offer_client.setOnClickListener {
+            val intent = Intent(mContext, OfferDescriptionActivity::class.java)
+            intent.putExtra("id", offer.id)
+            mContext.startActivity(intent)
         }
 
         return view

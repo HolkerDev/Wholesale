@@ -1,6 +1,7 @@
 package com.dev.holker.wholesale
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
@@ -51,10 +52,16 @@ class OfferAdapter(
             }
         }
 
+        view.layout_offer.setOnClickListener {
+            val intent = Intent(mContext, OfferDescriptionActivity::class.java)
+            intent.putExtra("id", offer.id)
+            mContext.startActivity(intent)
+        }
+
 
         view.offer_item_avatar.setImageBitmap(offer.avatar)
         view.offer_item_name.text = offer.name
-        view.offer_item_price.text = offer.price
+        view.offer_item_price.text = offer.price + "$"
         view.offer_item_status.text = offer.status
 
         return view

@@ -60,7 +60,7 @@ class OfferAdapterSupplier(
         }
 
         view.offer_item_sup_name.text = offerItem.name
-        view.offer_item_sup_price.text = offerItem.price
+        view.offer_item_sup_price.text = offerItem.price+"$"
 
         view.go_to_order.setOnClickListener {
 

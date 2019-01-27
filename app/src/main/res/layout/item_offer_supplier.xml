@@ -35,14 +35,14 @@
     <TextView
         android:id="@+id/offer_item_sup_status"
         android:layout_width="80dp"
-        android:textColor="@color/colorWhite"
         android:layout_height="30dp"
-        android:gravity="center"
-        android:textSize="15dp"
         android:layout_gravity="center"
         android:layout_marginEnd="20dp"
         android:background="@color/colorRed"
-        android:text="Declined" />
+        android:gravity="center"
+        android:text="Declined"
+        android:textColor="@color/colorWhite"
+        android:textSize="15dp" />
 
 
 </LinearLayout>

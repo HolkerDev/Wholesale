@@ -52,7 +52,10 @@ class OrderDescription : AppCompatActivity() {
                     offerQuery.whereEqualTo("status", "Accepted")
                     val offerObj = offerQuery.first
                     Log.i("MyLog", offerObj.getParseUser("user")!!.objectId + " Herer")
-                    if (ParseUser.getCurrentUser().objectId == offerObj.getParseUser("user")!!.objectId && !order.getBoolean("ratedSupplier")) {
+                    if (ParseUser.getCurrentUser().objectId == offerObj.getParseUser("user")!!.objectId && !order.getBoolean(
+                            "ratedSupplier"
+                        )
+                    ) {
                         add_rating.visibility = View.VISIBLE
                     }
                 }
@@ -107,7 +110,7 @@ class OrderDescription : AppCompatActivity() {
                                         OfferItem(
                                             obj.objectId,
                                             BitmapFactory.decodeByteArray(data, 0, data.size),
-                                            sup.username,
+                                            sup.getString("name"),
                                             obj.getString("status"),
                                             obj.getString("price")
                                         )

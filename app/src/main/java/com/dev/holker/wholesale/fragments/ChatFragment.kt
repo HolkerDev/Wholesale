@@ -21,6 +21,7 @@ class ChatFragment : androidx.fragment.app.Fragment() {
 
     override fun onStart() {
         mChats.clear()
+
         val queryFirst = ParseQuery<ParseObject>("Chat")
         queryFirst.whereEqualTo("sender", ParseUser.getCurrentUser())
         queryFirst.findInBackground { objects, e ->
@@ -91,6 +92,7 @@ class ChatFragment : androidx.fragment.app.Fragment() {
 
                     //end
                 } else {
+                    Log.i("ChatFragment", "Go here")
                     for (obj in objects) {
                         val user = obj.getParseUser("receiver")
                         if (user != null) {
@@ -107,6 +109,23 @@ class ChatFragment : androidx.fragment.app.Fragment() {
                         } else {
                             if (objs.size < 1) {
                                 Functions.toast(context, "No chats!")
+
+                                Log.i("ChatFragment", "Go here 2")
+
+                                if (objectsIds.size >= 1) {
+                                    for (oneUser in objectsIds) {
+                                        val queryUser = ParseQuery<ParseUser>("_User")
+                                        queryUser.whereEqualTo("objectId", oneUser)
+                                        val interlocutor = queryUser.first
+                                        mChats.add(
+                                            ChatItem(
+                                                interlocutor.username,
+                                                interlocutor.objectId
+                                            )
+                                        )
+                                    }
+                                }
+
                                 if (mChats.size >= 1) {
                                     val mAdapter = ChatAdapter(
                                         activity!!.applicationContext,
