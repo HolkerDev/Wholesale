@@ -1,11 +1,9 @@
 package com.dev.holker.wholesale.presenters
 
-import android.app.Activity
-import android.content.Context
-import android.content.ContextWrapper
 import android.graphics.Bitmap
 import android.view.View
 import android.widget.Toast
+import com.dev.holker.wholesale.model.Wholesale
 import com.parse.ParseFile
 import com.parse.ParseObject
 import com.parse.ParseQuery
@@ -36,28 +34,19 @@ class OrderPresenter(val view: View) {
         obj.put("user", user)
         obj.put("productType", type)
         obj.put("status", "In progress")
+        obj.put("ratedClient", false)
+        obj.put("ratedSupplier", false)
 
         obj.saveInBackground {
             if (it != null) {
                 toast(it.message.toString())
             } else {
                 toast("Order is ready!")
-                val activity = scanForActivity(view.context)
+                val activity = Wholesale.scanForActivity(view.context)
                 if (activity != null) {
                     activity.finish()
                 }
             }
         }
-    }
-
-    private fun scanForActivity(cont: Context?): Activity? {
-        if (cont == null)
-            return null
-        else if (cont is Activity)
-            return cont
-        else if (cont is ContextWrapper)
-            return scanForActivity((cont as ContextWrapper).baseContext)
-
-        return null
     }
 }

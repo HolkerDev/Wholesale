@@ -24,6 +24,7 @@ class Order : AppCompatActivity() {
         photo = BitmapFactory.decodeResource(resources, R.drawable.unknown)
 
         btn_select_type.setOnClickListener {
+            var index = 0
             val dialogOrder: AlertDialog
             val items = arrayOf(
                 "Dining Sets", "Outdoor Lounge Chairs", "Banquet Chairs", "Tables",
@@ -31,11 +32,12 @@ class Order : AppCompatActivity() {
             )
             val builder = AlertDialog.Builder(this@Order)
             builder.setTitle("Select background")
-            builder.setSingleChoiceItems(items, -1) { _, which ->
-                val choice = items[which]
-                productType = items[which]
+            builder.setSingleChoiceItems(items, 0) { _, which ->
+                index = which
             }
-            builder.setPositiveButton("Submit") { _, _ ->
+            builder.setPositiveButton("Submit") { _, which ->
+                val choice = items[index]
+                productType = items[index]
             }
             dialogOrder = builder.create()
             dialogOrder.show()
