@@ -3,6 +3,7 @@ package com.dev.holker.wholesale.presenters
 import android.content.Intent
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.ListView
 import com.dev.holker.wholesale.MessagesAdapter
 import com.dev.holker.wholesale.R
@@ -16,6 +17,17 @@ class ChatPresenter(val view: View) {
 
     lateinit var sender: ParseUser
     lateinit var receiver: ParseUser
+
+    fun sendMessage(editText: EditText, mMessages: ArrayList<MessageItem>, listView: ListView) {
+        val message = ParseObject("Chat")
+        message.put("message", editText.text.toString())
+        message.put("sender", ParseUser.getCurrentUser())
+        message.put("receiver", receiver)
+        editText.setText("")
+        message.saveInBackground {
+            updateMessagesList(mMessages, listView)
+        }
+    }
 
     fun init(intent: Intent) {
         val queryReceiver = ParseQuery<ParseUser>("_User")

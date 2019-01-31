@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dev.holker.wholesale.R
 import com.dev.holker.wholesale.model.MessageItem
 import com.dev.holker.wholesale.presenters.ChatPresenter
-import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseUser
 import kotlinx.android.synthetic.main.activity_chat.*
@@ -21,8 +20,6 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
-        //TODO:REWRITE THIS CLASS
-
         presenter = ChatPresenter(findViewById(android.R.id.content))
         presenter.init(intent)
 
@@ -37,14 +34,7 @@ class ChatActivity : AppCompatActivity() {
         presenter.updateMessagesList(mMessages, lv_messages)
 
         btn_send.setOnClickListener {
-            val message = ParseObject("Chat")
-            message.put("message", et_message.text.toString())
-            message.put("sender", ParseUser.getCurrentUser())
-            message.put("receiver", receiver)
-            et_message.setText("")
-            message.saveInBackground {
-                presenter.updateMessagesList(mMessages, lv_messages)
-            }
+            presenter.sendMessage(et_message, mMessages, lv_messages)
         }
     }
 
