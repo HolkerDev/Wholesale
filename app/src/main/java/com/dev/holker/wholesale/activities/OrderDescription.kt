@@ -20,56 +20,44 @@ class OrderDescription : AppCompatActivity() {
     //TODO: Update list after adding new offer
 
     val mOffers = arrayListOf<OfferItem>()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_description)
 
-        val query = ParseQuery<ParseObject>("Order")
-        query.whereEqualTo("objectId", intent.getStringExtra("id"))
-        val order = query.first
+        val presenter = OrderDescriptionPresenter(findViewById(android.R.id.content))
 
-        //Checks the role
-        if (ParseUser.getCurrentUser() != null) {
-            val queryRole = ParseQuery<ParseRole>("_Role")
-            queryRole.whereEqualTo("users", ParseUser.getCurrentUser())
-            val role = queryRole.first
+        val order = presenter.getOrder(intent)
 
-            if (role.getNumber("roleId") == 2) {
-                Log.i("OrderDescription", "it's a client")
+        if (presenter.isClient()) {
+            Log.i("OrderDescription", "It's a client")
+
+            //client can't add an offer
+            add_offer.visibility = View.INVISIBLE
+
+            if (presenter.isOwner(order) && presenter.canRateClient(order)) {
+                //if order is finished and client is owner, we'll give it possibility to rate
+                add_rating.visibility = View.VISIBLE
+            }
+
+        } else {
+            Log.i("OrderDescription", "It's a supplier")
+
+            if (presenter.isFinished(order)) {
+                //if order is finished supplier can't add new offer
                 add_offer.visibility = View.INVISIBLE
-                if (order.getParseUser("user")!!.objectId == ParseUser.getCurrentUser().objectId) {
-                    if (order.getString("status").equals("Finished") && !order.getBoolean("ratedClient")) {
-                        add_rating.visibility = View.VISIBLE
-                    }
+
+                if (presenter.canRateSupplier(order)) {
+                    //check if supplier can rate a client
+                    add_rating.visibility = View.VISIBLE
                 }
-            } else if (role.getNumber("roleId") == 3) {
-                Log.i("OrderDescription", "it's a supplier")
-                val status = order.getString("status")
-                if (status == "Finished") {
-                    add_offer.visibility = View.INVISIBLE
-                    val offerQuery = ParseQuery<ParseObject>("OrderOffer")
-                    offerQuery.whereEqualTo("order", order)
-                    offerQuery.whereEqualTo("status", "Accepted")
-                    val offerObj = offerQuery.first
-                    Log.i("MyLog", offerObj.getParseUser("user")!!.objectId + " Herer")
-                    if (ParseUser.getCurrentUser().objectId == offerObj.getParseUser("user")!!.objectId && !order.getBoolean(
-                            "ratedSupplier"
-                        )
-                    ) {
-                        add_rating.visibility = View.VISIBLE
-                    }
-                }
-            } else {
-                //if Admin
             }
         }
 
-        val presenter = OrderDescriptionPresenter(findViewById(android.R.id.content))
 
         //TODO: Move this code to presenter
         //download photo and then attach it to imageview
-
-
         val photo = order.get("photo") as ParseFile
 
         photo.getDataInBackground { data, e ->
@@ -181,4 +169,5 @@ class OrderDescription : AppCompatActivity() {
             dialog.show(fm, "Rating")
         }
     }
+
 }
