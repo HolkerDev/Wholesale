@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.dev.holker.wholesale.OfferAdapter
-import com.dev.holker.wholesale.OfferAdapterMain
 import com.dev.holker.wholesale.R
 import com.dev.holker.wholesale.model.OfferItem
 import com.dev.holker.wholesale.model.RateDialog
 import com.dev.holker.wholesale.presenters.OrderDescriptionPresenter
-import com.parse.*
+import com.parse.ParseFile
+import com.parse.ParseQuery
+import com.parse.ParseRole
+import com.parse.ParseUser
 import kotlinx.android.synthetic.main.activity_order_description.*
 
 class OrderDescription : AppCompatActivity() {
@@ -56,7 +57,6 @@ class OrderDescription : AppCompatActivity() {
         }
 
 
-        //TODO: Move this code to presenter
         //download photo and then attach it to imageview
         val photo = order.get("photo") as ParseFile
 
@@ -74,79 +74,8 @@ class OrderDescription : AppCompatActivity() {
         //set description of order
         tv_descr_order_descr.text = presenter.getDescription(order)
 
-        //Download offers
-        val queryOffer = ParseQuery<ParseObject>("OrderOffer")
-        queryOffer.whereEqualTo("order", order)
-        queryOffer.findInBackground { objects, e ->
-            if (e != null) {
-                Log.i("MyLog", e.message)
-            } else {
-                if (objects.size > 0) {
-                    for (obj in objects) {
-                        Log.i("MyLog", obj.objectId)
-                        val sup = obj.getParseUser("user")
-                        if (sup != null) {
-                            Log.i("MyLog", sup.fetchIfNeeded().username)
-                            Log.i("MyLog", obj.objectId)
-                            val photoOffer = sup.get("avatar") as ParseFile
-
-                            photoOffer.getDataInBackground { data, error ->
-                                if (error != null) {
-                                    Log.i("MyLog", error.message.toString())
-                                } else {
-                                    mOffers.add(
-                                        OfferItem(
-                                            obj.objectId,
-                                            BitmapFactory.decodeByteArray(data, 0, data.size),
-                                            sup.getString("name"),
-                                            obj.getString("status"),
-                                            obj.getString("price")
-                                        )
-                                    )
-                                    Log.i("MyLog", "Down finish")
-//                                    mAdapter = OfferAdapter(
-//                                        applicationContext,
-//                                        R.layout.item_offer,
-//                                        mOffers
-//                                    )
-                                    if (order.getParseUser("user")!!.objectId == ParseUser.getCurrentUser().objectId) {
-                                        Log.i("OrderDescription", "owner!")
-
-                                        val status = order.getString("status")
-                                        Log.i("OrderDescription", status)
-                                        if (status == "Finished") {
-                                            val mAdapter = OfferAdapter(
-                                                applicationContext,
-                                                R.layout.item_offer,
-                                                mOffers
-                                            )
-                                            rv_offers_order_descr.adapter = mAdapter
-                                        } else {
-                                            val mAdapter = OfferAdapterMain(
-                                                applicationContext,
-                                                R.layout.item_offer_client,
-                                                mOffers
-                                            )
-                                            rv_offers_order_descr.adapter = mAdapter
-                                        }
-                                    } else {
-                                        Log.i("OrderDescription", "just user")
-                                        val mAdapter = OfferAdapter(
-                                            applicationContext,
-                                            R.layout.item_offer,
-                                            mOffers
-                                        )
-                                        rv_offers_order_descr.adapter = mAdapter
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-
-                }
-            }
-        }
+        //download offers
+        presenter.downloadOffers(mOffers, rv_offers_order_descr, order)
 
         add_offer.setOnClickListener {
             val i = Intent(this, Offer::class.java)
